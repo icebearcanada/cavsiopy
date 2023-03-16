@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cavsiopy package &mdash; cavsiopy 0.9.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            cavsiopy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">cavsiopy package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cavsiopy.Direction_Analysis">cavsiopy.Direction_Analysis module</a><ul>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.LA_inst"><code class="docutils literal notranslate"><span class="pre">LA_inst()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.LA_sat"><code class="docutils literal notranslate"><span class="pre">LA_sat()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.calculate_angles"><code class="docutils literal notranslate"><span class="pre">calculate_angles()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.calculate_los"><code class="docutils literal notranslate"><span class="pre">calculate_los()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.find_slew"><code class="docutils literal notranslate"><span class="pre">find_slew()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_ecef"><code class="docutils literal notranslate"><span class="pre">inst_direction_in_nec_using_icrf_to_ecef()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_itrf"><code class="docutils literal notranslate"><span class="pre">inst_direction_in_nec_using_icrf_to_itrf()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_oe_icrf_to_itrf"><code class="docutils literal notranslate"><span class="pre">inst_direction_in_nec_using_oe_icrf_to_itrf()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.inst_direction_in_ned_from_itrf"><code class="docutils literal notranslate"><span class="pre">inst_direction_in_ned_from_itrf()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.inst_direction_in_ned_using_icrf_to_ecef"><code class="docutils literal notranslate"><span class="pre">inst_direction_in_ned_using_icrf_to_ecef()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.Direction_Analysis.spacecraft_distance_from_apoint"><code class="docutils literal notranslate"><span class="pre">spacecraft_distance_from_apoint()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-cavsiopy.ephemeris_importer">cavsiopy.ephemeris_importer module</a><ul>
+<li><a class="reference internal" href="#cavsiopy.ephemeris_importer.compare_orbital"><code class="docutils literal notranslate"><span class="pre">compare_orbital()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.ephemeris_importer.import_accuracy_from_RRI"><code class="docutils literal notranslate"><span class="pre">import_accuracy_from_RRI()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.ephemeris_importer.import_rri_ephemeris"><code class="docutils literal notranslate"><span class="pre">import_rri_ephemeris()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.ephemeris_importer.import_rri_ephemeris_gei"><code class="docutils literal notranslate"><span class="pre">import_rri_ephemeris_gei()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.ephemeris_importer.import_tle_parameters"><code class="docutils literal notranslate"><span class="pre">import_tle_parameters()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cavsiopy-example-module">cavsiopy.example module</a></li>
+<li><a class="reference internal" href="#module-cavsiopy.misc">cavsiopy.misc module</a><ul>
+<li><a class="reference internal" href="#cavsiopy.misc.annotate_altitude_plots"><code class="docutils literal notranslate"><span class="pre">annotate_altitude_plots()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.annotate_index_3D"><code class="docutils literal notranslate"><span class="pre">annotate_index_3D()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.annotate_onmap"><code class="docutils literal notranslate"><span class="pre">annotate_onmap()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.arrange_axes"><code class="docutils literal notranslate"><span class="pre">arrange_axes()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.arrow_plotter"><code class="docutils literal notranslate"><span class="pre">arrow_plotter()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.combine_horizontal"><code class="docutils literal notranslate"><span class="pre">combine_horizontal()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.combine_vertical"><code class="docutils literal notranslate"><span class="pre">combine_vertical()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.determine_background_colors"><code class="docutils literal notranslate"><span class="pre">determine_background_colors()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.find_dip_equal_elev"><code class="docutils literal notranslate"><span class="pre">find_dip_equal_elev()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.find_index"><code class="docutils literal notranslate"><span class="pre">find_index()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.find_ylimits"><code class="docutils literal notranslate"><span class="pre">find_ylimits()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.insert_rectangle_to_background"><code class="docutils literal notranslate"><span class="pre">insert_rectangle_to_background()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.mark_altitude_plots"><code class="docutils literal notranslate"><span class="pre">mark_altitude_plots()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.mark_onmap"><code class="docutils literal notranslate"><span class="pre">mark_onmap()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.multiple_x_axes"><code class="docutils literal notranslate"><span class="pre">multiple_x_axes()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.put_legend"><code class="docutils literal notranslate"><span class="pre">put_legend()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.put_legend_fnt"><code class="docutils literal notranslate"><span class="pre">put_legend_fnt()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.misc.put_legend_vectors"><code class="docutils literal notranslate"><span class="pre">put_legend_vectors()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-cavsiopy.orientation_plotter">cavsiopy.orientation_plotter module</a><ul>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.MyAxes3D"><code class="docutils literal notranslate"><span class="pre">MyAxes3D</span></code></a><ul>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.MyAxes3D.draw"><code class="docutils literal notranslate"><span class="pre">MyAxes3D.draw()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.MyAxes3D.set"><code class="docutils literal notranslate"><span class="pre">MyAxes3D.set()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.MyAxes3D.set_some_features_visibility"><code class="docutils literal notranslate"><span class="pre">MyAxes3D.set_some_features_visibility()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.indices_and_intervals"><code class="docutils literal notranslate"><span class="pre">indices_and_intervals()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.plotter_with_map"><code class="docutils literal notranslate"><span class="pre">plotter_with_map()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.plotter_with_map_on_latlon_grid"><code class="docutils literal notranslate"><span class="pre">plotter_with_map_on_latlon_grid()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.pointing_through_3D_trajectory"><code class="docutils literal notranslate"><span class="pre">pointing_through_3D_trajectory()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.put_legend_fnt"><code class="docutils literal notranslate"><span class="pre">put_legend_fnt()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.set_3Dplot_limits"><code class="docutils literal notranslate"><span class="pre">set_3Dplot_limits()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.vector_direction_plotter_connect_to_target"><code class="docutils literal notranslate"><span class="pre">vector_direction_plotter_connect_to_target()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.orientation_plotter.vector_direction_plotter_ground_trajectory_3D"><code class="docutils literal notranslate"><span class="pre">vector_direction_plotter_ground_trajectory_3D()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-cavsiopy.use_rotation_matrices">cavsiopy.use_rotation_matrices module</a><ul>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.Build_NEC_from_ITRF_Rotation_Matrix"><code class="docutils literal notranslate"><span class="pre">Build_NEC_from_ITRF_Rotation_Matrix()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.ECEF2NED"><code class="docutils literal notranslate"><span class="pre">ECEF2NED()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.GEI2ECEF"><code class="docutils literal notranslate"><span class="pre">GEI2ECEF()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.J2K_Ephemeris_to_J2K_to_Nadir_Rotation_Matrix"><code class="docutils literal notranslate"><span class="pre">J2K_Ephemeris_to_J2K_to_Nadir_Rotation_Matrix()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.NED2ENU"><code class="docutils literal notranslate"><span class="pre">NED2ENU()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.ORF2J2K_use_orbital_elements"><code class="docutils literal notranslate"><span class="pre">ORF2J2K_use_orbital_elements()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.ORF2J2K_use_spacecraft_ephemeris"><code class="docutils literal notranslate"><span class="pre">ORF2J2K_use_spacecraft_ephemeris()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RX_i2r"><code class="docutils literal notranslate"><span class="pre">RX_i2r()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RX_r2i"><code class="docutils literal notranslate"><span class="pre">RX_r2i()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RY_i2r"><code class="docutils literal notranslate"><span class="pre">RY_i2r()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RY_r2i"><code class="docutils literal notranslate"><span class="pre">RY_r2i()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RZ_i2r"><code class="docutils literal notranslate"><span class="pre">RZ_i2r()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.RZ_r2i"><code class="docutils literal notranslate"><span class="pre">RZ_r2i()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.calculate_GMST_midnight"><code class="docutils literal notranslate"><span class="pre">calculate_GMST_midnight()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.calculate_GMST_noon"><code class="docutils literal notranslate"><span class="pre">calculate_GMST_noon()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.icrf2itrf"><code class="docutils literal notranslate"><span class="pre">icrf2itrf()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.orbital_elements"><code class="docutils literal notranslate"><span class="pre">orbital_elements()</span></code></a></li>
+<li><a class="reference internal" href="#cavsiopy.use_rotation_matrices.rotate_antenna"><code class="docutils literal notranslate"><span class="pre">rotate_antenna()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-cavsiopy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cavsiopy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cavsiopy package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cavsiopy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cavsiopy-package">
+<h1>cavsiopy package<a class="headerlink" href="#cavsiopy-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cavsiopy.Direction_Analysis">
+<span id="cavsiopy-direction-analysis-module"></span><h2>cavsiopy.Direction_Analysis module<a class="headerlink" href="#module-cavsiopy.Direction_Analysis" title="Permalink to this heading"></a></h2>
+<p>Created on Thu May  6 14:32:10 2021</p>
+<ol class="arabic simple">
+<li><p>Calculates satellite orbital elements using X, Y, Z coordinates in GEI</p></li>
+<li><p>Imports satellite parameters from Celestrak TLE file</p></li>
+<li><p>Compares calculated orbital elements with the TLE file</p></li>
+<li><p>Handles Euler rotations in LVLH frame.</p></li>
+<li><p>Includes rotation matrices for coordinate transformations.</p></li>
+</ol>
+<p>&#64;author: ceren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.LA_inst">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">LA_inst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OLat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.LA_inst" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.LA_sat">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">LA_sat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rsat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.LA_sat" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates the satellite look angle: elevation and azimuth angle that is needed
+for the satellite to look towards a point in GEO frame.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>plat, plon: latitude and longitude of the desired pointing location on Earth</dt><dd><p>in GEO frame: degrees, float</p>
+</dd>
+<dt>slat, slon: latitude and longitude of the subsatellite point</dt><dd><p>in GEO frame: degrees, float</p>
+</dd>
+<dt>rp, rsat: altitude of the point, altitude of satellite</dt><dd><p>in GEO frame: km, float</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h3>
+<p>la_azim: Azimuth angle for a satellite to look at the given point on Earth
+la_elev: Elevation angle for a satellite to look at the given point on Earth</p>
+<dl class="simple">
+<dt>References: ASD5: Earth Station Look Angles By Prof. Gregory D. Durgin,</dt><dd><p>Astrodynamics, Georgia Tech, 2009.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.calculate_angles">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">calculate_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_NED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bottom_ned</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray_model_input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.calculate_angles" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.calculate_los">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">calculate_los</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.calculate_los" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.find_slew">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">find_slew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_los</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_D1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_D2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slew_angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.find_slew" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_ecef">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">inst_direction_in_nec_using_icrf_to_ecef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_SP3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_inst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_ecef" title="Permalink to this definition"></a></dt>
+<dd><section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Roll, Pitch, Yaw: Euler angles
+lvlh_x, lvlh_y, lvlh_z: antenna x, y, z vector components in LVLH
+GEIx, GEIy, GEIz: Position of the satellite in GEI
+Vx, Vy, Vz: Speed of satellite in GEI
+time_array: datetime
+lat, lon: spacecraft location in GEO</p>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>ENUx, ENUy, ENUz: pointing direction of 1 monopole in ENU coordinates</p>
+<p>&#64;author: ceren</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_itrf">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">inst_direction_in_nec_using_icrf_to_itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MET</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_icrf_to_itrf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.inst_direction_in_nec_using_oe_icrf_to_itrf">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">inst_direction_in_nec_using_oe_icrf_to_itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_sat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_inst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.inst_direction_in_nec_using_oe_icrf_to_itrf" title="Permalink to this definition"></a></dt>
+<dd><p>This function uses orbital elements to rotate the instrument direction
+in LVLH frame
+Parameters
+———-
+path_to_files: str
+file_sat: file that contains the ephemeris information
+filedate: datetime
+timearray: datetime
+start_date: datetime
+Roll, Pitch, Yaw: arrays of float
+body_inst: instrument body vector</p>
+<section id="id3">
+<h3>Returns<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>inst_NEC, inst_ENC: float</dt><dd><p>instrument body vector in NEC and ENC</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.inst_direction_in_ned_from_itrf">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">inst_direction_in_ned_from_itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_ITRF</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.inst_direction_in_ned_from_itrf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.inst_direction_in_ned_using_icrf_to_ecef">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">inst_direction_in_ned_using_icrf_to_ecef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_inst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.inst_direction_in_ned_using_icrf_to_ecef" title="Permalink to this definition"></a></dt>
+<dd><p>Created on Thu Jul  8 13:22:03 2021</p>
+<dl class="simple">
+<dt>This code calculates the direction of pointing vectors in ENU</dt><dd><p>when given the body vectors of monopoles or dipoles in LVLH.</p>
+</dd>
+</dl>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>body_inst: [x, y, z] location of instrument wrt SC frame
+Roll, Pitch, Yaw: Euler angles
+lvlh_x, lvlh_y, lvlh_z: antenna x, y, z vector components in LVLH
+GEIx, GEIy, GEIz: Position of the satellite in GEI
+GEIVx, GEIVy, GEIVz: Spacecraft Velocity Components in GEI
+time_array: datetime
+lat, lon: spacecraft location in GEO_spherical
+method_name:</p>
+<blockquote>
+<div><p>‘oe’ for rotations from SC frame to GEI/ECI using orbital
+elements calculated from GEI r and V
+‘other’ for rotations from SC frame to GEI/ECI 
+using r and V in GEI by means ephemeris to Nadir rotation matrice</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>ENUx, ENUy, ENUz: pointing direction of 1 monopole in ENU coordinates</p>
+</div></blockquote>
+<p>&#64;author: ceren</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.Direction_Analysis.spacecraft_distance_from_apoint">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.Direction_Analysis.</span></span><span class="sig-name descname"><span class="pre">spacecraft_distance_from_apoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.Direction_Analysis.spacecraft_distance_from_apoint" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-cavsiopy.ephemeris_importer">
+<span id="cavsiopy-ephemeris-importer-module"></span><h2>cavsiopy.ephemeris_importer module<a class="headerlink" href="#module-cavsiopy.ephemeris_importer" title="Permalink to this heading"></a></h2>
+<p>Created on Wed Aug  4 14:46:24 2021</p>
+<p>epmeris_importer includes functions to 
+1. import RRI ephemeris from hdf5 data file (import_rri_ephemeris)
+2. import ephemeris only related to GEI frame from hdf5 data file (import_RRI_ephemeris_GEI)
+3. import ephemeris accuracy from RRI hdf5 data file
+4. read CelesTrak TLE file parameters (import_tle_parameters)
+5. compare Celestrak TLE parameters with the calculated TLE parameters (compare_orbital)</p>
+<p>&#64;author: ceren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.ephemeris_importer.compare_orbital">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">compare_orbital</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sat_inc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sat_raan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sat_ap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tle_inc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tle_ap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tle_raan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.ephemeris_importer.compare_orbital" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.ephemeris_importer.import_accuracy_from_RRI">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">import_accuracy_from_RRI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_RRI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.ephemeris_importer.import_accuracy_from_RRI" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.ephemeris_importer.import_rri_ephemeris">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">import_rri_ephemeris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_RRI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.ephemeris_importer.import_rri_ephemeris" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.ephemeris_importer.import_rri_ephemeris_gei">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">import_rri_ephemeris_gei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_RRI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.ephemeris_importer.import_rri_ephemeris_gei" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.ephemeris_importer.import_tle_parameters">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">import_tle_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DOY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.ephemeris_importer.import_tle_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Created on Tue Jul 13 22:57:40 2021</p>
+<p>Reads Celestrak TLE file obtained from: <a class="reference external" href="https://celestrak.com/">https://celestrak.com/</a></p>
+<section id="id6">
+<h3>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>filename (str): filename for TLE file
+filedate (str): date of RRI passage
+DOY (int): day of year of RRI passage</p>
+</section>
+<section id="id7">
+<h3>Returns<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>tle_epoch (float): epoch of TLE file
+tle_inc (float): satellite inclination from TLE file
+tle_ap (float): satellite argument of perigee from TLE file
+tle_raan(float): right ascension of ascending node from TLE file
+tle_ecc (float): eccentricity from TLE file
+tle_ma (float): mean anomaly</p>
+<p>&#64;author: ceren</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="cavsiopy-example-module">
+<h2>cavsiopy.example module<a class="headerlink" href="#cavsiopy-example-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cavsiopy.misc">
+<span id="cavsiopy-misc-module"></span><h2>cavsiopy.misc module<a class="headerlink" href="#module-cavsiopy.misc" title="Permalink to this heading"></a></h2>
+<p>Created on Fri Jun 11 19:04:18 2021
+Last change: 21 OCT 2021
+This module contains miscellanous programs for:
+1. legend insertion to figures (put_legend)
+2. combining images (combine_horizontal, combine_vertical)
+3. determine background colors for line plots
+4. marking specific times on map(mark_onmap) and altitude plots(mark_altitudeplots)
+5. annotating selected points: annotate_onmap, annotate_3D
+6. finding index of desired values in parameters: find_index
+7. finding where magnetic dip equals elevation angle
+&#64;author: ceren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.annotate_altitude_plots">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">annotate_altitude_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.annotate_altitude_plots" title="Permalink to this definition"></a></dt>
+<dd><p>Marks specific values of angles over plots without map. Choose this routine
+for annotation if x coordinate is not lon. and y coordinate is not lat.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>ax: axes to use
+x, y = coordinates to mark: float, array
+ind: index values of close points: float, array
+val: the specific value we are searching for in the data</p>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.annotate_index_3D">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">annotate_index_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.annotate_index_3D" title="Permalink to this definition"></a></dt>
+<dd><p>Annotations on 3D plots.</p>
+<section id="id10">
+<h3>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<p>ax: axes to use
+x, y = coordinates to mark: float, array
+ind: index values of close points: float, array
+val: the specific value we are searching for in the data</p>
+</section>
+<section id="id11">
+<h3>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.annotate_onmap">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">annotate_onmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.annotate_onmap" title="Permalink to this definition"></a></dt>
+<dd><p>Marks specific values of angles over map plots.</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<p>ax: axes to use
+x, y = coordinates to mark: float, array
+ind: index values of close points: float, array
+val: the specific value we are searching for in the data</p>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.arrange_axes">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">arrange_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.arrange_axes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.arrow_plotter">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">arrow_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.arrow_plotter" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the arrows to depict the type of trajectory: Ascending /Descending .</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.combine_horizontal">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">combine_horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fnew</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.combine_horizontal" title="Permalink to this definition"></a></dt>
+<dd><p>Horizontally combines images with arbitrary image size as a new image and
+saves the new image with the given file name.</p>
+<section id="id14">
+<h3>Parameters<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<p>f: Name of image files, list
+fnew: Output file name</p>
+</section>
+<section id="id15">
+<h3>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<p>Saves horizontally combined image as fnew to the directory
+Reference: <a class="reference external" href="https://stackoverflow.com/a/30228789/15165141">https://stackoverflow.com/a/30228789/15165141</a></p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.combine_vertical">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">combine_vertical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fnew</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.combine_vertical" title="Permalink to this definition"></a></dt>
+<dd><p>Vertically combines images with arbitrary image size as a new image and
+saves the new image with the given file name.</p>
+<section id="id16">
+<h3>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<p>f: Name of image files, list
+fnew: Output file name</p>
+</section>
+<section id="id17">
+<h3>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h3>
+<p>Saves vertically combined image as fnew to the directory
+Reference: <a class="reference external" href="https://stackoverflow.com/a/30228789/15165141">https://stackoverflow.com/a/30228789/15165141</a></p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.determine_background_colors">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">determine_background_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ticklimits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_for_mapping</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.determine_background_colors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.find_dip_equal_elev">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">find_dip_equal_elev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closeto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anglename1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anglename2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.find_dip_equal_elev" title="Permalink to this definition"></a></dt>
+<dd><p>index(data, closeto, tol)</p>
+<section id="id18">
+<h3>Parameters<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<p>data: input data for inspection, array
+closeto: the value we are searching for
+tol: amount of tolerance
+anglename1, anglename2: name of angles you want to check</p>
+</section>
+<section id="id19">
+<h3>Returns<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<p>Index of close values in provided data</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.find_index">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">find_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closeto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.find_index" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the index of numbers that are close to the value we are searching for
+with a tolerance ‘tol’.</p>
+<section id="id20">
+<h3>Parameters<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
+<p>data: input data for inspection, array
+closeto: the value we are searching for
+tol: amount of tolerance</p>
+</section>
+<section id="id21">
+<h3>Returns<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<p>Index of close values in provided data</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.find_ylimits">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">find_ylimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.find_ylimits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.insert_rectangle_to_background">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">insert_rectangle_to_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydif</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.insert_rectangle_to_background" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.mark_altitude_plots">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">mark_altitude_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.mark_altitude_plots" title="Permalink to this definition"></a></dt>
+<dd><p>Marks the beginning of the pass and location of Ottawa on the plots.</p>
+<section id="id22">
+<h3>Parameters<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h3>
+<p>ax: axes
+px, py: Coordinates of the city
+x, y:  can be any of the lat[0], lon[0], alt[0]</p>
+<blockquote>
+<div><p>= first coordinate data points of pass</p>
+</div></blockquote>
+</section>
+<section id="id23">
+<h3>Returns<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.mark_onmap">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">mark_onmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.mark_onmap" title="Permalink to this definition"></a></dt>
+<dd><p>marks the beginning of the pass and location of Ottawa on the plots.</p>
+<section id="id24">
+<h3>Parameters<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
+<p>ax: axes
+px, py: Coordinates of city in lon, lat
+x: in the form: lon[0], y: lat[0]</p>
+<blockquote>
+<div><p>= first coordinate data points of pass</p>
+</div></blockquote>
+</section>
+<section id="id25">
+<h3>Returns<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<p>None</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<p>mark_init(ax, px, py, x, y)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.multiple_x_axes">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">multiple_x_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array_1sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.multiple_x_axes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.put_legend">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">put_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchorx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.put_legend" title="Permalink to this definition"></a></dt>
+<dd><p>Inserts legend to figure for cases when plt.legend() cannot insert all
+legends or there are customized symbols.</p>
+<section id="id26">
+<h3>Parameters<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<p>ax: axis
+n: how many columns should the legend have
+location: location of the legend (upper right, lower left, exc.)
+labelspace: space between the labels
+anchorx, anchory: coordinate of the lower left corner of legend box</p>
+<p>The following are for the custamization of the symbols we want to display:
+labels: labels to display in the legend
+linestyles: linestyles used in plotting the parameters
+markers: markers used in plotting the parameters
+colors: colors used in plotting the parameters
+edgecolors: edgecolors used in plotting the parameters</p>
+</section>
+<section id="id27">
+<h3>Returns<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<p>None
+Inserts legend on plot</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.put_legend_fnt">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">put_legend_fnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchorx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.put_legend_fnt" title="Permalink to this definition"></a></dt>
+<dd><p>Inserts legend to figure for cases when plt.legend() cannot insert all
+legends or there are customized symbols.</p>
+<section id="id28">
+<h3>Parameters<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h3>
+<p>ax: axis
+n: how many columns should the legend have
+location: location of the legend location of the legend (upper right, lower left, exc.)
+labelspace: space between the labels
+anchorx, anchory: coordinate of the lower left corner of legend box
+fontsize: legend font size</p>
+<p>The following are for the custamization of the symbols we want to display:
+labels: labels to display in the legend
+linestyles: linestyles used in plotting the parameters
+markers: markers used in plotting the parameters
+colors: colors used in plotting the parameters
+edgecolors: edgecolors used in plotting the parameters</p>
+</section>
+<section id="id29">
+<h3>Returns<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h3>
+<p>None
+Inserts legend on plot</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.misc.put_legend_vectors">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.misc.</span></span><span class="sig-name descname"><span class="pre">put_legend_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchorx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.misc.put_legend_vectors" title="Permalink to this definition"></a></dt>
+<dd><p>Inserts legend to figure for cases when plt.legend() cannot insert all
+legends or there are customized symbols. This function does not have the
+linestyles and edgecolors options.</p>
+<section id="id30">
+<h3>Parameters<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h3>
+<p>ax: axis
+n: how many columns should the legend have
+location: location of the legend
+labelspace: space between the labels
+anchorx, anchory: coordinate of the lower left corner of legend box</p>
+<p>The following are for the custamization of the symbols we want to display:
+labels: labels to display in the legend
+markers: markers used in plotting the parameters
+colors: colors used in plotting the parameters</p>
+</section>
+<section id="id31">
+<h3>Returns<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h3>
+<p>None
+Inserts legend on plot</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-cavsiopy.orientation_plotter">
+<span id="cavsiopy-orientation-plotter-module"></span><h2>cavsiopy.orientation_plotter module<a class="headerlink" href="#module-cavsiopy.orientation_plotter" title="Permalink to this heading"></a></h2>
+<p>Created on Thu Jun 17 14:53:01 2021
+Plotting codes
+&#64;author: ceren</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.MyAxes3D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">MyAxes3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sides_to_draw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.MyAxes3D" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Axes3D</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.MyAxes3D.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.MyAxes3D.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Draw the Artist (and its children) using the given renderer.</p>
+<p>This has no effect if the artist is not visible (<cite>.Artist.get_visible</cite>
+returns False).</p>
+<section id="id32">
+<h3>Parameters<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h3>
+<p>renderer : <cite>.RendererBase</cite> subclass.</p>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<p>This method is overridden in the Artist subclasses.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.MyAxes3D.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjustable=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_filter=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscale_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscalex_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscaley_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscalez_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_locator=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axisbelow=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_box=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_path=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facecolor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gid=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_layout=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouseover=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigate=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_effects=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picker=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_type=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_cycle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterization_zorder=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterized=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sketch_params=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">some_features_visibility=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplotspec=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visible=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xbound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim3d=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ybound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim3d=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zbound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zlabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zlim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zticks=&lt;UNSET&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.MyAxes3D.set" title="Permalink to this definition"></a></dt>
+<dd><p>Set multiple properties at once.</p>
+<p>Supported properties are</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>adjustable: {‘box’, ‘datalim’}
+agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: scalar or None
+anchor: (float, float) or {‘C’, ‘SW’, ‘S’, ‘SE’, ‘E’, ‘NE’, …}
+animated: bool
+aspect: {‘auto’, ‘equal’, ‘equalxy’, ‘equalxz’, ‘equalyz’}
+autoscale_on: bool
+autoscalex_on: unknown
+autoscaley_on: unknown
+autoscalez_on: unknown
+axes_locator: Callable[[Axes, Renderer], Bbox]
+axisbelow: bool or ‘line’
+box_aspect: 3-tuple of floats or None
+clip_box: <cite>.Bbox</cite>
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+facecolor or fc: color
+figure: <cite>.Figure</cite>
+frame_on: bool
+gid: str
+in_layout: bool
+label: object
+mouseover: bool
+navigate: bool
+navigate_mode: unknown
+path_effects: <cite>.AbstractPathEffect</cite>
+picker: None or bool or float or callable
+position: [left, bottom, width, height] or <cite>~matplotlib.transforms.Bbox</cite>
+proj_type: {‘persp’, ‘ortho’}
+prop_cycle: unknown
+rasterization_zorder: float or None
+rasterized: bool
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+some_features_visibility: unknown
+subplotspec: unknown
+title: str
+transform: <cite>.Transform</cite>
+url: str
+visible: bool
+xbound: unknown
+xlabel: str
+xlim or xlim3d: (bottom: float, top: float)
+xlim3d: (bottom: float, top: float)
+xmargin: float greater than -0.5
+xscale: unknown
+xticklabels: unknown
+xticks: unknown
+ybound: unknown
+ylabel: str
+ylim or ylim3d: (bottom: float, top: float)
+ylim3d: (bottom: float, top: float)
+ymargin: float greater than -0.5
+yscale: unknown
+yticklabels: unknown
+yticks: unknown
+zbound: unknown
+zlabel: unknown
+zlim or zlim3d: unknown
+zmargin: float greater than -0.5
+zorder: float
+zscale: unknown
+zticklabels: unknown
+zticks: unknown</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.MyAxes3D.set_some_features_visibility">
+<span class="sig-name descname"><span class="pre">set_some_features_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visible</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.MyAxes3D.set_some_features_visibility" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.coverage">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.coverage" title="Permalink to this definition"></a></dt>
+<dd><p>Generates the plot parameters</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>extent: list</dt><dd><p>[Lon_min, Lon_max, Lat_min, Lat_max]</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h3>
+<p>central_lon, central lat: float
+pre-defined: float</p>
+<blockquote>
+<div><p>left (.01), width (.5), bottom (.01), height (.5)</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.indices_and_intervals">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">indices_and_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.indices_and_intervals" title="Permalink to this definition"></a></dt>
+<dd><p>Generates date for usage with plot titles and output filenames,
+determines the index of the last used data row and finds the number of
+intervals for cases we do not use the complete data set.</p>
+<section id="id35">
+<h3>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h3>
+<p>start_time: The beginning of the passage
+time_data : Time array for the whole passage
+intval : how many seconds do we want for intervals</p>
+</section>
+<section id="id36">
+<h3>Returns<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<p>date : date as a string
+last_data_index: index of the last used data row
+number_of_intervals: number of intervals for cases
+seconds: tick locator for seconds</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.plotter_with_map">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">plotter_with_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">XV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Oy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kword</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kword2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.plotter_with_map" title="Permalink to this definition"></a></dt>
+<dd><p>Plots 2D maps for RRI pointing direction</p>
+<section id="id37">
+<h3>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
+<p>fig: figure number
+spec: figure grid properties</p>
+<blockquote>
+<div><p>ex: spec = gridspec.GridSpec(ncols=5, nrows=1, figure = fig)</p>
+</div></blockquote>
+<p>x, y = Lon, Lat: longitude and latitude
+XV: RRI pointing vector to be plotted
+n: column number of the East (X) component of the RRI pointing vector</p>
+<blockquote>
+<div><p>ex: for enu : n = 0</p>
+</div></blockquote>
+<dl class="simple">
+<dt>m: column number of the North (X) component of the RRI pointing vector</dt><dd><p>ex: for enu : m = 1</p>
+</dd>
+</dl>
+<p>time_array: time array of RRI pass
+Ox: ground target longitude
+Oy: ground target latitude
+end_ind: index of the last data point
+d: how many RRI vectors would you like to see
+dec: offset of time info from the trajectory (in degrees lon)
+x_name: x axis label
+y_name: y axis label
+kword: hide or display x and y axis labels</p>
+<blockquote>
+<div><p>‘left_on’, ‘bottom_on’, ‘right_on’, else (everything is on)</p>
+</div></blockquote>
+<p>kword2: ‘legend_on’ : plots the legend to the upper right of the fig.
+spec_col: column number to plot</p>
+</section>
+<section id="id38">
+<h3>Returns<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h3>
+<p>figure as a subplot specified by gridspec</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.plotter_with_map_on_latlon_grid">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">plotter_with_map_on_latlon_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">XV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Oy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kword</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kword2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.plotter_with_map_on_latlon_grid" title="Permalink to this definition"></a></dt>
+<dd><p>Plots 2D maps for instrument pointing direction</p>
+<section id="id39">
+<h3>Parameters<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>fig: int</dt><dd><p>figure number</p>
+</dd>
+<dt>spec: class</dt><dd><p>figure grid properties
+ex: spec = gridspec.GridSpec(ncols=5, nrows=1, figure = fig)</p>
+</dd>
+<dt>x: float</dt><dd><p>longitude</p>
+</dd>
+<dt>y: float</dt><dd><p>latitude</p>
+</dd>
+<dt>XV: float</dt><dd><p>instrument pointing vector to be plotted</p>
+</dd>
+<dt>n: int</dt><dd><p>column number of the East (X) component of the inst. pointing vector
+ex: for enu : n = 0</p>
+</dd>
+<dt>m: int</dt><dd><p>column number of the North (X) component of the inst. pointing vector
+ex: for enu : m = 1</p>
+</dd>
+<dt>time_array: datetime</dt><dd><p>time array of spacecraft pass</p>
+</dd>
+<dt>Ox: float</dt><dd><p>ground target longitude</p>
+</dd>
+<dt>Oy: float</dt><dd><p>ground target latitude</p>
+</dd>
+<dt>end_ind: int</dt><dd><p>index of the last data point</p>
+</dd>
+<dt>d: int</dt><dd><p>how many pointing vectors would you like to see</p>
+</dd>
+<dt>dec: float</dt><dd><p>offset of time info from the trajectory (in degrees lon)</p>
+</dd>
+<dt>x_name: str</dt><dd><p>x axis label</p>
+</dd>
+<dt>y_name: str</dt><dd><p>y axis label</p>
+</dd>
+<dt>kword: str</dt><dd><p>hide or display x and y axis labels
+can be ‘left_on’, ‘bottom_on’, ‘right_on’, else (everything is on)</p>
+</dd>
+<dt>kword2: str</dt><dd><p>‘legend_on’ : plots the legend to the upper right of the fig.</p>
+</dd>
+<dt>spec_col: int</dt><dd><p>column number to plot</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.pointing_through_3D_trajectory">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">pointing_through_3D_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pointing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.pointing_through_3D_trajectory" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.put_legend_fnt">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">put_legend_fnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchorx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.put_legend_fnt" title="Permalink to this definition"></a></dt>
+<dd><p>Inserts legend to figure for cases, which need customized symbols.</p>
+<section id="id41">
+<h3>Parameters<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>ax: str</dt><dd><p>axis</p>
+</dd>
+<dt>n: float</dt><dd><p>how many columns should the legend have</p>
+</dd>
+<dt>location: str</dt><dd><p>location of the legend</p>
+</dd>
+<dt>labelspace: float</dt><dd><p>space between the labels (values can be between 0 and 1).</p>
+</dd>
+<dt>anchorx, anchory: float</dt><dd><p>coordinate of the lower left corner of legend box
+(values can be between 0 and 1)</p>
+</dd>
+</dl>
+<p>The following are for the customization of the symbols we want to display:</p>
+<dl class="simple">
+<dt>labels: str</dt><dd><p>labels to display in the legend</p>
+</dd>
+<dt>linestyles: str</dt><dd><p>linestyles used in plotting the parameters</p>
+</dd>
+<dt>markers: str</dt><dd><p>markers used in plotting the parameters</p>
+</dd>
+<dt>colors: str</dt><dd><p>colors used in plotting the parameters.
+can be also given in RGB</p>
+</dd>
+<dt>edgecolors: str</dt><dd><p>edgecolors used in plotting the parameters</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h3>Returns<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.set_3Dplot_limits">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">set_3Dplot_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how_far</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.set_3Dplot_limits" title="Permalink to this definition"></a></dt>
+<dd><p>Generates the limit of axes wrt the selected point on the ground for
+3D plots.</p>
+<section id="id43">
+<h3>Parameters<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>P: float</dt><dd><p>coordinate of the ground point at x, y or z</p>
+</dd>
+<dt>coord: float</dt><dd><p>lat, lon or alt</p>
+</dd>
+<dt>how_far: float</dt><dd><p>how far is the axis limit from the point on the ground</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id44">
+<h3>Returns<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>coord_min: float
+coord_max: float</p>
+</div></blockquote>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<p>xmin, xmax = set_3Dplot_limits(Px, x)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.vector_direction_plotter_connect_to_target">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">vector_direction_plotter_connect_to_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowhead</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sct_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.vector_direction_plotter_connect_to_target" title="Permalink to this definition"></a></dt>
+<dd><p>v: vx, vy, vz</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.orientation_plotter.vector_direction_plotter_ground_trajectory_3D">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.orientation_plotter.</span></span><span class="sig-name descname"><span class="pre">vector_direction_plotter_ground_trajectory_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowhead</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sct_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.orientation_plotter.vector_direction_plotter_ground_trajectory_3D" title="Permalink to this definition"></a></dt>
+<dd><p>v: vx, vy, vz</p>
+</dd></dl>
+
+</section>
+<section id="module-cavsiopy.use_rotation_matrices">
+<span id="cavsiopy-use-rotation-matrices-module"></span><h2>cavsiopy.use_rotation_matrices module<a class="headerlink" href="#module-cavsiopy.use_rotation_matrices" title="Permalink to this heading"></a></h2>
+<p>Created on Thu May  6 14:32:10 2021</p>
+<ol class="arabic simple">
+<li><p>Calculates satellite orbital elements using X, Y, Z coordinates and     Vx, Vy, Vz in GEI</p></li>
+<li><p>Calculates GMST time from noon or midnight</p></li>
+<li><dl class="simple">
+<dt>Rotates the instrument in orbital frame using roll, pitch, and yaw angles:</dt><dd><p>rotate_antenna</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Includes modules for transformations from</dt><dd><dl class="simple">
+<dt>Spacecraft orbital frame to GEI J2000:</dt><dd><p>ORF2J2K_use_orbital_elements, ORF2J2K_use_spacecraft_ephemeris</p>
+</dd>
+<dt>J2K to ECEF:</dt><dd><p>GEI2ECEF</p>
+</dd>
+<dt>J2K to ITRF:</dt><dd><p>icrf2itrf</p>
+</dd>
+<dt>ITRF to NED:</dt><dd><p>ECEF2NED</p>
+</dd>
+<dt>NED to ENU or NEC to ENC:</dt><dd><p>NED2ENU</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Computes the rotation matrice from ITRF to NEC:</dt><dd><p>Build_NEC_from_ITRF_Rotation_Matrix</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Two sets of rotation matrices are provided to build up direction cosine matrix.
+1. SET-1:
+According to Coordinate Transformations via Euler Angles, Riggs, 2019. Rev. E.
+expresses the inertial frame vectors in terms of rotated frame vectors
+used for transformation from a rotated frame to inertial frame
+gives i, j, k in terms of i’, j’, k’; abbreviated as r2i in the code
+definition of the reference: x (out), y (right), and z (up)</p>
+<p>ROLL: positive is from +Y towards +Z
+PITCH: positive is from +Z towards +X
+YAW: positive is from +X towards +Y</p>
+<p>2. SET-2:
+According to Curtis, H. D. (2013). Orbital mechanics for engineering students.
+expresses the rotated frame vectors in terms of inertial frame vectors
+for transformation from an inertial frame to rotated frame
+gives i’, j’, k’ in terms of i, j, k; abbreviated as i2r in the code
+RRI description: x (out), y (right), and z (down)</p>
+<p>ROLL: positive is from +Y towards +Z
+PITCH: positive is from +Z towards +X
+YAW: positive is from +X towards +Y</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.Build_NEC_from_ITRF_Rotation_Matrix">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">Build_NEC_from_ITRF_Rotation_Matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.Build_NEC_from_ITRF_Rotation_Matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Given the Geographic Cartesian Position ephemeris data from get_geographic_cartesian_coordinates() below,
+Return a 3d notation matrix describing the rotation from NEC&lt;-ITRF
+This is given in the SWARM documentation:
+<a class="reference external" href="https://earth.esa.int/documents/10174/1514862/Swarm_Level-1b_Processor_Algorithms">https://earth.esa.int/documents/10174/1514862/Swarm_Level-1b_Processor_Algorithms</a>
+Page 137, “C.3 North East Center (NEC)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.ECEF2NED">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ECEF2NED</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SC_ECEF</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.ECEF2NED" title="Permalink to this definition"></a></dt>
+<dd><section id="id45">
+<h3>Parameters<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h3>
+<p>lat: latitude, in degrees, float
+lon: longitude, in degrees, float
+SC_ECEF: [SC_ECEFx, SC_ECEFy, SC_ECEFz] X, Y, Z unit vectors in ECEF, float</p>
+</section>
+<section id="id46">
+<h3>Returns<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h3>
+<p>SC_NEDx, SC_NEDy, SC_NEDz: X, Y, Z unit vectors in NED</p>
+<p>Y-Z (pitch-yaw) sequence with longitude and latitude are needed from
+transformation from ECEF to NED
+1. Aligning the x-y plane of ECEF and NED using longitude: yaw(longitude)
+2. Aligning the x-z plane using latitude: pitch(-(pi/2+latitude))
+Reference: J. Riggs, Coordinate transformations via Euler Angle Rotations,
+Rev. E - 10 April 2019</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.GEI2ECEF">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">GEI2ECEF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SC_GEIx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SC_GEIy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SC_GEIz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.GEI2ECEF" title="Permalink to this definition"></a></dt>
+<dd><section id="id47">
+<h3>Parameters<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h3>
+<p>time_array: time array, datetime
+SC_GEIx, SC_GEIy, SC_GEIz: X, Y, Z unit vectors in GEI</p>
+</section>
+<section id="id48">
+<h3>Returns<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h3>
+<p>SC_ECEFx, SC_ECEFy, SC_ECEFz: X, Y, Z unit vectors in ECEF</p>
+<p>For this, one rotation is needed in xy frame (yaw rotation)
+yaw angle is the azimuth angle between ECI and ECEF in this case.
+Azimuth= Greenwich sidereal time + Earth’s rotation speed * UTC.
+References:
+1. J. Riggs, Coordinate transformations via Euler Angle Rotations,
+Rev. E - 10 April 2019
+2. A. Sofyali, Orbital Mechanics notes, 7 February 2019.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.J2K_Ephemeris_to_J2K_to_Nadir_Rotation_Matrix">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">J2K_Ephemeris_to_J2K_to_Nadir_Rotation_Matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.J2K_Ephemeris_to_J2K_to_Nadir_Rotation_Matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Given 6 floats of the J2K/ICRF position and velocity data,
+Returns a 3x3 rotation matrix describing the rotation of J2K-&gt;S/C (or Nadir).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.NED2ENU">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">NED2ENU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_NED</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.NED2ENU" title="Permalink to this definition"></a></dt>
+<dd><section id="id49">
+<h3>Parameters<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h3>
+<p>inst_NED: body vector in NED</p>
+</section>
+<section id="id50">
+<h3>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h3>
+<p>inst_ENU: body vector in ENU</p>
+<p>The transformation matrice from NED to ENU and ENU to NED are the same.
+[0 1 0 ; 1 0 0 , 0 0 -1]
+in ENU, z increases in upward direction.</p>
+<p>Reference:  Grewal, M. S., Weill, L. R., &amp; Andrews, A. P. (2008).
+Appendix C: Coordinate Transformations. In Global Positioning Systems,
+Inertial Navigation, and Integration (pp. 456–501). John Wiley &amp; Sons, Inc.
+<a class="reference external" href="https://doi.org/10.1002/9780470099728.app3">https://doi.org/10.1002/9780470099728.app3</a></p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.ORF2J2K_use_orbital_elements">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ORF2J2K_use_orbital_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.ORF2J2K_use_orbital_elements" title="Permalink to this definition"></a></dt>
+<dd><p>Uses the inverse of the GEI2LVLH matrice, however,
+rotated to inertial frame matrices can also be used.</p>
+<p>Ref: Frame rotations and quaternions, Pedro A. Capó-Lugo, Peter M. Bainum,
+in Orbital Mechanics and Formation Flying, 2011</p>
+<section id="id51">
+<h3>Parameters<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h3>
+<p>body: rotated body frame vectors
+file_RRI: name of the RRI file</p>
+</section>
+<section id="id52">
+<h3>Returns<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>SC_GEIx, SC_GEIy, SC_GEIz: body vectors in GEI coordinates,</dt><dd><p>numpy array of (3 x body vector length)</p>
+</dd>
+</dl>
+<p>raan: Right ascension of ascending node, radians, float
+inc: Satellite inclination, radians, float
+ap: Argument of Perigee, radians, float</p>
+</section>
+<section id="id53">
+<h3>Examples<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h3>
+<p>inst_GEI = ORF2J2K_use_orbital_elements(inst_body_vector, GEI)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.ORF2J2K_use_spacecraft_ephemeris">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ORF2J2K_use_spacecraft_ephemeris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lvlh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEIVz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.ORF2J2K_use_spacecraft_ephemeris" title="Permalink to this definition"></a></dt>
+<dd><p>Converts from the orbital frame to GEI J2000.</p>
+<section id="id54">
+<h3>Parameters<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h3>
+<p>GEIx, GEIy, GEIz: x, y, z positions in GEI coordinates (row x) numpy array
+Vx, Vy, Vz: X, Y, Z components of velocity in GEI coordinates (row x) numpy array</p>
+</section>
+<section id="id55">
+<h3>Returns<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>SC_GEIx, SC_GEIy, SC_GEIz: body vectors in GEI coordinates,</dt><dd><p>numpy array of (3 x body vector length)</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RX_i2r">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RX_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RX_i2r" title="Permalink to this definition"></a></dt>
+<dd><p>frame rotation about x axis-roll</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RX_r2i">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RX_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RX_r2i" title="Permalink to this definition"></a></dt>
+<dd><p>frame rotation about x axis-roll</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RY_i2r">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RY_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RY_i2r" title="Permalink to this definition"></a></dt>
+<dd><p>frame rotation about y axis-pitch</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RY_r2i">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RY_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RY_r2i" title="Permalink to this definition"></a></dt>
+<dd><p>Frame rotation about y axis-pitch</p>
+<section id="id56">
+<h3>Parameters<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>y: float</dt><dd><p>pitch angle in radians</p>
+</dd>
+</dl>
+</section>
+<section id="id57">
+<h3>Returns<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>Ry: float</dt><dd><p>rotation matrice along the Y axis</p>
+</dd>
+</dl>
+</section>
+<section id="id58">
+<h3>Examples<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
+<p>Ry = RY_r2i(pitch_angle)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RZ_i2r">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RZ_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RZ_i2r" title="Permalink to this definition"></a></dt>
+<dd><p>frame rotation about z axis-yaw</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.RZ_r2i">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RZ_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.RZ_r2i" title="Permalink to this definition"></a></dt>
+<dd><p>Frame rotation about z axis-Yaw</p>
+<section id="id59">
+<h3>Parameters<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>z: float</dt><dd><p>yaw angle in radians</p>
+</dd>
+</dl>
+</section>
+<section id="id60">
+<h3>Returns<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>Rz: float</dt><dd><p>rotation matrice along the Z axis</p>
+</dd>
+</dl>
+</section>
+<section id="id61">
+<h3>Examples<a class="headerlink" href="#id61" title="Permalink to this heading"></a></h3>
+<p>Rz = RZ_r2i(yaw_angle)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.calculate_GMST_midnight">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">calculate_GMST_midnight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utc_dt_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.calculate_GMST_midnight" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates GMST in radians.</p>
+<p>Includes day fraction corrected with respect to midnight.</p>
+<dl class="simple">
+<dt>Follows: Curtis, H. D. (2013). Orbital mechanics for engineering students.</dt><dd><p>Butterworth-Heinemann. This formula gives GMST in degrees.</p>
+</dd>
+</dl>
+<section id="id62">
+<h3>Parameters<a class="headerlink" href="#id62" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>utc_dt_array: datetime</dt><dd><p>time array in UTC</p>
+</dd>
+</dl>
+</section>
+<section id="id63">
+<h3>Returns<a class="headerlink" href="#id63" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>GMST: float</dt><dd><p>GMST in radians</p>
+</dd>
+</dl>
+</section>
+<section id="id64">
+<h3>Examples<a class="headerlink" href="#id64" title="Permalink to this heading"></a></h3>
+<p>GMST = calculate_GMST_midnight(utc_dt_array)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.calculate_GMST_noon">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">calculate_GMST_noon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.calculate_GMST_noon" title="Permalink to this definition"></a></dt>
+<dd><p>Follows: Curtis, H. D. (2013). Orbital mechanics for engineering students.
+Butterworth-Heinemann. This formula gives GMST in degrees.</p>
+<p>Includes day fraction corrected with respect to noon.</p>
+<section id="id65">
+<h3>Parameters<a class="headerlink" href="#id65" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>utc_dt_array: datetime</dt><dd><p>time array in UTC</p>
+</dd>
+</dl>
+</section>
+<section id="id66">
+<h3>Returns<a class="headerlink" href="#id66" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>GMST: float</dt><dd><p>GMST in radians</p>
+</dd>
+</dl>
+</section>
+<section id="id67">
+<h3>Examples<a class="headerlink" href="#id67" title="Permalink to this heading"></a></h3>
+<p>GMST = calculate_GMST_noon(time_array)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.icrf2itrf">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf2itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MET</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GEO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_ICRF</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.icrf2itrf" title="Permalink to this definition"></a></dt>
+<dd><section id="id68">
+<h3>Parameters<a class="headerlink" href="#id68" title="Permalink to this heading"></a></h3>
+<p>path_to_files: str
+Vx, Vy, Vz: X, Y, Z components of velocity in GEI coordinates (row x) numpy array</p>
+</section>
+<section id="id69">
+<h3>Returns<a class="headerlink" href="#id69" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>SC_GEIx, SC_GEIy, SC_GEIz: body vectors in GEI coordinates,</dt><dd><p>numpy array of (3 x body vector length)</p>
+</dd>
+</dl>
+</section>
+<section id="id70">
+<h3>Notes<a class="headerlink" href="#id70" title="Permalink to this heading"></a></h3>
+<p>using Standards of Fundamental Astronomy library
+<a class="reference external" href="https://www.iausofa.org/">https://www.iausofa.org/</a></p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.orbital_elements">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">orbital_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.orbital_elements" title="Permalink to this definition"></a></dt>
+<dd><section id="id71">
+<h3>Parameters<a class="headerlink" href="#id71" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>X, Y, Z: float</dt><dd><p>X, Y, Z in GEI</p>
+</dd>
+<dt>Vx, Vy, Vz: float</dt><dd><p>Velocity components in GEI</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id72">
+<h3>Returns<a class="headerlink" href="#id72" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>raan: float</dt><dd><p>Right ascension of ascending node</p>
+</dd>
+<dt>inc: float</dt><dd><p>Spacecraft inclination</p>
+</dd>
+<dt>ap: float</dt><dd><p>Argument of periapsis</p>
+</dd>
+<dt>TA: float</dt><dd><p>True anomaly</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id73">
+<h3>Examples<a class="headerlink" href="#id73" title="Permalink to this heading"></a></h3>
+<p>e, TA, raan, inc, ap = orbital_elements(file_RRI)</p>
+<p>Reference: Curtis, H. D. (2014). Orbits in Three Dimensions in
+Orbital mechanics for engineering students. Butterworth-Heinemann.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cavsiopy.use_rotation_matrices.rotate_antenna">
+<span class="sig-prename descclassname"><span class="pre">cavsiopy.use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">rotate_antenna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cavsiopy.use_rotation_matrices.rotate_antenna" title="Permalink to this definition"></a></dt>
+<dd><p>rotate_monopole(Roll,  Pitch, Yaw, x, y, z)</p>
+<section id="id74">
+<h3>Parameters<a class="headerlink" href="#id74" title="Permalink to this heading"></a></h3>
+<p>Roll, Yaw, Pitch: in degrees, float
+x, y, z : initial position vectors for antenna in LVLH, tuple [xx, xy, xz]</p>
+</section>
+<section id="id75">
+<h3>Returns<a class="headerlink" href="#id75" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>rotated_body: rotated body vectors wrt LVLH,</dt><dd><p>numpy array of (3 x body vector length)</p>
+</dd>
+</dl>
+<p>Rotation of body vectors in LVLH(Local vertical Local horizontal) frame
+using roll, yaw, pitch angles provided by RRI data.</p>
+<p>The rotation sequence is X-&gt;Y-&gt;Z; roll-&gt;pitch-&gt;yaw according to the RRI
+data description.</p>
+<p>Reference: University of Calgary, e-POP Radio Receiver Instrument (RRI)
+User’s Manual, Doc. no. ePOP-5024, Rev. D (2018)</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-cavsiopy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cavsiopy" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, C.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
