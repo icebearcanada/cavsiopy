@@ -8,7 +8,7 @@ This package contains routines for
 1. Finding the orientation of a spacecraft (spacecraft_attitude_xyz)
 2. Rotating the look direction of an instrument on-board the spacecraftin orbital frame (rotate_instrument)
 3. Calculation of the look angles of the spacecraft (elevation and azimuth) (LA_sat)
-4. Calculation of the look angles of the instrument (elevation and azimuth) (LAT_inst, LA_inst)
+4. Calculation of the look angles of the instrument (elevation and azimuth) (LA_inst)
 5. Calculation of the distance between the spacecraft and a designated point on the ground (spacecraft_distance_from_a_point)
 6. Calculation of the line-of-sight direction vector from the target to the spacecraft location (calculate_los_vec)
 7. Transformations between GEI J2K, ECEF, NED, NEC, ICRF, ITRF reference frames (find_instrument_attitude)
