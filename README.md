@@ -88,4 +88,4 @@ pip install cavsiopy
 Credits: C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley Martin
 Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
 
-License: Apache License V2.0
+License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
