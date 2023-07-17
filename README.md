@@ -5,15 +5,14 @@ cavsiopy imports the ephemerides and attitude information (roll, pitch, yaw) of 
 
 ## Table of Contents:
 This package contains routines for
-1. Finding the orientation of a spacecraft (spacecraft_attitude_xyz)
-2. Rotating the look direction of an instrument on-board the spacecraftin orbital frame (rotate_instrument)
-3. Calculation of the look angles of the spacecraft (elevation and azimuth) (LA_sat)
-4. Calculation of the look angles of the instrument (elevation and azimuth) (LA_inst)
-5. Calculation of the distance between the spacecraft and a designated point on the ground (spacecraft_distance_from_a_point)
-6. Calculation of the line-of-sight direction vector from the target to the spacecraft location (calculate_los_vec)
-7. Transformations between GEI J2K, ECEF, NED, NEC, ICRF, ITRF reference frames (find_instrument_attitude)
-8. Visualization of spacecraft and instrument direction in 2D and 3D (simple or overlaid on geographical regions of the Earth below the satellite trajectory) (attitude_plotter module)
-9. Rotation matrices for rotations by x, y, z axes
+1. Rotating the look direction of an instrument on-board the spacecraft in orbital frame (rotate_instrument)
+2. Calculation of the look angles of the spacecraft (elevation and azimuth) (LA_sat)
+3. Calculation of the look angles of the instrument (elevation and azimuth) (LA_inst)
+4. Calculation of the distance between the spacecraft and a designated point on the ground (spacecraft_distance_from_a_point)
+5. Calculation of the line-of-sight direction vector from the target to the spacecraft location (calculate_los_vec)
+6. Transformations between GEI J2K, ECEF, NED, NEC, ICRF, ITRF reference frames (find_instrument_attitude)
+7. Visualization of spacecraft and instrument direction in 2D and 3D (simple or overlaid on geographical regions of the Earth below the satellite trajectory) (attitude_plotter module)
+8. Rotation matrices for rotations by x, y, z axes
 
 Instrument pointing direction vectors can be obtained in GEI J2K, ECEF, NED, NEC, ICRF, ITRF.
 
