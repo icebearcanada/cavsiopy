@@ -4,14 +4,22 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "0.9.6"
+version = "0.9.10"
 authors = [
   { name="ceren", email="ceren.eyiguler@usask.ca" },
+  { name = "Warren Holley"}, 
+  { name = "Andrew D. Howarth"}, 
+  { name = "Donald W. Danskin"}, 
+  { name = "Kuldeep Pandey"}, 
+  { name = "Carley Martin"}, 
+  { name = "Glenn C. Hussey"}, 
+  { name = "Robert Gillies"}, 
+  { name = "Andrew W. Yau"},
 ]
-description = "A package to calculate and visualize spacecraft instrument orientation"
+description = "A Python package to Calculate and Visualize Spacecraft Instrument Orientation"
 readme = "README.md"
 requires-python = ">=3.4"
-license = { file = "LICENSE.md" }
+license = { file = "LICENSE" }
 
 install_requires = [
     "matplotlib",
@@ -42,9 +50,9 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/cosmocer/cavsiopy"
-"Repository" = "https://github.com/cosmocer/cavsiopy"
-"Bug Tracker" = "https://github.com/cosmocer/cavsiopy/issues"
+"Homepage" = "https://github.com/icebearcanada/cavsiopy"
+"Repository" = "https://github.com/icebearcanada/cavsiopy"
+"Bug Tracker" = "https://github.com/icebearcanada/cavsiopy/issues"
 "Documentation" = "https://readthedocs.org/projects/cavsiopy/"
 
 
