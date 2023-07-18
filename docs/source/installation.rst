@@ -7,19 +7,23 @@ numpy, matplotlib, astropy, cartopy, geopy, h5py, pysofa
 
 Installation
 ------------
-before installing cavsiopy some of the dependencies need special installation instructions:
+Before installing cavsiopy some of the dependencies need special installation instructions:
 
 cartopy
 ^^^^^^^
 - If you are installing cartopy via pip (on Ubuntu/Debian) first libgeos-dev has to be on your system:
-   ::
+
+.. code-block::
+
        $ sudo apt -y install libgeos-dev
        $ pip install -r requirements.txt
 
 - Follow the installation guide for other systems: https://scitools.org.uk/cartopy/docs/latest/installing.html
 
 - for installation of cartopy with conda:
-   ::
+
+.. code-block::
+
        $ conda install -c conda-forge cartopy
 
 pysofa
@@ -29,14 +33,16 @@ cavsiopy depends on pysofa for determining the ICRF to ITRF rotation matrix.
 
 Here we follow <https://kloppenborg.net/blog/building-sofa-for-pysofa/> for pysofa installation.
 
-   ::
+.. code-block::
+
        $ sudo apt-get install python python-all-dev build-essential cmake
 
 * Download and extract SOFA from the official download page (https://www.iausofa.org/2010_1201_C/sofa_c-20101201.tar.gz)
 
 * After extracting SOFA, cd into the main directory and create a CMakeLists.txt file with the following content
 
-   ::
+.. code-block::
+
         cmake_minimum_required(VERSION 2.6)
 	project(sofa_c C)
 	
@@ -81,7 +87,8 @@ Execute the following comments:
 
 Other packages and requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   ::
+.. code-block::
+
 	pip install --no-deps astropy
 
 	pip install geopy
@@ -90,7 +97,8 @@ Other packages and requirements
 
 ** Now, we are good to go! **
 
-   ::
+.. code-block::
+
 	pip install cavsiopy
 
 
@@ -99,4 +107,3 @@ Credits: C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kulde
 Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
 
 License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
-
