@@ -24,14 +24,7 @@ cavsiopy contains routines for
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
    installation
-   ephemeris_importer
-   use_rotation_matrices
-   attitude_analysis
-   attitude_plotter
-   miscellaneous
-   
 ephemeris_importer: module to import RRI ephemeris and Celestrak TLE
 ====================================================================
 .. automodule:: ephemeris_importer
