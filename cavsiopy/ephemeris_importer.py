@@ -5,22 +5,21 @@ ephemeris_importer module imports several types of data files to obtain
 spacecraft ephemeris. Values are returned as Python dictionaries.
 
 Swarm-E specific data files are: CAS_ephemeris, Cas_AttQUAT, and RRI
-files standard for all spacecraft: sp3, TLE 
+
+Files standard for all spacecraft: sp3, TLE 
 
 ephemeris_importer also includes functions to compute satellite orbital 
 elements using GEIJ2K position and velocity (calculate_orbital_elements), 
 and to compare computed values with data in TLE file (compare_orbital).
 
 .. toctree::
-    :maxdepth: 2
-    
+    :maxdepth: 2 
     cas_ephemeris
     rri_ephemeris
     sp3_ephemeris
     import_tle
     calculate_orbital_elements
     compare_orbital
-
 
 @author: ceren
 """
@@ -102,6 +101,7 @@ def cas_ephemeris(file_cas, time_start, time_end):
     Examples
     --------
     dict_cas = ei.cas_ephemeris(file_CAS, time_start, time_end)
+    
     GEIx = dict_cas['GEIx']  
     '''
     
@@ -232,6 +232,7 @@ def rri_ephemeris(file_rri):
     Examples
     --------
     dict_rri = ei.rri_ephemeris(file_RRI)
+    
     Lat = dict_rri['Lat']    
 
     """
@@ -330,6 +331,7 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
     Examples
     --------
     dict_sp3 = ei.sp3_ephemeris(file_SP3, start_date, end_date)
+    
     ITRFx = dict_sp3['ITRFx']    
 
     """
@@ -460,9 +462,12 @@ def calculate_orbital_elements(pX, pY, pZ, Vx, Vy, Vz):
     Examples
     --------
     sat_inc, sat_ap, sat_raan, sat_ecc, sat_TA = \
+        
         ei.calculate_orbital_elements(dict_rri['GEIx'], dict_rri['GEIy'], \
+                                      
                                       dict_rri['GEIz'], dict_rri['GEIVx'], \
-                                          dict_rri['GEIVy'], dict_rri['GEIVz'])
+                                      
+                                      dict_rri['GEIVy'], dict_rri['GEIVz'])
     """
           
     inc = np.empty(pX.shape); inc.fill(np.nan)
@@ -606,9 +611,13 @@ def import_tle(filename, filedate, DOY):
     Examples
     --------
     time_start = datetime.datetime(2016, 4, 18, 22, 27, 59) 
+    
     DOY = time_start.timetuple().tm_yday
+    
     filedate = '20160418'    
+    
     tle_epoch, tle_inc, tle_ap, tle_raan, tle_ecc, tle_ma = \
+        
         ei.import_tle(file_TLE, filedate, DOY)
 
     """
@@ -704,11 +713,17 @@ def compare_orbital(file_TLE, filedate, DOY, pX, pY, pZ, Vx, Vy, Vz):
     Examples
     --------
     time_start = datetime.datetime(2016, 4, 18, 22, 27, 59) 
+    
     DOY = time_start.timetuple().tm_yday
+    
     filedate = '20160418'
+    
     comp = ei.compare_orbital(file_TLE, filedate, DOY, dict_rri['GEIx'], 
+                             
                               dict_rri['GEIy'], dict_rri['GEIz'], 
+                             
                               dict_rri['GEIVx'], dict_rri['GEIVy'], 
+                              
                               dict_rri['GEIVz'])
         
     """

@@ -584,12 +584,19 @@ def calculate_reception_angle(inst_ned, pLat, pLon, pAlt, lat, lon, alt,
 def find_slew_rri(ra_los, ra_D1, ra_D2, criteria):
     """
     function to classify slew according to the given criteria
+    
         2: Front face slew 
+        
         1: 1 dipole back, 1 dipole front, boresight front slew
+        
         0.5 : 1 dipole front slew
+        
         0: no dipoles slewed
+        
         -0.5: 1 dipole back slew
+        
         -1: 1 dipole back, 1 dipole front, boresight back slew
+        
         -2: Back face slew
 
     Parameters
@@ -704,8 +711,11 @@ def find_slew_rri(ra_los, ra_D1, ra_D2, criteria):
 def find_slew_inst(ra_los, criteria):
     """
     function to classify slew according to the given criteria
+    
         1 : Front face slew
+        
         0: no dipoles slewed
+        
         -1: Back face slew
 
     Parameters
