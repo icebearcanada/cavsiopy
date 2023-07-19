@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 use_rotation_matrices contains functions to  
+
 1. calculate the GMST time from noon or midnight
-2. rotate the RRI in orbital frame using roll, pitch, and yaw angles using 
-RPY sequential order
-3. compute the rotation matrices for the transformations between 
+
+2. compute the rotation matrices for the transformations between 
 spacecraft orbital frame(ORF) and GEI J2000, J2K and ECEF, J2K and ITRF, 
 ECEF and NED, ITRF and NEC, ITRF and NED, and  NED and ENU.
     
 Two sets of rotation matrices are provided to build up direction cosine matrix.
+
 1. SET-1:
 According to Coordinate Transformations via Euler Angles, Riggs, 2019. Rev. E.
 expresses the inertial frame vectors in terms of rotated frame vectors
@@ -63,7 +64,7 @@ YAW: positive is from +X towards +Y
     terrestrial_to_nec_rm
     terrestrial_to_ned_rm
     
-@author: ceren
+@author: ceren, warren
 """
 import numpy as np
 from astropy.time import Time
@@ -72,9 +73,9 @@ import cavsiopy.ephemeris_importer as ei
 import cavsiopy.miscellaneous as misc
 
 
-def GMST_midnight(utc_dt_array):
+def GMST_midnight(utc_dt):
     """
-    Calculates GMST in degrees.
+    Calculates GMST in radians.
     
     Includes day fraction corrected with respect to midnight.
     
@@ -83,33 +84,30 @@ def GMST_midnight(utc_dt_array):
     
     Parameters
     ----------
-    utc_dt_array: datetime.datetime
-        time array in UTC
+    utc_dt: datetime.datetime
+        time in UTC.
     
     Returns
     -------
     GMST: float
-        GMST in radians
+        GMST in radians.
     
     Examples
     --------
     GMST = calculate_GMST_midnight(utc_dt_array)
     """
 
-    GMST = np.zeros(len(utc_dt_array), dtype=np.float)
-    
-    for i in range(len( utc_dt_array )):
-      JD = Time( utc_dt_array[i] ).ut1.jd
-      T  = (JD - 2451545)/36525 # Julian Centuries since J2K epoch in TT.
-      UT = JD % 1 - 0.5   # Day fraction, correcting to midnight rather than noon.
-    
-      gmst = 100.460618375 + 36000.770053608336*T + 0.0003879333*T**2 -\
-          2.583e-8*T**3
-    
-      E_deg = 360.98564724 * UT # /24 built-in, UT is just the fractional day.
-    
-      theta_deg = gmst + E_deg
-      GMST[i] = ( theta_deg * np.pi/180 ) % (2*np.pi)
+    JD = Time( utc_dt ).ut1.jd
+    T  = (JD - 2451545)/36525 # Julian Centuries since J2K epoch in TT.
+    UT = JD % 1 - 0.5   # Day fraction, correcting to midnight rather than noon.
+  
+    gmst = 100.460618375 + 36000.770053608336*T + 0.0003879333*T**2 -\
+        2.583e-8*T**3
+  
+    E_deg = 360.98564724 * UT # /24 built-in, UT is just the fractional day.
+  
+    theta_deg = gmst + E_deg
+    GMST = ( theta_deg * np.pi/180 ) % (2*np.pi)
     
     return GMST
 
@@ -123,47 +121,44 @@ def GMST_noon(time_array):
     Parameters
     ----------
     time_array : datetime.datetime
-        time array in UTC
+        time in UTC.
 
     Returns
     -------
     GMST: float
-        GMST in radians
+        GMST in radians.
 
     Examples
     --------
     GMST = calculate_GMST_noon(time_array)
     """    
-    SizeArr = len(time_array)
-    theta_rad = np.empty(SizeArr)
-    
-    for i in range(0, SizeArr):
-        # time of epoch, jd: Julian date
-        JD=Time(time_array[i]).ut1.jd
-        # Time elapsed since JD 2451545 (Jan 1, 2000, 12 UT)
-        T = (JD - 2451545)/36525;  
+   
+    # time of epoch, jd: Julian date
+    JD=Time(time_array).ut1.jd
+    # Time elapsed since JD 2451545 (Jan 1, 2000, 12 UT)
+    T = (JD - 2451545)/36525;  
 
-        GMST_deg = 100.460618375 + 36000.770053608336 * T + \
-            0.0003879333 * (T**2) - 2.583 * (10**(-8)) * (T**3)
+    GMST_deg = 100.460618375 + 36000.770053608336 * T + \
+        0.0003879333 * (T**2) - 2.583 * (10**(-8)) * (T**3)
 
-        # Formula above can yield values greater than 360. If that's the case:
-        if GMST_deg < 0:
-            GMST = GMST_deg + np.fix(GMST_deg/360)*360
-        elif GMST_deg >= 360:
-            GMST = GMST_deg - (np.fix(GMST_deg/360) - 1)*360
-        else:
-            GMST = GMST_deg
+    # Formula above can yield values greater than 360. If that's the case:
+    if GMST_deg < 0:
+        GMST = GMST_deg + np.fix(GMST_deg/360)*360
+    elif GMST_deg >= 360:
+        GMST = GMST_deg - (np.fix(GMST_deg/360) - 1)*360
+    else:
+        GMST = GMST_deg
 
-        # from Earth's rotation
-        UT_H = time_array[i].timetuple().tm_hour +\
-            time_array[i].timetuple().tm_min/60 +\
-                ( time_array[i].timetuple().tm_sec / 3600 )
+    # from Earth's rotation
+    UT_H = time_array.timetuple().tm_hour +\
+        time_array.timetuple().tm_min/60 +\
+            ( time_array.timetuple().tm_sec / 3600 )
 
-        E_deg = 360.98564724 *  (UT_H/24)
+    E_deg = 360.98564724 *  (UT_H/24)
 
-        theta_deg = GMST + E_deg
+    theta_deg = GMST + E_deg
 
-        theta_rad[i] = np.deg2rad(theta_deg)
+    theta_rad = np.deg2rad(theta_deg)
 
     return theta_rad
 
@@ -172,12 +167,12 @@ def RX_r2i(x):
     Parameters
     ----------
     x : float
-        roll angle (radians)
+        roll angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about x axis
+        Rotation matrix about x axis.
         
     Examples
     --------
@@ -192,12 +187,12 @@ def RY_r2i(y):
     Parameters
     ----------
     y : float
-        pitch angle (radians)
+        pitch angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about y axis
+        Rotation matrix about y axis.
         
     Examples
     --------
@@ -212,12 +207,12 @@ def RZ_r2i(z):
     Parameters
     ----------
     z : float
-        yaw angle (radians)
+        yaw angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about z axis
+        Rotation matrix about z axis.
     
     Examples
     --------
@@ -232,12 +227,12 @@ def RX_i2r(x):
     Parameters
     ----------
     x : float
-        roll angle (radians)
+        roll angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about x axis
+        Rotation matrix about x axis.
 
     Examples
     --------
@@ -253,12 +248,12 @@ def RY_i2r(y):
     Parameters
     ----------
     y : float
-        pitch angle (radians)
+        pitch angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about y axis
+        Rotation matrix about y axis.
         
     Examples
     --------
@@ -273,12 +268,12 @@ def RZ_i2r(z):
     Parameters
     ----------
     z : float
-        yaw angle (radians)
+        yaw angle (radians).
 
     Returns
     -------
     numpy.ndarray
-        Rotation matrix about z axis
+        Rotation matrix about z axis.
         
     Examples
     --------
@@ -303,14 +298,14 @@ def oe_to_gei_rm(raan, inc, ap):
     inc : float
         satellite inclination (in radians).
     raan : float
-        satellite right ascension of ascending node (in radians)
+        satellite right ascension of ascending node (in radians).
     ap : float
-        satellite argument of periapsis (in radians)
+        satellite argument of periapsis (in radians).
 
     Returns
     -------
     rm_OE2GEI : numpy.ndarray[float]
-        perifocal frame to GEI matrix
+        ORF to GEI matrix using orbital elements.
         
     Examples
     --------
@@ -324,7 +319,7 @@ def oe_to_gei_rm(raan, inc, ap):
 
 def gei_to_oe_rm(inc, raan, ap):
     """
-    Function to calculate the GEI to perifocal frame matrix.
+    Function to calculate the GEI to orbital frame matrix.
     
     GEI2OE matrix is the transpose of OE2GEI matrix.
 
@@ -333,14 +328,15 @@ def gei_to_oe_rm(inc, raan, ap):
     inc : float
         satellite inclination (in radians).
     raan : float
-        satellite right ascension of ascending node (in radians)
+        satellite right ascension of ascending node (in radians).
     ap : float
-        satellite argument of periapsis (in radians)
+        satellite argument of periapsis (in radians).
 
     Returns
     -------
     rm_GEI2OE : numpy.ndarray[float]
-        perifocal frame to GEI matrix
+        orbital frame to GEI matrix using satellite orbital 
+        elements.
         
     Examples
     --------
@@ -367,17 +363,17 @@ def orf_to_j2k_rm(pX, pY, pZ, Vx, Vy, Vz):
     Parameters
     ----------
     pX : numpy.ndarray[float]
-        X position in GEIJ2K (km)
+        X position in GEIJ2K (km).
     pY : numpy.ndarray[float]
-        Y position in GEIJ2K (km)
+        Y position in GEIJ2K (km).
     pZ : numpy.ndarray[float]
-        Z position in GEIJ2K (km)
+        Z position in GEIJ2K (km).
     Vx : numpy.ndarray[float]
-        X component of velocity in GEIJ2K (km/s)
+        X component of velocity in GEIJ2K (km/s).
     Vy : Tnumpy.ndarray[float]
-        Y component of velocity in GEIJ2K (km/s)
+        Y component of velocity in GEIJ2K (km/s).
     Vz : numpy.ndarray[float]
-        Z component of velocity in GEIJ2K (km/s)
+        Z component of velocity in GEIJ2K (km/s).
 
     Returns
     -------
@@ -422,22 +418,22 @@ def j2k_to_orf_rm(pX, pY, pZ, Vx, Vy, Vz):
     Parameters
     ----------
     pX : numpy.ndarray[float]
-        X position in GEIJ2K (km)
+        X position in GEIJ2K (km).
     pY : numpy.ndarray[float]
-        Y position in GEIJ2K (km)
+        Y position in GEIJ2K (km).
     pZ : numpy.ndarray[float]
-        Z position in GEIJ2K (km)
+        Z position in GEIJ2K (km).
     Vx : numpy.ndarray[float]
-        X component of velocity in GEIJ2K (km/s)
+        X component of velocity in GEIJ2K (km/s).
     Vy : Tnumpy.ndarray[float]
-        Y component of velocity in GEIJ2K (km/s)
+        Y component of velocity in GEIJ2K (km/s).
     Vz : numpy.ndarray[float]
-        Z component of velocity in GEIJ2K (km/s)
+        Z component of velocity in GEIJ2K (km/s).
 
     Returns
     -------
     rJ2K_to_Nadir : np.ndarray[float]
-        rotation matrice for the transformation from GEIJ2K to ORF
+        rotation matrice for the transformation from GEIJ2K to ORF.
 
     """    
     rNadir_to_J2K = orf_to_j2k_rm(pX, pY, pZ, Vx, Vy, Vz)
@@ -453,7 +449,7 @@ def gei_to_ecef_rm(theta_rad):
     Function to calculate the GEI to ECEF rotation matrix.
     
     One rotation is needed in xy frame (yaw rotation) to transform from 
-    GEIJ2K to ECEF. yaw angle is the azimuth angle between GEIJ2K and 
+    GEIJ2K to ECEF. Yaw angle is the azimuth angle between GEIJ2K and 
     ECEF in this case.
     
     Azimuth= Greenwich sidereal time + Earth's rotation speed * UTC.
@@ -461,6 +457,7 @@ def gei_to_ecef_rm(theta_rad):
     Ref:
     1. J. Riggs, Coordinate transformations via Euler Angle Rotations,
     Rev. E - 10 April 2019
+    
     2. A. Sofyali, Orbital Mechanics notes, 7 February 2019.    
 
     Parameters
@@ -470,7 +467,7 @@ def gei_to_ecef_rm(theta_rad):
 
     Returns
     -------
-    GEI2ECEF : numpy.ndarray[float]
+    rm_GEI2ECEF : numpy.ndarray[float]
         Rotation matrix for transformations from GEI to ECEF.
 
     Examples
@@ -513,12 +510,15 @@ def terrestrial_to_ned_rm(lat, lon):
     Function to calculate the ECEF to NED rotation matrix.
     
     Y-Z (pitch-yaw) sequence with longitude and latitude are needed.
+    
     1. Aligning the x-y plane of ECEF and NED using longitude: yaw(longitude)
+    
     2. Aligning the x-z plane using latitude: pitch(-(pi/2+latitude))
     
     Ref: 
     1. J. Riggs, Coordinate transformations via Euler Angle Rotations,
     Rev. E - 10 April 2019
+    
     2. Cai, G., Chen, B.M., Lee, T.H. (2011). Coordinate Systems and
     Transformations. In: Unmanned Rotorcraft Systems. Advances in Industrial
     Control. Springer, London. https://doi.org/10.1007/978-0-85729-635-1_2
@@ -526,9 +526,9 @@ def terrestrial_to_ned_rm(lat, lon):
     Parameters
     ----------
     lat : numpy.ndarray[float]
-        Geodetic latitude in degrees
+        Geodetic latitude in degrees.
     lon : numpy.ndarray[float]
-        Geodetic longitude in degrees
+        Geodetic longitude in degrees.
 
     Returns
     -------
@@ -564,9 +564,9 @@ def ned_to_terrestrial_rm(lat, lon):
     Parameters
     ----------
     lat : numpy.ndarray[float]
-        Geodetic latitude in degrees
+        Geodetic latitude in degrees.
     lon : numpy.ndarray[float]
-        Geodetic longitude in degrees
+        Geodetic longitude in degrees.
 
     Returns
     -------
@@ -575,15 +575,15 @@ def ned_to_terrestrial_rm(lat, lon):
 
     """
     # Open form ----------------------------------------------------------    
-    rm_ter2ned = terrestrial_to_ned_rm(lat, lon)
+    ter2ned_rm = terrestrial_to_ned_rm(lat, lon)
     
-    rm_ned2ter = rm_ter2ned.T
+    rm_ned2ter = ter2ned_rm.T
     
     return rm_ned2ter
 
 def icrf_to_itrf_rm(path_to_files, input_time):
     """
-    Function to calculate ICRF to ITRF matrix using pysofa routines.
+    Function to calculate the ICRF to ITRF matrix using pysofa routines.
 
     Parameters
     ----------
@@ -595,7 +595,7 @@ def icrf_to_itrf_rm(path_to_files, input_time):
     Returns
     -------
     rm_ICRF2ITRF : numpy.ndarray[float]
-        ICRF to ITRF rotation matrix
+        ICRF to ITRF rotation matrix.
 
     """
     # calculate day-of-year = DOY
@@ -697,7 +697,7 @@ def itrf_to_icrf_rm(path_to_files, time_array):
     Returns
     -------
     rm_ICRF2ITRF : numpy.ndarray[float]
-        ICRF to ITRF rotation matrix
+        ICRF to ITRF rotation matrix.
 
     """
     
@@ -719,16 +719,16 @@ def terrestrial_to_nec_rm( gX, gY, gZ ):
     Parameters
     ----------
     gX : numpy.ndarray[float]
-        X position in GEO/ITRF (km)
+        X position in GEO/ITRF (km).
     gY : numpy.ndarray[float]
-        Y position in GEO/ITRF (km)
+        Y position in GEO/ITRF (km).
     gZ : numpy.ndarray[float]
-        Z position in GEO/ITRF (km)
+        Z position in GEO/ITRF (km).
 
     Returns
     -------
     R_NEC : numpy.ndarray[float]
-        3d rotation matrix describing the rotation from ITRF to NEC
+        3d rotation matrix describing the rotation from ITRF to NEC.
       
     Examples
     --------
@@ -747,9 +747,9 @@ def terrestrial_to_nec_rm( gX, gY, gZ ):
     eEast   /= np.linalg.norm(eEast  )
     eNorth  /= np.linalg.norm(eNorth )
     
-    rm_ter2nec = np.stack(( eNorth, eEast, eCenter))
+    ter2nec_rm = np.stack(( eNorth, eEast, eCenter))
     
-    return  rm_ter2nec
+    return  ter2nec_rm
 
 def nec_to_terrestrial_rm(gX, gY, gZ):
     """
@@ -769,7 +769,7 @@ def nec_to_terrestrial_rm(gX, gY, gZ):
     Returns
     -------
     rm_nec2ter : numpy.ndarray[float]
-        3d rotation matrix describing the rotation from NEC to ITRF
+        3d rotation matrix describing the rotation from NEC to ITRF.
         
     Examples
     --------
@@ -798,31 +798,32 @@ def orf_to_j2k_use_orbital_elements(body_vec, pX, pY, pZ, Vx, Vy, Vz,
     Parameters
     ----------
     body_vec : np.ndarray[float]
-        rotated body frame vectors
+        rotated body frame vector.
     pX : numpy.ndarray[float]
-        X position in GEIJ2K (km)
+        X position in GEIJ2K (km).
     pY : numpy.ndarray[float]
-        Y position in GEIJ2K (km)
+        Y position in GEIJ2K (km).
     pZ : numpy.ndarray[float]
-        Z position in GEIJ2K (km)
+        Z position in GEIJ2K (km).
     Vx : numpy.ndarray[float]
-        X component of velocity in GEIJ2K (km/s)
+        X component of velocity in GEIJ2K (km/s).
     Vy : numpy.ndarray[float]
-        Y component of velocity in GEIJ2K (km/s)
+        Y component of velocity in GEIJ2K (km/s).
     Vz : numpy.ndarray[float]
-        Z component of velocity in GEIJ2K (km/s)
+        Z component of velocity in GEIJ2K (km/s).
     P  : numpy.ndarray
         optional reordering matrix to align the perifocal frame with the 
-    orbital frame. Default is P= np.array([[0, 0, -1],[1, 0, 0],[0,-1,0]])
+    orbital frame.The default is P= np.array([[0, 0, -1],[1, 0, 0],[0,-1,0]])
 
     Returns
     -------
     inst_GEI : numpy.ndarray[float]
-        instrument look direction in GEIJ2K
+        instrument look direction in GEIJ2K.
         
     Examples
     --------
     inst_GEI = \
+        
         orf_to_j2k_use_orbital_elements(body_vec, pX, pY, pZ, Vx, Vy, Vz)
 
     """
@@ -862,14 +863,14 @@ def gei2ecef(inst_GEI, time_array):
     Parameters
     ----------
     inst_GEI : np.ndarray[float]
-        instrument look direction in GEIJ2K    
+        instrument look direction in GEIJ2K .  
     time_array : datetime.datetime
-        experiment time interval
+        experiment time interval.
 
     Returns
     -------
     inst_ECEF : np.ndarray[float]
-        instrument look direction in GEIJ2K
+        instrument look direction in GEIJ2K.
         
     Examples
     --------
@@ -910,16 +911,16 @@ def terrestrial2ned(inst_ter, lat, lon):
     Parameters
     ----------
     inst_ter : np.ndarray[float]
-        instrument look direction in terrestrial frame
+        instrument look direction in terrestrial frame.
     lat : numpy.ndarray[float]
-        Geodetic latitude in degrees
+        Geodetic latitude in degrees.
     lon : numpy.ndarray[float]
-        Geodetic longitude in degrees
+        Geodetic longitude in degrees.
 
     Returns
     -------
     inst_NED : np.ndarray[float]
-        instrument look direction in NED
+        instrument look direction in NED.
         
     Examples
     --------
@@ -942,14 +943,14 @@ def terrestrial2ned(inst_ter, lat, lon):
 
         inst_NED[:, i]= inst_ter2NED[:, i] / denominator
 
-    return inst_NED
+    return inst_NED.T
 
 # =============================================================================
 # # %% function for NED to ENU transformations
 # =============================================================================
 def ned2enu(inst_NED):
     """
-    function for NED to ENU transformations
+    Function for NED to ENU transformations
     
     The transformation matrice from NED to ENU and ENU to NED are the same.
     [0 1 0 ; 1 0 0 , 0 0 -1]
@@ -963,16 +964,16 @@ def ned2enu(inst_NED):
     Parameters
     ----------
     inst_NED : np.ndarray[float]
-        instrument look direction in NED
+        instrument look direction in NED.
 
     Returns
     -------
     inst_ENU : np.ndarray[float]
-        instrument look direction in ENU
+        instrument look direction in ENU.
 
     """
     # # Initialize ECEF Vectors
-    SC_NED=np.array(inst_NED).T
+    SC_NED = np.array(inst_NED).T
 
     # Initialize ENU Vectors
     inst_ENU = np.empty(SC_NED.shape)
@@ -984,7 +985,7 @@ def ned2enu(inst_NED):
 
     inst_ENU = RN2E @ SC_NED
 
-    return inst_ENU.T
+    return inst_ENU
 
 
 def orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz):
@@ -994,19 +995,19 @@ def orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz):
     Parameters
     ----------
     body_vec : np.ndarray[float]
-        rotated body frame vectors
+        rotated body frame vector.
     pX : numpy.ndarray[float]
-        X position in GEIJ2K (km)
+        X position in GEIJ2K (km).
     pY : numpy.ndarray[float]
-        Y position in GEIJ2K (km)
+        Y position in GEIJ2K (km).
     pZ : numpy.ndarray[float]
-        Z position in GEIJ2K (km)
+        Z position in GEIJ2K (km).
     Vx : numpy.ndarray[float]
-        X component of velocity in GEIJ2K (km/s)
+        X component of velocity in GEIJ2K (km/s).
     Vy : numpy.ndarray[float]
-        Y component of velocity in GEIJ2K (km/s)
+        Y component of velocity in GEIJ2K (km/s).
     Vz : numpy.ndarray[float]
-        Z component of velocity in GEIJ2K (km/s)
+        Z component of velocity in GEIJ2K (km/s).
     P  : numpy.ndarray
         optional reordering matrix to align the perifocal frame with the 
     orbital frame. Default is P= np.array([[0, 0, -1],[1, 0, 0],[0,-1,0]])
@@ -1014,11 +1015,12 @@ def orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz):
     Returns
     -------
     inst_GEI : numpy.ndarray[float]
-        instrument look direction in GEIJ2K
+        instrument look direction in GEIJ2K.
         
     Examples
     --------
     inst_GEI = \
+        
         orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz)
     """
 
@@ -1042,7 +1044,7 @@ def orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz):
 
 def icrf2itrf(inst_GEI, path_to_files, time_array):
     """
-    Function to transform the GEI look direction to ITRF.
+    Function to transform the pointing vector in GEIJ2K to ITRF.
     
     Notes
     -----
@@ -1051,8 +1053,8 @@ def icrf2itrf(inst_GEI, path_to_files, time_array):
 
     Parameters
     ----------
-    inst_GEI : TYPE
-        DESCRIPTION.
+    inst_GEI : numpy.ndarray[float]
+        instrument look direction in GEIJ2K.
     path_to_files : str
         IES and EOP file path.
     time_array : datetime.datetime
@@ -1090,11 +1092,11 @@ def terrestrial2nec(inst_ter, gX, gY, gZ):
     inst_ter : numpy.ndarray[float]
         Instrument look direction in terrestrial frame.
     gX : numpy.ndarray[float]
-        X position in GEO/ITRF (km)
+        X position in GEO/ITRF (km).
     gY : numpy.ndarray[float]
-        Y position in GEO/ITRF (km)
+        Y position in GEO/ITRF (km).
     gZ : numpy.ndarray[float]
-        Z position in GEO/ITRF (km)
+        Z position in GEO/ITRF (km).
 
     Returns
     -------
@@ -1128,11 +1130,11 @@ def nec2terrestrial(inst_NEC, gX, gY, gZ):
     inst_NEC : numpy.ndarray[float]
         Instrument look direction in NEC.
     gX : numpy.ndarray[float]
-        X position in GEO/ITRF (km)
+        X position in GEO/ITRF (km).
     gY : numpy.ndarray[float]
-        Y position in GEO/ITRF (km)
+        Y position in GEO/ITRF (km).
     gZ : numpy.ndarray[float]
-        Z position in GEO/ITRF (km)
+        Z position in GEO/ITRF (km).
 
     Returns
     -------
@@ -1158,3 +1160,4 @@ def nec2terrestrial(inst_NEC, gX, gY, gZ):
         inst_ter[i, :]  = np.dot( rITRF_from_NEC,  inst_nec_vec[: , i])
 
     return inst_ter
+

@@ -378,7 +378,7 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
                              geiVx, geiVy, geiVz, 
                              geoX, geoY, geoZ,
                              time_array, start_date, end_date, 
-                             lat, lon, path_to_files, method1='ephemeris', 
+                             lat, lon, path_to_sofa_files, method1='ephemeris', 
                              frame2 = 'itrf', frame3 = 'nec' ):
     """
     Takes in the rotated body vector in orbital frame and outputs instrument
@@ -415,15 +415,15 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         Geodetic latitude in degrees.
     lon : numpy.ndarray[float]
         Geodetic longitude in degrees.
-    path_to_files : str
+    path_to_sofa_files : str
         path_to_initialization files (IERS and EOP).
     method1 : str, optional
         Transformation method to ICRF/GEI J2K.
-        Can be ephemeris or orbital_elements. The default is 'ephemeris'.
+        Can be 'ephemeris' or 'orbital_elements'. The default is 'ephemeris'.
     frame2 : str, optional
-        Terrestrial frame: ECEF or ITRF. The default is 'itrf'.
+        Terrestrial frame: 'ecef' or 'itrf'. The default is 'itrf'.
     frame3 : str, optional
-        Final coordinate system: NEC or NED. The default is 'nec'.
+        Final coordinate system: 'nec' or 'ned'. The default is 'nec'.
 
     Returns
     -------
@@ -433,7 +433,7 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
     """
     
     #  first frame to transform is the icrf
-    # if spacecraft ephemeris method is chosen to transform to icrf/gei j2k
+ # if spacecraft ephemeris method is chosen to transform to icrf/gei j2k
     if method1 == 'ephemeris':
         inst_GEI = \
             urm.orf_to_j2k_use_spacecraft_ephemeris(rotated_body, 
@@ -442,7 +442,7 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         # if itrf is chosen as the second frame
         if frame2 == 'itrf':
             inst_ITRF = \
-                urm.icrf2itrf(inst_GEI, path_to_files, time_array)
+                urm.icrf2itrf(inst_GEI, path_to_sofa_files, time_array)
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
@@ -469,7 +469,7 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         # if itrf is chosen as the second frame
         if frame2 == 'itrf':
             inst_ITRF = \
-                urm.icrf2itrf(inst_GEI, path_to_files, time_array)
+                urm.icrf2itrf(inst_GEI, path_to_sofa_files, time_array)
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
@@ -584,19 +584,12 @@ def calculate_reception_angle(inst_ned, pLat, pLon, pAlt, lat, lon, alt,
 def find_slew_rri(ra_los, ra_D1, ra_D2, criteria):
     """
     function to classify slew according to the given criteria
-    
         2: Front face slew 
-        
         1: 1 dipole back, 1 dipole front, boresight front slew
-        
         0.5 : 1 dipole front slew
-        
         0: no dipoles slewed
-        
         -0.5: 1 dipole back slew
-        
         -1: 1 dipole back, 1 dipole front, boresight back slew
-        
         -2: Back face slew
 
     Parameters
@@ -711,11 +704,8 @@ def find_slew_rri(ra_los, ra_D1, ra_D2, criteria):
 def find_slew_inst(ra_los, criteria):
     """
     function to classify slew according to the given criteria
-    
         1 : Front face slew
-        
         0: no dipoles slewed
-        
         -1: Back face slew
 
     Parameters
@@ -781,3 +771,4 @@ def find_slew_inst(ra_los, criteria):
                 slew[i]= np.nan # no slew
 
     return slew
+

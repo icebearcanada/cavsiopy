@@ -39,12 +39,8 @@ from matplotlib.offsetbox import AnchoredText
 from matplotlib.cm import ScalarMappable
 from matplotlib.ticker import FixedLocator, FixedFormatter
 from matplotlib.legend_handler import HandlerBase
-
 import cavsiopy.miscellaneous as misc
 import cavsiopy.ephemeris_importer as ei
-
-
-
 
 class MyAxes3D(axes3d.Axes3D):
     """ Class to draw 3D grids for the counter-clockwise angles of 3D plots."""
@@ -192,15 +188,10 @@ def display_observation_geometry(title, time_array, Px, Py, Pz,
     Examples
     --------
     vec_args= M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-    
     connected_plot = op.display_observation_geometry(title_vec, \
-                                                    
                                                      time_array_1sec,\
-                                                    
                                                      pLon, pLat, OH, \
-                                                    
                                                      Lon, Lat, Alt,\
-                                                    
                                                      'Ottawa', *vec_args, n=45)
 
     """
@@ -406,13 +397,9 @@ def attitude_3d_ground_quiver(title, time_array, Px, Py, Pz, x, y, z, dir_vec,
     Examples
     --------
     V = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-    
     ground_quiver_3d = op.attitude_3d_ground_quiver(title, time_array,\
-                                                  
                                                   pLon, pLat, OH, \
-                                                 
                                                   Lon, Lat, Alt, RRI_enu, 
-                                                 
                                                   'Ottawa', *V, step = 60) 
     """
 
@@ -651,17 +638,11 @@ def attitude_3d_connect_to_target(title, time_array,
     Examples
     --------
     vec_args= M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-    
     connected_plot, ax = ap.attitude_3d_connect_to_target(title_vec, \
-                                                    
                                                      time_array_1sec,\
-                                                    
                                                      pLon, pLat, pH, \
-                                                    
                                                      Lon, Lat, Alt,\
-                                                    
                                                      target_name, \
-                                                   
                                                     *vec_args, step = 45)
     """
     a=0
@@ -885,13 +866,9 @@ def attitude_3d_connect_to_subpoint(title, time_array, Px, Py, Pz, x, y, z,
     Examples
     --------
     V = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-    
     connect_to_subpoint= ap.attitude_3d_connect_to_subpoint(title, time_array,\
-                                                
                                                   pLon, pLat, OH, \
-                                                  
                                                   Lon, Lat, Alt,
-                                                 
                                                   'Ottawa', *V, step = 60) 
     """
 
@@ -1401,8 +1378,8 @@ def attitude_2d_on_map(time_array, extent, x, y, z, Px, Py, V, \
     ----------
     time_array : datetime.datetime
         experiment time interval as datetime array.
-    extent : TYPE
-        DESCRIPTION.
+    extent : list
+        extent = [Lonmin, Lonmax, Latmin, Latmax].
     x : numpy.ndarray[float]
         spacecraft longitude(degrees).
     y : numpy.ndarray[float]
@@ -1440,8 +1417,7 @@ def attitude_2d_on_map(time_array, extent, x, y, z, Px, Py, V, \
     central_lon, central_lat = misc.coverage(extent)
     
     fig = plt.figure(figsize=(12, 15))
-    proj = ccrs.Orthographic(central_longitude=central_lon, 
-                                              central_latitude=central_lat)
+    proj = ccrs.PlateCarree()
     ax = plt.subplot(projection=proj)
         
     ax.set_extent(extent, ccrs.PlateCarree())
@@ -1514,8 +1490,7 @@ def attitude_2d_on_map(time_array, extent, x, y, z, Px, Py, V, \
 def attitude_2d_altitude(time_array, extent, x, y, z, Px, V, \
                          inst_name, target_name, x_axis = 'lon', step = 60):
     """
-    Function to plot pointing direction vector in altitude vs 
-    longitude/latitude.
+    
 
     Parameters
     ----------
@@ -1551,6 +1526,7 @@ def attitude_2d_altitude(time_array, extent, x, y, z, Px, V, \
         Axes object of matplotlib.    
 
     """
+    
    
     w = 0.004; OH = min(z)-0.01;
     start_time = time_array[0]
