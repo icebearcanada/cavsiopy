@@ -58,41 +58,41 @@ def cas_ephemeris(file_cas, time_start, time_end):
             end time in CAS_ephemeris file.
         time_array : datetime.datetime
             time of the observations.
-        Lat : np.array[float]
+        Lat : numpy.ndarray[float]
             Geodetic latitude.
-        Lon : np.array[float]
+        Lon : numpy.ndarray[float]
             Geodetic longitude.
-        Alt : np.array[float]
+        Alt : numpy.ndarray[float]
             geodetic altitude (km)  .      
-        MLat: np.array[float]
+        MLat: numpy.ndarray[float]
             Magnetic latitude (deg).
-        MLon: np.array[float]
+        MLon: numpy.ndarray[float]
             Magnetic longitude (deg).
-        MLT: np.array[float]
+        MLT: numpy.ndarray[float]
             Magnetic local time (h).
-        GEIx : np.array[float]
+        GEIx : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (X-km).
-        GEIy : np.array[float]
+        GEIy : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Y-km).
-        GEIz : np.array[float]
+        GEIz : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Z-km).
-        GEIVx : np.array[float]
+        GEIVx : numpy.ndarray[float]
             X component of the spacecraft velocity in GEI coordinates (Vx-km/s).
-        GEIVy : np.array[float]
+        GEIVy : numpy.ndarray[float]
             Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).
-        GEIVz : np.array[float]
+        GEIVz : numpy.ndarray[float]
             Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).
-        GSMx : np.array[float]
+        GSMx : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (X-km).
-        GSMy : np.array[float]
+        GSMy : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Y-km).
-        GSMz : np.array[float]
+        GSMz : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Z-km).
-        roll : np.array[float]
+        roll : numpy.ndarray[float]
             roll angle; rotation around x axis (degrees).
-        pitch : np.array[float]
+        pitch : numpy.ndarray[float]
             pitch angle; rotation around y axis (degrees).
-        yaw : np.array[float]
+        yaw : numpy.ndarray[float]
             yaw angle; rotation around z axis (degrees).
         acc : int
             accuracy of the attitude solution.
@@ -174,7 +174,7 @@ def rri_ephemeris(file_rri):
     -------
     dict:
         keys and properties of the keys are below:
-        time_data : np.array[float]
+        time_data : numpy.ndarray[float]
             seconds since May 24, 1968.
         time_array : datetime.datetime
             time of the observations.
@@ -182,47 +182,47 @@ def rri_ephemeris(file_rri):
             start_time of the experiment.
         end_time : datetime.datetime
             end time of the experiment.
-        Lat : np.array[float]
+        Lat : numpy.ndarray[float]
             Geodetic latitude (degrees).
-        Lon : np.array[float]
+        Lon : numpy.ndarray[float]
             Geodetic longitude (degrees).
-        Alt : np.array[float]
+        Alt : numpy.ndarray[float]
             geodetic altitude (km).        
-        MLat: np.array[float]
+        MLat: numpy.ndarray[float]
             Magnetic latitude (deg).
-        MLon: np.array[float]
+        MLon: numpy.ndarray[float]
             Magnetic longitude (degrees).
-        MLT: np.array[float]
+        MLT: numpy.ndarray[float]
             Magnetic local time (h).
-        GEOx : np.array[float]
+        GEOx : numpy.ndarray[float]
             Spacecraft position in GEO coordinates (X-km).
-        GEOy : np.array[float]
+        GEOy : numpy.ndarray[float]
             Spacecraft position in GEO coordinates (Y-km).
-        GEOz : np.array[float]
+        GEOz : numpy.ndarray[float]
             Spacecraft position in GEO coordinates (Z-km).
-        GEOVx : np.array[float]
+        GEOVx : numpy.ndarray[float]
             X component of the spacecraft velocity in GEO coordinates (Vx-km/s).
-        GEOVy : np.array[float]
+        GEOVy : numpy.ndarray[float]
             Y component of the spacecraft velocity in GEO coordinates (Vy-km/s).
-        GEOVz : np.array[float]
+        GEOVz : numpy.ndarray[float]
             Z component of the spacecraft velocity in GEO coordinates (Vz-km/s).
-        GEIx : np.array[float]
+        GEIx : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (X-km).
-        GEIy : np.array[float]
+        GEIy : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Y-km).
-        GEIz : np.array[float]
+        GEIz : numpy.ndarray[float]
             Spacecraft position in GEI coordinates (Z-km).
-        GEIVx : np.array[float]
+        GEIVx : numpy.ndarray[float]
             X component of the spacecraft velocity in GEI coordinates (Vx-km/s).
-        GEIVy : np.array[float]
+        GEIVy : numpy.ndarray[float]
             Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).
-        GEIVz : np.array[float]
+        GEIVz : numpy.ndarray[float]
             Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).
-        roll : np.array[float]
+        roll : numpy.ndarray[float]
             roll angle; rotation around x axis (degrees).
-        pitch : np.array[float]
+        pitch : numpy.ndarray[float]
             pitch angle; rotation around y axis (degrees).
-        yaw : np.array[float]
+        yaw : numpy.ndarray[float]
             yaw angle; rotation around z axis (degrees).
         accuracy : int
             accuracy of the attitude solution.
@@ -315,17 +315,17 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
     -------
     dict : dict 
         keys and properties listed below:
-        ITRFx : np.array[float]
+        ITRFx : numpy.ndarray[float]
             Spacecraft position in ITRF coordinates (X-km).
-        ITRFy : np.array[float]
+        ITRFy : numpy.ndarray[float]
             Spacecraft position in ITRF coordinates (Y-km).
-        ITRFz : np.array[float]
+        ITRFz : numpy.ndarray[float]
             Spacecraft position in ITRF coordinates (Z-km).
-        ITRFVx : np.array[float]
+        ITRFVx : numpy.ndarray[float]
             X component of the spacecraft velocity in ITRF coordinates(Vx-dm/s).
-        ITRFVy : np.array[float]
+        ITRFVy : numpy.ndarray[float]
             Y component of the spacecraft velocity in ITRF coordinates(Vy-dm/s).
-        ITRFVz : np.array[float]
+        ITRFVz : numpy.ndarray[float]
             Z component of the spacecraft velocity in ITRF coordinates(Vz-dm/s).
 
     Examples
@@ -705,9 +705,12 @@ def compare_orbital(file_TLE, filedate, DOY, pX, pY, pZ, Vx, Vy, Vz):
 
     Returns
     -------
-    sap_comp : Tuple[float, float, float]
+    sap_comp : list[float, float, float]
+        
         Element1: the difference between the tle and computed inclination (deg) 
+        
         Element2: the difference between the tle and computed raan (deg) 
+        
         Element3: the difference between the tle and computed ap (deg) 
     
     Examples
