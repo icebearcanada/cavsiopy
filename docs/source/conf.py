@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath('../../cavsiopy/'))
 project = 'cavsiopy'
 copyright = '2023, C'
 author = 'C'
-release = '0.9.12'
+release = '0.9.13'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
