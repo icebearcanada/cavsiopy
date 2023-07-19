@@ -10,7 +10,6 @@ Functions for the preliminary analysis of RRI data.
     nan_counter
     plot_invalid_points
     quick_spectrogram
-    timeTicks
     voltage_reader
     
 @author: ceren
@@ -19,6 +18,11 @@ Functions for the preliminary analysis of RRI data.
 import datetime
 import numpy as np
 import h5py
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm
+import matplotlib.dates as dtformat
 
 from geopy.distance import geodesic
 import pyIGRF
@@ -26,14 +30,8 @@ import pyIGRF
 import bisect
 from spacepy import pycdf
 
-import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm
-import matplotlib.dates as dtformat
-
-import miscellaneous as misc
-import use_rotation_matrices as RM
+import cavsiopy.miscellaneous as misc
+import cavsiopy.use_rotation_matrices as RM
 
 def voltage_reader(filename):
     """
