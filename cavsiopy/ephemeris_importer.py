@@ -38,64 +38,64 @@ def cas_ephemeris(file_cas, time_start, time_end):
     Parameters
     ----------
     file_cas : str
-        file name including path
+        file name including path.
     time_start : datetime.datetime
-        start of the experiment
+        start of the experiment.
     time_end : datetime.datetime
-        end of the experiment
+        end of the experiment.
 
     Returns
     -------
     dict : dict
         keys and properties listed below
         srow : int
-            row of the start time in the cas_ephemeris file
+            row of the start time in the cas_ephemeris file.
         erow : int
-            row of the end time in the cas_ephemeris file
+            row of the end time in the cas_ephemeris file.
         start : datetime.datetime
-            start time in CAS_ephemeris file
+            start time in CAS_ephemeris file.
         end : datetime.datetime
-            end time in CAS_ephemeris file
+            end time in CAS_ephemeris file.
         time_array : datetime.datetime
-            time of the observations
+            time of the observations.
         Lat : np.array[float]
-            Geodetic latitude
+            Geodetic latitude.
         Lon : np.array[float]
-            Geodetic longitude
+            Geodetic longitude.
         Alt : np.array[float]
-            geodetic altitude (km)        
+            geodetic altitude (km)  .      
         MLat: np.array[float]
-            Magnetic latitude (deg)
+            Magnetic latitude (deg).
         MLon: np.array[float]
-            Magnetic longitude (deg)
+            Magnetic longitude (deg).
         MLT: np.array[float]
-            Magnetic local time (h)
+            Magnetic local time (h).
         GEIx : np.array[float]
-            Spacecraft position in GEI coordinates (X-km)
+            Spacecraft position in GEI coordinates (X-km).
         GEIy : np.array[float]
-            Spacecraft position in GEI coordinates (Y-km)
+            Spacecraft position in GEI coordinates (Y-km).
         GEIz : np.array[float]
-            Spacecraft position in GEI coordinates (Z-km)
+            Spacecraft position in GEI coordinates (Z-km).
         GEIVx : np.array[float]
-            X component of the spacecraft velocity in GEI coordinates (Vx-km/s)
+            X component of the spacecraft velocity in GEI coordinates (Vx-km/s).
         GEIVy : np.array[float]
-            Y component of the spacecraft velocity in GEI coordinates (Vy-km/s)
+            Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).
         GEIVz : np.array[float]
-            Z component of the spacecraft velocity in GEI coordinates (Vz-km/s)
+            Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).
         GSMx : np.array[float]
-            Spacecraft position in GEI coordinates (X-km)
+            Spacecraft position in GEI coordinates (X-km).
         GSMy : np.array[float]
-            Spacecraft position in GEI coordinates (Y-km)
+            Spacecraft position in GEI coordinates (Y-km).
         GSMz : np.array[float]
-            Spacecraft position in GEI coordinates (Z-km)
+            Spacecraft position in GEI coordinates (Z-km).
         roll : np.array[float]
-            roll angle; rotation around x axis (degrees)
+            roll angle; rotation around x axis (degrees).
         pitch : np.array[float]
-            pitch angle; rotation around y axis (degrees)
+            pitch angle; rotation around y axis (degrees).
         yaw : np.array[float]
-            yaw angle; rotation around z axis (degrees)
+            yaw angle; rotation around z axis (degrees).
         acc : int
-            accuracy of the attitude solution 
+            accuracy of the attitude solution.
             (0 = Dropout, 1 = Rough, 2 = Coarse, 3 = Moderate,  4 = Fine)
             
     Examples
@@ -177,55 +177,55 @@ def rri_ephemeris(file_rri):
         time_data : np.array[float]
             seconds since May 24, 1968.
         time_array : datetime.datetime
-            time of the observations
+            time of the observations.
         start_time : datetime.datetime
-            start_time of the experiment
+            start_time of the experiment.
         end_time : datetime.datetime
-            end time of the experiment
+            end time of the experiment.
         Lat : np.array[float]
-            Geodetic latitude
+            Geodetic latitude (degrees).
         Lon : np.array[float]
-            Geodetic longitude
+            Geodetic longitude (degrees).
         Alt : np.array[float]
-            geodetic altitude (km)        
+            geodetic altitude (km).        
         MLat: np.array[float]
-            Magnetic latitude (deg)
+            Magnetic latitude (deg).
         MLon: np.array[float]
-            Magnetic longitude (deg)
+            Magnetic longitude (degrees).
         MLT: np.array[float]
-            Magnetic local time (h)
+            Magnetic local time (h).
         GEOx : np.array[float]
-            Spacecraft position in GEO coordinates (X-km)
+            Spacecraft position in GEO coordinates (X-km).
         GEOy : np.array[float]
-            Spacecraft position in GEO coordinates (Y-km)
+            Spacecraft position in GEO coordinates (Y-km).
         GEOz : np.array[float]
-            Spacecraft position in GEO coordinates (Z-km)
+            Spacecraft position in GEO coordinates (Z-km).
         GEOVx : np.array[float]
-            X component of the spacecraft velocity in GEO coordinates (Vx-km/s)
+            X component of the spacecraft velocity in GEO coordinates (Vx-km/s).
         GEOVy : np.array[float]
-            Y component of the spacecraft velocity in GEO coordinates (Vy-km/s)
+            Y component of the spacecraft velocity in GEO coordinates (Vy-km/s).
         GEOVz : np.array[float]
-            Z component of the spacecraft velocity in GEO coordinates (Vz-km/s)
+            Z component of the spacecraft velocity in GEO coordinates (Vz-km/s).
         GEIx : np.array[float]
-            Spacecraft position in GEI coordinates (X-km)
+            Spacecraft position in GEI coordinates (X-km).
         GEIy : np.array[float]
-            Spacecraft position in GEI coordinates (Y-km)
+            Spacecraft position in GEI coordinates (Y-km).
         GEIz : np.array[float]
-            Spacecraft position in GEI coordinates (Z-km)
+            Spacecraft position in GEI coordinates (Z-km).
         GEIVx : np.array[float]
-            X component of the spacecraft velocity in GEI coordinates (Vx-km/s)
+            X component of the spacecraft velocity in GEI coordinates (Vx-km/s).
         GEIVy : np.array[float]
-            Y component of the spacecraft velocity in GEI coordinates (Vy-km/s)
+            Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).
         GEIVz : np.array[float]
-            Z component of the spacecraft velocity in GEI coordinates (Vz-km/s)
+            Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).
         roll : np.array[float]
-            roll angle; rotation around x axis (degrees)
+            roll angle; rotation around x axis (degrees).
         pitch : np.array[float]
-            pitch angle; rotation around y axis (degrees)
+            pitch angle; rotation around y axis (degrees).
         yaw : np.array[float]
-            yaw angle; rotation around z axis (degrees)
+            yaw angle; rotation around z axis (degrees).
         accuracy : int
-            accuracy of the attitude solution 
+            accuracy of the attitude solution.
             (0 = Dropout, 1 = Rough, 2 = Coarse, 3 = Moderate,  4 = Fine)
             
         
@@ -314,19 +314,19 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
     Returns
     -------
     dict : dict 
-        keys and properties listed below
+        keys and properties listed below:
         ITRFx : np.array[float]
-            Spacecraft position in ITRF coordinates (X-km)
+            Spacecraft position in ITRF coordinates (X-km).
         ITRFy : np.array[float]
-            Spacecraft position in ITRF coordinates (Y-km)
+            Spacecraft position in ITRF coordinates (Y-km).
         ITRFz : np.array[float]
-            Spacecraft position in ITRF coordinates (Z-km)
+            Spacecraft position in ITRF coordinates (Z-km).
         ITRFVx : np.array[float]
-            X component of the spacecraft velocity in ITRF coordinates(Vx-km/s)
+            X component of the spacecraft velocity in ITRF coordinates(Vx-dm/s).
         ITRFVy : np.array[float]
-            Y component of the spacecraft velocity in ITRF coordinates(Vy-km/s)
+            Y component of the spacecraft velocity in ITRF coordinates(Vy-dm/s).
         ITRFVz : np.array[float]
-            Z component of the spacecraft velocity in ITRF coordinates(Vz-km/s)
+            Z component of the spacecraft velocity in ITRF coordinates(Vz-dm/s).
 
     Examples
     --------
@@ -434,30 +434,30 @@ def calculate_orbital_elements(pX, pY, pZ, Vx, Vy, Vz):
     Parameters
     ----------
     pX : numpy.ndarray[float]
-        X position in GEIJ2K (km)
+        X position in GEIJ2K (km).
     pY : numpy.ndarray[float]
-        Y position in GEIJ2K (km)
+        Y position in GEIJ2K (km).
     pZ : numpy.ndarray[float]
-        Z position in GEIJ2K (km)
+        Z position in GEIJ2K (km).
     Vx : numpy.ndarray[float]
-        X component of velocity in GEIJ2K (km/s)
-    Vy : Tnumpy.ndarray[float]
-        Y component of velocity in GEIJ2K (km/s)
+        X component of velocity in GEIJ2K (km/s).
+    Vy : numpy.ndarray[float]
+        Y component of velocity in GEIJ2K (km/s).
     Vz : numpy.ndarray[float]
-        Z component of velocity in GEIJ2K (km/s)
+        Z component of velocity in GEIJ2K (km/s).
 
     Returns
     -------
     inc : float
-        satellite inclination (radian)
+        satellite inclination (radian).
     raan : float
-        Right ascension of ascending node (radian)
+        Right ascension of ascending node (radian).
     ap : float
-        Argument of periapsis (radian)
+        Argument of periapsis (radian).
     e : float
-        eccentricity (radian)
+        eccentricity (radian).
     TA : float
-        True anomaly (radian)
+        True anomaly (radian).
         
     Examples
     --------
