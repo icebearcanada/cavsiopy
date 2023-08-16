@@ -105,7 +105,7 @@ def cas_ephemeris(file_cas, time_start, time_end):
     GEIx = dict_cas['GEIx']  
     '''
     
-    cas = np.loadtxt(fname=file_cas,comments='#')    
+    cas = np.loadtxt(fname=file_cas, skiprows = 2, usecols= range(0,21)) 
     t0 = time_start.time().strftime('%H%M%S')
     t1 = time_end.time().strftime('%H%M%S')
     start_time = int(t0)
@@ -315,6 +315,20 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
     -------
     dict : dict 
         keys and properties listed below:
+        srow : int
+            row of the experiment start time in sp3 file
+        erow: int
+            row of the experiment end time in sp3 file
+        time_array_gps : datetime.datetime
+            time array for the whole day: note that sp3 files for Swarm-E may 
+            have some offset as they use GPS time rather than the UT time.
+            to check the beginning and end times of the data file simply do:
+                dict_sp3['time_array'][0]
+                dict_sp3['time_array'][-1]
+        time_array_ut: datetime.datetime
+            time array in ut. corrected from gps time.
+        time_experiment: datetime.datetume
+            time array for the experiment interval in ut.
         ITRFx : numpy.ndarray[float]
             Spacecraft position in ITRF coordinates (X-km).
         ITRFy : numpy.ndarray[float]
@@ -398,13 +412,20 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
         y[i] = float(pos_sat[i][18:32])
         z[i] = float(pos_sat[i][32:46])
     
-    time_array = np.array([start_sp3 + \
+    time_array_gps = np.array([start_sp3 + \
                     datetime.timedelta(seconds = i*1) for i in range(0,k)])
+    
+    time_array_ut = np.array([start_sp3 + \
+                    datetime.timedelta(seconds = i*1) - \
+                       datetime.timedelta(seconds = start_sp3.second) \
+                           for i in range(0,k)])
       
     # start row
-    srow = int(np.where(time_array == start_date)[0])
+    srow = int(np.where(time_array_ut == start_date)[0])
     # end row    
-    erow = int(np.where(time_array == end_date)[0]) + 1
+    erow = int(np.where(time_array_ut == end_date)[0]) + 1
+    
+    time_experiment = time_array_ut[srow:erow]
              
     length = erow-srow
     
@@ -419,7 +440,8 @@ def sp3_ephemeris(file_SP3, start_date, end_date):
     ITRFVy = Vy[srow:erow]
     ITRFVz = Vz[srow:erow]
     
-    return { 'srow':srow, 'erow':erow, 'time_array': time_array, 
+    return { 'srow':srow, 'erow':erow, 'time_array_gps': time_array_gps,
+            'time_array_ut': time_array_ut, 'time_experiment': time_experiment,
             'ITRFx': ITRFx, 'ITRFy': ITRFy, 'ITRFz': ITRFz, 
             'ITRFVx': ITRFVx, 'ITRFVy': ITRFVy, 'ITRFVz': ITRFVz, 
         } 

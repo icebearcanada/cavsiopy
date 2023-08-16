@@ -13,6 +13,7 @@ spacecraft.
     attitude_3d_ground_quiver
     display_observation_geometry
     earth_radius_at_latitude
+    fov_plotter
     plot_attitude_accuracy
     plot_slew_rri
     trajectory_plotter_2d_map
@@ -30,6 +31,7 @@ from cartopy.mpl.patch import geos_to_path
 from matplotlib.ticker import MultipleLocator
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.patches as mpatches
+import matplotlib.ticker as ticker
 import matplotlib.cm as cm
 import itertools
 from matplotlib import rcParams
@@ -38,6 +40,7 @@ from matplotlib.offsetbox import AnchoredText
 from matplotlib.cm import ScalarMappable
 from matplotlib.ticker import FixedLocator, FixedFormatter
 from matplotlib.legend_handler import HandlerBase
+
 import cavsiopy.miscellaneous as misc
 import cavsiopy.ephemeris_importer as ei
 
@@ -1430,6 +1433,119 @@ def attitude_2d_altitude(time_array, extent, x, y, z, Px, V, \
     plt.yticks(fontsize= 14)
     
     return fig, ax
+
+def fov_plotter(extent, time_array, x, y, z, fov_deg, 
+                px, py, step= 90, inst_name = 'FAI', target_name = 'ICEBEAR'):
+    
+    """
+    Plot the FOV of the instrument for Nadir look directions.
+    Caution: This code ONLY works for NADIR pointing instruments.
+    
+    Parameters
+    ----------
+    extent : list
+        [Lonmin, Lonmax, Latmin, Latmax].    
+    time_array : numpy.ndarray[datetime]
+        Experiment time interval.
+    x : numpy.ndarray[float]
+        Spacecraft longitude (degrees).    
+    y : numpy.ndarray[float]
+        Spacecraft latitude (degrees).
+    z : numpy.ndarray[float]
+        Spacecraft altitude (km).
+    fov_deg : float
+        Field-of-view angle (degrees).
+    px : float
+        Target longitude (degrees).
+    py : float
+        Target latitude (degrees).
+    step: float, optional
+        Time interval in seconds to plot the inst. vector.The default is 90.
+    inst_name : string
+        Name of the instrument. The default is 'FAI'.
+    target_name : string
+        Target name. The default is 'ICEBEAR'.
+    Returns
+    -------
+    fig: figure.Figure
+        Figure object of matplotlib.figure module.
+    ax : TYPE
+        DESCRIPTION.
+    """
+    
+    central_lon, central_lat = misc.coverage(extent)
+    crs = ccrs.Orthographic(central_longitude=central_lon, 
+                            central_latitude=central_lat)
+    title = '-'.join([inst_name, target_name + ' Coordinated experiment\n' +\
+                      time_array[0].strftime('%Y-%m-%d')])
+    fig = plt.figure(figsize=(12,8))
+    ax = plt.axes(projection=crs)  
+    plt.suptitle(title, fontsize = 28)
+    ax.set_extent([extent[0]-20, extent[1]+40, extent[2]-20, 90])
+    
+    # ax.set_global()
+    # ax.stock_img()
+    
+    ax.add_feature(cartopy.feature.OCEAN, color='white', alpha=1, zorder=0)
+    ax.add_feature(cartopy.feature.LAND, edgecolor='white', 
+                    color='silver', alpha=0.3, zorder=10)
+    ax.add_feature(cartopy.feature.LAKES, color='white', alpha=1, zorder=0)
+
+      
+    num_colors = len(x) + 1
+    cmap = cm.get_cmap('Set1', num_colors)
+    
+    i , j = 0, 0
+    
+    for i in range(0, len(x), step):
+    
+        # Generate a random color index
+        i += 1
+        # color_index = np.random.randint(0, num_colors)
+        color_index = i
+        # Get the color from the colormap based on the index
+        color = cmap(color_index)
+        facecolor = (*color[:3], 0.2)  # Add alpha to the base color
+        edgecolor = (*color[:3], 1)   # Fully opaque edge     
+        
+        pos = [z[i], y[i], x[i]] # alt (m), lat, long
+        radius = pos[0] * np.sin(np.deg2rad(fov_deg/2)) 
+        
+        ax.tissot(rad_km=radius, lons=pos[2], lats=pos[1], n_samples=64, \
+                     facecolor=facecolor, edgecolor=edgecolor, 
+                     linewidth=2, alpha = 0.3, zorder = 15)
+    
+        ax.text(x[i] + 5, y[i], (time_array[i].strftime("%H:%M:%S")), c=color, 
+                size=18, weight = 'bold', transform=ccrs.PlateCarree(), 
+                zorder=20)
+        
+                
+    ax.scatter(px, py, marker = '*', s=400, c= 'magenta', zorder=20, 
+               transform = ccrs.PlateCarree(), label = target_name)    
+    
+  
+    ax.plot(x, y, linestyle='dashed', c='r', zorder=30,
+            transform = ccrs.PlateCarree(), label = 'Trajectory')
+    
+    
+    ax.scatter(x[::step], y[::step], marker = 'x', s = 100, color = 'k', lw = 2,
+               label = 'Nadir Pointing', zorder = 20,
+               transform = ccrs.PlateCarree())
+    
+    ax.legend(fontsize = 18, loc = 'upper right')
+    ax.coastlines(linewidth=0.15) 
+    gl = ax.gridlines(draw_labels=True, linewidth=1, alpha=0.3, linestyle='--', 
+                 crs = ccrs.PlateCarree())
+    
+    gl.xlocator = ticker.FixedLocator(np.arange(extent[0]-20,
+                                                 extent[1]+40,
+                                                 10))
+    gl.ylocator = ticker.FixedLocator(np.arange(extent[2]-20, 90,10))
+    gl.xlabel_style = {'size': 24}
+    gl.ylabel_style = {'size': 24}
+
+    return fig, ax
+
 
 def plot_slew_rri(ax, ylim_min, ylim_max, panel_number, time_array, slew, \
                   slew_angle, cb_axis = 'no', time='no'):

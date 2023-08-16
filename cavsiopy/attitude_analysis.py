@@ -20,7 +20,7 @@ instrument pointing.
     find_instrument_attitude
     find_slew_inst
     find_slew_rri
-    rotate_rri
+    rotate_inst
     spacecraft_distance_from_a_point
 
 @author: ceren
@@ -321,7 +321,7 @@ def calculate_los_vec(pLon, pLat, pAlt, slon, slat, salt):
 
     return los_enu_arr, los_ned_arr   
 
-def rotate_rri(body_vec, Roll, Pitch, Yaw):
+def rotate_inst(body_vec, Roll, Pitch, Yaw):
     """
     Rotation of body vectors in orbital frame (ORF) of Swarm-E
     using roll, pitch, and yaw angles.
@@ -348,7 +348,7 @@ def rotate_rri(body_vec, Roll, Pitch, Yaw):
     Returns
     -------
     rotated_body : numpy.ndarray
-        rotated body vectors of RRI in ORF
+        rotated body vectors of instruments onboard Swarm-E in ORF
     """
     # converting degrees to radians
     rr = np.deg2rad(Roll)
@@ -433,7 +433,7 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
     """
     
     #  first frame to transform is the icrf
- # if spacecraft ephemeris method is chosen to transform to icrf/gei j2k
+    # if spacecraft ephemeris method is chosen to transform to icrf/gei j2k
     if method1 == 'ephemeris':
         inst_GEI = \
             urm.orf_to_j2k_use_spacecraft_ephemeris(rotated_body, 
