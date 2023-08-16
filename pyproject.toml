@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "0.9.14"
+version = "1.0.0"
 authors = [
   { name="ceren", email="ceren.eyiguler@usask.ca" },
   { name = "Warren Holley"}, 
