@@ -2,8 +2,11 @@
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 # Required
-version: 
-  -main
+# readthedocs.yaml
+
+# List of versions that should be built and displayed on Read the Docs
+versions:
+  - master
 
 # Set the OS, Python version and other tools you might need
 build:
