@@ -125,7 +125,7 @@ pip install -r requirements.txt
 pip install cavsiopy
 ```
 
-Credits: C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley Martin
+Credits: E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
 Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
 
