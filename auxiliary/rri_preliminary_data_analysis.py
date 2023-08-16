@@ -7,6 +7,7 @@ Functions for the preliminary analysis of RRI data.
     :maxdepth: 2   
     calculate_aspect
     import_quaternions
+    find_instrument_attitude_using_quaternions
     nan_counter
     plot_invalid_points
     quick_spectrogram
@@ -23,6 +24,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm
 import matplotlib.dates as dtformat
+import matplotlib.ticker as ticker
 
 from geopy.distance import geodesic
 import pyIGRF
@@ -44,6 +46,8 @@ def voltage_reader(filename):
 
     Returns
     -------
+    time_array: datetime.datetime
+        experiment time interval
     v1 : numpy.ndarray[float]
         voltage1 (mV).
     v2 : numpy.ndarray[float]
@@ -55,6 +59,14 @@ def voltage_reader(filename):
 
     """
     file = h5py.File(filename,'r')
+    #  Time information from RRI    
+    time_data = \
+        file.get('CASSIOPE Ephemeris/Ephemeris MET (seconds since May 24, 1968)')[:]
+    start_time = datetime.datetime(1968,5,24) + \
+        datetime.timedelta(seconds=time_data[0])
+    time_array = np.array([start_time + \
+                                datetime.timedelta(seconds = i*1)\
+                                for i in range(0,len(time_data))])  
     # %% import voltages from RRI data set
     v1 = file.get('RRI Data/Radio Data Monopole 1 (mV)')[:,:]
     v2 = file.get('RRI Data/Radio Data Monopole 2 (mV)')[:,:]
@@ -64,32 +76,10 @@ def voltage_reader(filename):
     v1 = v1.flatten(); v2 = v2.flatten()
     v3 = v3.flatten(); v4 = v4.flatten()
 
-    return v1, v2, v3, v4
+    return time_array, v1, v2, v3, v4
 
-def timeTicks(start_time, x, pos):
-    """
-    User-defined function for formatting
+def quick_spectrogram(filename, fs = 62500.333, freq = 10422056.043987345):
 
-    Parameters
-    ----------
-    start_time : datetime
-        start time of the experiment.
-    x : TYPE
-        tick value.
-    pos : TYPE
-        position.
-
-    Returns
-    -------
-    TYPE
-        DESCRIPTION.
-
-    """
-    d = start_time + datetime.timedelta(seconds=x)
-    return d.strftime("%H:%M:%S")
-
-def quick_spectrogram(filename, start_time, \
-                          fs = 62500.333, freq =10422000):
     """
     function to plot spectrograms for one frequency experiments of the RRI.
     
@@ -113,14 +103,22 @@ def quick_spectrogram(filename, start_time, \
 
     """
 
+    def timeTicks(x, pos):
+        d = time[0] + datetime.timedelta(seconds=x)
+        return d.strftime("%H:%M:%S")
+    
+    def yTicks(y, pos):
+        d = y/1e6
+        return d
+
     f1 = freq/1e6
 
-    v1, v2, v3, v4 = voltage_reader(filename)
+    time, v1, v2, v3, v4 = voltage_reader(filename)
     
     vx = np.nan_to_num(v1+1j*v2)
     vy = np.nan_to_num(v3+1j*v4)
     
-    date_str = start_time.strftime('%Y-%m-%d')
+    date_str = time[0].strftime('%Y-%m-%d')
        
     nFFT = 5208 # 5 msec window
     noverlap = 62 # 15 msec window
@@ -128,7 +126,7 @@ def quick_spectrogram(filename, start_time, \
     nrows = 2; ncols = 1
     fig, (ax) = plt.subplots(nrows=nrows, ncols = ncols, sharex = True, 
                              sharey = True)
-    plt.suptitle(date_str, fontsize = 14)
+    plt.suptitle(date_str, fontsize = 16)
     spec1, freqx1, ts1, im1 = ax[0].specgram(vx, Fs=fs, 
                                             Fc = freq,
                                             NFFT=nFFT, 
@@ -140,7 +138,7 @@ def quick_spectrogram(filename, start_time, \
     ax[0].text(.95, .95, 'ax',  color='w' ,  fontsize = 'large', 
                transform=ax[0].transAxes)    
 
-    ax[0].text(0.03, .95, f'Central Freq = {f1} MHz',  
+    ax[0].text(0.03, .95, f'Central Freq = {f1: 2.3f} MHz',  
                  color='w' , fontsize = 'medium', 
                transform=ax[0].transAxes)  
     
@@ -152,24 +150,43 @@ def quick_spectrogram(filename, start_time, \
                                            )
     ax[1].text(.95, .95, 'ay',  color='w' ,  fontsize = 'large', 
                transform=ax[1].transAxes) 
-    cb2 = fig.colorbar(im2, ax=ax[:])
-    cb2.ax.tick_params(labelsize=18) 
+
+    # fig.subplots_adjust(right=0.8)
+    # cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])  # Add space for the colorbar
+    # cb2 = fig.colorbar(im2, cax=cbar_ax)
+    # cb2.ax.tick_params(labelsize=14)
+    cb2 = fig.colorbar(im2, ax=ax, fraction=0.046, pad=0.04) 
+    cb2.ax.tick_params(labelsize=14)
       
-    # Prettify
-    scale = 1e6                     # KHz
-    ticks = matplotlib.ticker.FuncFormatter(start_time, lambda x, \
-                                            pos: '{0:g}'.format(x/scale))
     
-    formatter = matplotlib.ticker.FuncFormatter(timeTicks)
-    ax[1].xaxis.set_major_formatter(formatter)             
-    ax[1].set_xlabel('Time (UT)', fontsize = 18)
+    # Set the x-axis ticks to be every 30 seconds  
+    duration_seconds = (time[-1]-time[0]).total_seconds()
+    offset_seconds = 60 - time[0].second
+    ticks_at_every = 30
+    
+    # Create an array of tick positions starting from `offset_seconds` 
+    # and spaced at `ticks_at_every` intervals
+    tick_positions = np.arange(offset_seconds, 
+                               offset_seconds + duration_seconds, 
+                               ticks_at_every)
+    xticks = ticker.FuncFormatter(timeTicks)
+    ax[1].xaxis.set_major_formatter(xticks)  
+    # Set the x-axis ticks using the calculated positions
+    ax[1].xaxis.set_major_locator(ticker.FixedLocator(tick_positions))           
+    ax[1].set_xlabel('Time (UT)', fontsize = 14)
+    
+    yticks = ticker.FuncFormatter(yTicks)    
+    
     for j in range(2):
-        ax[j].tick_params(axis='both', which='major', labelsize=18)
-        ax[j].yaxis.set_major_formatter(ticks)
-        ax[j].set_ylabel('Frequency (MHz)', fontsize = 18)
+        ax[j].tick_params(axis='both', which='major', labelsize=14)
+        ax[j].yaxis.set_major_formatter(yticks)
+        ax[j].set_ylabel('Frequency (MHz)', fontsize = 14)
+    
+    ax[0].text(1, 1.1, 'a)', horizontalalignment='right', 
+            verticalalignment='top', fontsize=14, transform=ax[0].transAxes)
         
     return fig, ax
-
+    
 def nan_counter(data, bin_size = 62500):
     """
     Function to count zeroes or NaNs in RRI voltage arrays.
@@ -478,3 +495,149 @@ def import_QUA_file(file_QUA, start_date, end_date):
     return {'time': time, 'q':q, 
             'roll': roll, 'pitch': pitch, 'yaw': yaw, 'accuracy': accuracy 
             }
+            
+def find_instrument_attitude_using_quaternions(qI, qJ, qK, qR, 
+                                               GEO_pos_X, GEO_pos_Y, GEO_pos_Z,
+                                               body_vector):
+    """
+    Function to find the pointing of the instrument in NEC.
+    Uses the Swarm quaternion files and the ITRF position values.
+    Follows Nielsen (2019).
+    
+    Ref: Nielsen, J. B., Tøffner-Clausen, L., Erik, P., & Olsen, H. (2019). 
+    Swarm Level 1b Processor Algorithms.
+
+    Parameters
+    ----------
+    qI : numpy.ndarray[float]
+        Imaginary I.
+    qJ : numpy.ndarray[float]
+        Imaginary j.
+    qK : numpy.ndarray[float]
+        Imaginary k.
+    qR : numpy.ndarray[float]
+        Real part of the quaternion.
+    GEO_pos_X : numpy.ndarray[float]
+        Position of the spacecraft in terrestrial frame along X direction.
+    GEO_pos_Y : numpy.ndarray[float]
+        Position of the spacecraft in terrestrial frame along Y direction.
+    GEO_pos_Z : numpy.ndarray[float]
+        Position of the spacecraft in terrestrial frame along Z direction.
+    body_vector : numpy.ndarray[float]
+        Instrument body vector. For RRI = [1, 0, 0].
+
+    Returns
+    -------
+    inst_NEC_Vector: numpy.ndarray[float]
+        Instrument pointing in NEC.
+
+    """
+    
+    def Quaternion_to_Rotation_Matrix( qB_from_A ): # qB<-A
+      '''
+      Given a quaternion of qB<-A, return R(B<-A).
+      Rotation-matrix equivalent to the quaternion rotation of
+      vB == Rot(B<-A).vA == q.vA.q*
+      '''
+      qR, qI, qJ, qK = qB_from_A
+    
+      A00 = 1 - 2 * (qJ**2 + qK**2)
+      A01 = 2 * (qI * qJ - qK * qR)
+      A02 = 2 * (qI * qK + qJ * qR)
+    
+      A10 = 2 * (qI * qJ + qK * qR)
+      A11 = 1 - 2 * (qI**2 + qK**2)
+      A12 = 2 * (qJ * qK - qI * qR)
+    
+      A20 = 2 * (qI * qK - qJ * qR)
+      A21 = 2 * (qJ * qK + qI * qR)
+      A22 = 1 - 2 * (qI**2 + qJ**2)
+      
+      Rot_A_to_B = [[A00, A01, A02], [A10, A11, A12], [A20, A21, A22]]
+      
+      return Rot_A_to_B 
+
+    def qConjugate( qB_from_A ): # qB<-A
+      # Given a rotation from A to B (qB<-A), return a rotation from B to A. (qA<-B)
+      # Similar to a rotation-matrix transpose.
+      r, i, j, k = qB_from_A
+      qA_from_B = [r, -i, -j, -k]  # Conjugation needs only to negate the Vector component.
+      # While a negation of the Scalar value is mathematically correct, (As q == -q )
+      # It's usage can produce unwanted results, most easily recognizable in the Vector_Rotate.  
+      return qA_from_B    
+  
+
+    def qMultiply( qC_from_B, qB_from_A ): # qC<-B, qB<-A
+      '''
+      Given two quaternions, qC<-B, qB<-A, return qC<-A
+      Rotation for this is q2.q1 = q3, where the dot is the Hamilton Product.
+      
+      Using left-arrow notation: (Easiest way to visualize it)
+      qC<-B . qB<-A == qC<-A 
+      Equivalent to the Rotation Matrix of: R(C<-B).R(B<-A), 
+      where the dot is the dot product of the two matricies.
+      '''
+      # Following math is the q2.q1=q3 math:
+      # Split the quaternions into their columns. 
+      a, b, c, d = qC_from_B
+      e, f, g, h = qB_from_A
+    
+      qR = a * e - b * f - c * g - d * h # Scalar
+      qI = a * f + b * e + c * h - d * g # *I
+      qJ = a * g - b * h + c * e + d * f # *J
+      qK = a * h + b * g - c * f + d * e # *K
+    
+      qC_from_A = [qR, qI, qJ, qK]  # == qC<-A
+      return qC_from_A      
+  
+    def qVector_Rotate( qB_from_A, vA ): # qB<-A, vA
+      '''
+      Given a Scalar-First, 4-length Quaternion, and a 3-legnth Vector in the 
+      'source' frame,
+      Return the vector in the 'destination' frame.
+    
+      Rotation for this is q.v.q*
+      [0,vB] = qB<-A . [0,vA] . qB<-A*
+             = qB<-A . [0,vA] . qA<-B   # Left-arrow  notation.
+             = qA->B . [0,vA] . qB->A   # Right-arrow notation.
+      
+      Equivalent to the rotation-matrix rotation of
+      vB = Rot(A->B) . vA
+      '''
+      qA_from_B = qConjugate(qB_from_A) # Derive the conjugate.
+      
+      # Prepend a zero to the Vector to turn it into a zero-scalar quaternion. 
+      # ('Pure' Quaternion')
+      qVec_A = [0] + vA  # [0, v]
+    
+      # Apply the rotation
+      qVec_B = qMultiply(qMultiply( qB_from_A, qVec_A ), qA_from_B )
+      
+      # This produces another 'Pure' quaternion with a Zero-Scalar vector.
+      # If you remove it, you get the Vector in the 'B' frame:
+      vB = qVec_B[1:]
+      return vB      
+    
+    # First, switch the SCALAR-LAST quaternion to SCALAR-FIRST,
+    # as to allow feeding into the functions above:
+    qBody_from_ITRF = [qR, qI, qJ, qK]
+    # This descirbes a rotation of Body<-ITRF
+
+    # Translate this quaternion into a Rotation Matrix:
+    rBody_from_ITRF = Quaternion_to_Rotation_Matrix( qBody_from_ITRF )
+    # Transpose it to get the rITRF<-Body rotation matrix:
+    rITRF_from_Body = np.array( rBody_from_ITRF ).T
+
+    # Derive the NEC<-ITRF rotation matrix
+    rNEC_from_ITRF = RM.terrestrial2nec( GEO_pos_X, GEO_pos_Y, GEO_pos_Z ) 
+
+    # And then rotate the RRI Body Vector into the ITRF Frame, then the NEC:
+    # vNEC = NEC<-ITRF . ITRF<-Body . vBody
+    # RRI_Body_Vector = [1.0, 0., 0.]
+    # inst_ITRF_Vector = np.dot( rITRF_from_Body, inst_body_vector )
+
+    qITRF_from_Body = qConjugate( qBody_from_ITRF )
+    inst_ITRF_Vector = qVector_Rotate( qITRF_from_Body, body_vector )
+
+    inst_NEC_Vector  = np.dot( rNEC_from_ITRF,  inst_ITRF_Vector )
+    return inst_NEC_Vector
