@@ -12,16 +12,16 @@ the threshold for the angle between the LOS direction and the
 instrument pointing.
 
 .. toctree::
-    :maxdepth: 2   
-    LA_inst
-    LA_sat
-    calculate_los_vec
-    calculate_reception_angle
-    find_instrument_attitude
-    find_slew_inst
-    find_slew_rri
-    rotate_inst
-    spacecraft_distance_from_a_point
+  :maxdepth: 2   
+  LA_inst
+  LA_sat
+  calculate_los_vec
+  calculate_reception_angle
+  find_instrument_attitude
+  find_slew_inst
+  find_slew_rri
+  rotate_inst
+  spacecraft_distance_from_a_point
 
 @author: ceren
 """

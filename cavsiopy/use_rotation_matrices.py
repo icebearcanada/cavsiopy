@@ -34,35 +34,35 @@ PITCH: positive is from +Z towards +X
 YAW: positive is from +X towards +Y
 
 .. toctree::
-    :maxdepth: 2
-    GMST_midnight
-    GMST_noon
-    RX_i2r
-    RX_r2i
-    RY_i2r
-    RY_r2i
-    RZ_i2r
-    RZ_r2i
-    ecef_to_gei_rm
-    gei2ecef
-    gei_to_ecef_rm
-    gei_to_oe_rm
-    icrf2itrf
-    icrf_to_itrf_rm
-    itrf_to_icrf_rm
-    j2k_to_orf_rm
-    nec2terrestrial
-    nec_to_terrestrial_rm
-    ned2enu
-    ned_to_terrestrial_rm
-    oe_to_gei_rm
-    orf_to_j2k_rm
-    orf_to_j2k_use_orbital_elements
-    orf_to_j2k_use_spacecraft_ephemeris
-    terrestrial2nec
-    terrestrial2ned
-    terrestrial_to_nec_rm
-    terrestrial_to_ned_rm
+  :maxdepth: 2
+  GMST_midnight
+  GMST_noon
+  RX_i2r
+  RX_r2i
+  RY_i2r
+  RY_r2i
+  RZ_i2r
+  RZ_r2i
+  ecef_to_gei_rm
+  gei2ecef
+  gei_to_ecef_rm
+  gei_to_oe_rm
+  icrf2itrf
+  icrf_to_itrf_rm
+  itrf_to_icrf_rm
+  j2k_to_orf_rm
+  nec2terrestrial
+  nec_to_terrestrial_rm
+  ned2enu
+  ned_to_terrestrial_rm
+  oe_to_gei_rm
+  orf_to_j2k_rm
+  orf_to_j2k_use_orbital_elements
+  orf_to_j2k_use_spacecraft_ephemeris
+  terrestrial2nec
+  terrestrial2ned
+  terrestrial_to_nec_rm
+  terrestrial_to_ned_rm
     
 @author: ceren, warren
 """

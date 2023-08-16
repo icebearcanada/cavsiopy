@@ -10,19 +10,19 @@ This module contains functions for:
 5- finding index of desired values in parameters: find_index
 
 .. toctree::
-    :maxdepth: 2   
-    combine_horizontal
-    combine_vertical
-    coverage
-    find_index
-    indices_and_intervals
-    mark_altitude_plots
-    mark_beginning
-    mark_beginning_on_map
-    mark_on_map
-    put_legend_fnt
-    sc_direction_plotter
-    set_3Dplot_limits
+  :maxdepth: 2   
+  combine_horizontal
+  combine_vertical
+  coverage
+  find_index
+  indices_and_intervals
+  mark_altitude_plots
+  mark_beginning
+  mark_beginning_on_map
+  mark_on_map
+  put_legend_fnt
+  sc_direction_plotter
+  set_3Dplot_limits
 @author: ceren
 
 """

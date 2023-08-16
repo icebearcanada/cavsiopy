@@ -5,18 +5,18 @@ Plotting routines for 2D and 3D look directions of the instrument onboard
 spacecraft.
 
 .. toctree::
-    :maxdepth: 2   
-    attitude_2d_altitude
-    attitude_2d_on_map
-    attitude_3d_connect_to_subpoint
-    attitude_3d_connect_to_target
-    attitude_3d_ground_quiver
-    display_observation_geometry
-    earth_radius_at_latitude
-    fov_plotter
-    plot_attitude_accuracy
-    plot_slew_rri
-    trajectory_plotter_2d_map
+  :maxdepth: 2   
+  attitude_2d_altitude
+  attitude_2d_on_map
+  attitude_3d_connect_to_subpoint
+  attitude_3d_connect_to_target
+  attitude_3d_ground_quiver
+  display_observation_geometry
+  earth_radius_at_latitude
+  fov_plotter
+  plot_attitude_accuracy
+  plot_slew_rri
+  trajectory_plotter_2d_map
 
 @author: ceren
 """

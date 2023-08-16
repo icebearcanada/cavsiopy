@@ -13,13 +13,13 @@ elements using GEIJ2K position and velocity (calculate_orbital_elements),
 and to compare computed values with data in TLE file (compare_orbital).
 
 .. toctree::
-    :maxdepth: 2 
-    cas_ephemeris
-    rri_ephemeris
-    sp3_ephemeris
-    import_tle
-    calculate_orbital_elements
-    compare_orbital
+  :maxdepth: 2 
+  cas_ephemeris
+  rri_ephemeris
+  sp3_ephemeris
+  import_tle
+  calculate_orbital_elements
+  compare_orbital
 
 @author: ceren
 """
