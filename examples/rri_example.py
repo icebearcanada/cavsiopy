@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jul  1 11:35:16 2023
-
-@author: ceren
+Example python script for determining and plotting the pointing 
+direction of RRI.
 """
 
 import cavsiopy.ephemeris_importer as ei
@@ -37,7 +36,7 @@ rbody = aa.rotate_rri(body_rri, dict_rri['roll'], dict_rri['pitch'],
 rri_nec = aa.find_instrument_attitude(rbody, dict_rri['GEIx'],dict_rri['GEIy'], 
                                     dict_rri['GEIz'], dict_rri['GEIVx'], 
                                     dict_rri['GEIVy'], dict_rri['GEIVz'], 
-                                    dict_rri['GEOx']/10000, dict_rri['GEOy'], 
+                                    dict_rri['GEOx'], dict_rri['GEOy'], 
                                     dict_rri['GEOz'], dict_rri['time_array'], 
                                     dict_rri['start_time'], 
                                     dict_rri['time_array'][-1], 
