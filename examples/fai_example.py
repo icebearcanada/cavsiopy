@@ -12,9 +12,11 @@ pointing imagers.
 
 import cavsiopy.attitude_plotter as ap
 import cavsiopy.ephemeris_importer as ei
+import cavsiopy.attitude_analysis as aa
 import datetime
+import numpy as np
 
-path_to_files = '/home/ceren/Documents/USASK/Data/FAI/'
+path_to_files = 'path of data files.'
 
 filedate='20201020'
 time_start= '043354'
@@ -36,6 +38,20 @@ start_date= datetime.datetime(start_year, start_month, start_day,
                                start_hour, start_min, start_sec)
 end_date= datetime.datetime(start_year, start_month, start_day,
                              end_hour, end_min, end_sec+1)
+
+# Here, we use CAS_ephemeris for the spacecraft position and velocity in GEI 
+# and spacecraft latitude, longitude and altitude. For the terrestrial Cartesian 
+# frame, we use ITRF. So, ITRF position is extracted from the SP3 file. 
+# The user can specify only one file if all required information is in one file.
+# name of CAS_ephemeris
+name_of_ephemeris_file=''.join(['CAS_ephemeris_',filedate,'T000000_',
+                      filedate,'T235959_1.2.0'])
+file_CAS = path_to_files + name_of_ephemeris_file +'.txt'
+
+# name of sp3 file
+name_of_sp3_file=''.join(['CAS_Orbit_GEO_',filedate,'T000000_',\
+                    filedate,'T235959_1.1.0'])
+file_SP3 = path_to_files + name_of_sp3_file +'.sp3'
                              
 # import ephemeris from Swarm-E generic .txt files
 dict_cas = ei.cas_ephemeris(file_CAS, start_date, end_date)
@@ -43,6 +59,8 @@ dict_cas = ei.cas_ephemeris(file_CAS, start_date, end_date)
 # import GEO/ITRF position from the sp3 file
 dict_sp3 = ei.sp3_ephemeris(file_SP3, start_date, end_date)
 
+
+path_to_sofa_files = 'path of the directory of EOP and IERS files'
 # %% coordinates of the center of ICEBEAR radar field-of-view 
 pLat = 58
 pLon = -106
@@ -72,7 +90,11 @@ fai_nec = aa.find_instrument_attitude(rbody, dict_cas['GEIx'], dict_cas['GEIy'],
                                     path_to_sofa_files, method1 ='ephemeris', 
                                     frame2 = 'itrf', frame3 = 'nec')
 
-fai_enc = np.column_stack((fai_nec[:,1], fai_nec[:,0], fai_nec[:,2]))
+# Z-component in matplotlib points upward when z is positive
+# However center component is positive downward in NEC. 
+# Make z-component negative for correct visualization.
+# Switch the columns of the east and north components as fov_plotter uses ENC.
+fai_enc = np.column_stack((fai_nec[:,1], fai_nec[:,0], -fai_nec[:,2]))
                                     
 # =============================================================================
 # %% plotting
@@ -82,6 +104,10 @@ fai_enc = np.column_stack((fai_nec[:,1], fai_nec[:,0], fai_nec[:,2]))
 Latmin = np.round(min(dict_cas['Lat'])-2, decimals=0)
 # 5 degrees above maximum dict_cas['Lat']itude
 Latmax = np.round(max(dict_cas['Lat'])+2, decimals=0)
+# 20 degrees below minimum Latitude
+Altmin = np.round(min(dict_cas['Alt'])-20, decimals=0)
+# 20 degrees above maximum dict_cas['Lat']itude
+Altmax = np.round(max(dict_cas['Alt'])+20, decimals=0)
 # 5 degrees below minimum dict_cas['Lon']gitude
 Lonmin = np.round(min(dict_cas['Lon'])-2, decimals=0)
 if dict_cas['Lon'][0] < pLon:
@@ -90,14 +116,18 @@ if dict_cas['Lon'][0] < pLon:
 else:
     # 5 degrees above maximum longitude
     Lonmax = np.round(max(dict_cas['Lon'])+7.5, decimals=0)
+    
 
-extent= [Lonmin, Lonmax, Latmin, Latmax]
+extent_alt= [Lonmin, Lonmax, Altmin, Altmax]
 
 # check altitude plots (2D) to see if the spacecraft is pointing along Nadir
-ap.attitude_2d_altitude(dict_sp3['time_experiment'], extent, dict_cas['Lon'], 
+ap.attitude_2d_altitude(dict_sp3['time_experiment'],extent_alt,dict_cas['Lon'], 
                         dict_cas['Lat'], dict_cas['Alt'], pLon, fai_enc, 
                         'FAI', 'ICEBEAR', x_axis = 'lon', step = 60)
 
+extent_fov= [Lonmin, Lonmax, Latmin, Latmax]
 # plot the FAI field-of-view for Nadir-pointing                      
-fig_fov, ax_fov = op.fov_plotter(extent, time_array, Lon, Lat, Alt, fov_deg = 26, 
-                pLon, pLat, step = 90, inst_name = 'FAI', target_name = 'ICEBEAR')
+fig_fov, ax_fov = ap.fov_plotter(extent_fov, dict_sp3['time_experiment'], 
+                                 dict_cas['Lon'], dict_cas['Lat'], 
+                                 dict_cas['Alt'], 26, pLon, pLat, step = 90, 
+                                 inst_name = 'FAI', target_name = 'ICEBEAR')
