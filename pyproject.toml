@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "0.9.13"
+version = "0.9.14"
 authors = [
   { name="ceren", email="ceren.eyiguler@usask.ca" },
   { name = "Warren Holley"}, 
   { name = "Andrew D. Howarth"}, 
   { name = "Donald W. Danskin"}, 
   { name = "Kuldeep Pandey"}, 
-  { name = "Carley Martin"}, 
+  { name = "Carley J. Martin"}, 
   { name = "Glenn C. Hussey"}, 
   { name = "Robert Gillies"}, 
   { name = "Andrew W. Yau"},
@@ -28,7 +28,6 @@ install_requires = [
     "astropy",
     "h5py",
     "geopy",
-    "spacepy",
     "pysofa == 0.1.1" ]
     
 classifiers = [

@@ -92,12 +92,17 @@ $ make install
 
 $ sudo ldconfig
 ```
+Now, we are ready to install pysofa:
+
+```
+pip install pysofa
+```
 
 * you may need some more tweaking for the installation of pysofa. Possible solutions are listed below:
 
 1. ModuleNotFoundError: No module named 'pysofa_ctypes'
 
-  copy the contents of pysofa_ctypes to __init__.py
+  copy the contents of pysofa_ctypes.py to __init__.py, located in the installation directory for pysofa.
 
 2. if __sofa_version < (2010, 12, 01):
                                    ^
