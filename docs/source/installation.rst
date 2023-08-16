@@ -76,6 +76,7 @@ Execute the following comments:
 Now, we are ready to install pysofa:
 
 .. code-block::
+
 	pip install pysofa
 
 * you may need some more tweaking for the installation of pysofa. Possible solutions are listed below:
@@ -85,7 +86,7 @@ Now, we are ready to install pysofa:
   copy the contents of pysofa_ctypes.py to __init__.py, located in the installation directory for pysofa.
 
 2. if __sofa_version < (2010, 12, 01):
-                                   ^
+
   SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
 
   find and replace all 2010, 12, 01 with 2010, 12, 1 in __init__.py

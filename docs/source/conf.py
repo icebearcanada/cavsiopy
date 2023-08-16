@@ -10,8 +10,8 @@ sys.path.insert(0, os.path.abspath('../../cavsiopy/'))
 
 project = 'cavsiopy'
 copyright = '2023, C'
-author = 'C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Glenn C. Hussey, Robert Gillies, Andrew W. Yau'
-release = '0.9.14'
+author = 'E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Glenn C. Hussey, Robert Gillies, Andrew W. Yau'
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
