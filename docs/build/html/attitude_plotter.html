@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>attitude_plotter: Module to visualize satellite instrument pointing direction &mdash; cavsiopy 0.9.10 documentation</title>
+  <title>attitude_plotter: Module to visualize satellite instrument pointing direction &mdash; cavsiopy 0.9.14 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -45,29 +44,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ephemeris_importer.html">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="use_rotation_matrices.html">use_rotation_matrices: Module to rotate instrument and transform between reference frames</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attitude_analysis.html">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">attitude_plotter: Module to visualize satellite instrument pointing direction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.MyAxes3D"><code class="docutils literal notranslate"><span class="pre">MyAxes3D</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#attitude_plotter.MyAxes3D.draw"><code class="docutils literal notranslate"><span class="pre">MyAxes3D.draw()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#attitude_plotter.MyAxes3D.set"><code class="docutils literal notranslate"><span class="pre">MyAxes3D.set()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.attitude_2d_altitude"><code class="docutils literal notranslate"><span class="pre">attitude_2d_altitude()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.attitude_2d_on_map"><code class="docutils literal notranslate"><span class="pre">attitude_2d_on_map()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.attitude_3d_connect_to_subpoint"><code class="docutils literal notranslate"><span class="pre">attitude_3d_connect_to_subpoint()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.attitude_3d_connect_to_target"><code class="docutils literal notranslate"><span class="pre">attitude_3d_connect_to_target()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.attitude_3d_ground_quiver"><code class="docutils literal notranslate"><span class="pre">attitude_3d_ground_quiver()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.display_observation_geometry"><code class="docutils literal notranslate"><span class="pre">display_observation_geometry()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.earth_radius_at_latitude"><code class="docutils literal notranslate"><span class="pre">earth_radius_at_latitude()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.fov_plotter"><code class="docutils literal notranslate"><span class="pre">fov_plotter()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.plot_attitude_accuracy"><code class="docutils literal notranslate"><span class="pre">plot_attitude_accuracy()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.plot_slew_rri"><code class="docutils literal notranslate"><span class="pre">plot_slew_rri()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#attitude_plotter.trajectory_plotter_2d_map"><code class="docutils literal notranslate"><span class="pre">trajectory_plotter_2d_map()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">attitude_plotter: Module to visualize satellite instrument pointing direction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellaneous.html">miscellaneous: Utilities</a></li>
 </ul>
 
@@ -110,14 +92,8 @@ spacecraft.</p>
 <dd><p>Draw the Artist (and its children) using the given renderer.</p>
 <p>This has no effect if the artist is not visible (<cite>.Artist.get_visible</cite>
 returns False).</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <p>renderer : <cite>.RendererBase</cite> subclass.</p>
-</section>
-<section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
 <p>This method is overridden in the Artist subclasses.</p>
-</section>
 </dd></dl>
 
 <dl class="py method">
@@ -199,9 +175,7 @@ zticks: unknown</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="attitude_plotter.attitude_2d_altitude">
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">attitude_2d_altitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.attitude_2d_altitude" title="Permalink to this definition"></a></dt>
-<dd><section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<dl class="simple">
+<dd><dl class="simple">
 <dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>experiment time interval as datetime array.</p>
 </dd>
 <dt>extent<span class="classifier">list</span></dt><dd><p>extent = [Lonmin, Lonmax, Altmin, Altmax].</p>
@@ -226,16 +200,12 @@ The default is ‘lon’.</p>
 <dt>step<span class="classifier">int</span></dt><dd><p>Time in seconds between pointing direction vectors. The default is 60.</p>
 </dd>
 </dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -243,12 +213,10 @@ The default is ‘lon’.</p>
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">attitude_2d_on_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_ca</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.attitude_2d_on_map" title="Permalink to this definition"></a></dt>
 <dd><p>Plots the spacecraft trajectory and instrument pointing direction vectors 
 on map.</p>
-<section id="id2">
-<h2>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>experiment time interval as datetime array.</p>
 </dd>
-<dt>extent<span class="classifier">TYPE</span></dt><dd><p>DESCRIPTION.</p>
+<dt>extent<span class="classifier">list</span></dt><dd><p>extent = [Lonmin, Lonmax, Latmin, Latmax].</p>
 </dd>
 <dt>x<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft longitude(degrees).</p>
 </dd>
@@ -272,16 +240,12 @@ miscellaneous.find_index</p>
 <dt>step<span class="classifier">int</span></dt><dd><p>Time in seconds between pointing direction vectors. The default is 60.</p>
 </dd>
 </dl>
-</section>
-<section id="id3">
-<h2>Returns<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -289,8 +253,6 @@ miscellaneous.find_index</p>
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">attitude_3d_connect_to_subpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.75,</span> <span class="pre">0.75]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['$Dipole_{1}$',</span> <span class="pre">'$Dipole_{2}$',</span> <span class="pre">'Boresight',</span> <span class="pre">'$Ray_{LOS}$']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_',</span> <span class="pre">'$--$',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'H',</span> <span class="pre">'H']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc',</span> <span class="pre">'None',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc',</span> <span class="pre">'black',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.attitude_3d_connect_to_subpoint" title="Permalink to this definition"></a></dt>
 <dd><p>Plotting function to show projected look direction of RRI on the ground.
 The defaults for the keywords are based on RRI plots.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>title<span class="classifier">str</span></dt><dd><p>plot title.</p>
 </dd>
@@ -310,7 +272,7 @@ The defaults for the keywords are based on RRI plots.</p>
 </dd>
 <dt>target_name<span class="classifier">str</span></dt><dd><p>target name.</p>
 </dd>
-<dt><a href="#id5"><span class="problematic" id="id6">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
+<dt><a href="#id1"><span class="problematic" id="id2">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
 vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 </dd>
 <dt>step<span class="classifier">float, optional</span></dt><dd><p>Step in seconds to plot vectors. The default is 60.</p>
@@ -340,22 +302,15 @@ The default is [‘red’, ‘#12e193’,’black’,’#0165fc’ ,’black’,
 The default is ‘upper center’.</p>
 </dd>
 </dl>
-</section>
-<section id="id7">
-<h2>Returns<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 </dl>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>V = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
 connect_to_subpoint= ap.attitude_3d_connect_to_subpoint(title, time_array,                                                  pLon, pLat, OH,                                                   Lon, Lat, Alt,</p>
 <blockquote>
-<div><p>‘Ottawa’, <a href="#id8"><span class="problematic" id="id9">*</span></a>V, step = 60)</p>
+<div><p>‘Ottawa’, <a href="#id3"><span class="problematic" id="id4">*</span></a>V, step = 60)</p>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -363,8 +318,6 @@ connect_to_subpoint= ap.attitude_3d_connect_to_subpoint(title, time_array,      
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">attitude_3d_connect_to_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[2.5,</span> <span class="pre">2.5,</span> <span class="pre">2.5,</span> <span class="pre">2.5,</span> <span class="pre">2,</span> <span class="pre">2]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['$Dipole_{1}$',</span> <span class="pre">'$Dipole_{2}$',</span> <span class="pre">'Boresight',</span> <span class="pre">'$Ray_{LOS}$',</span> <span class="pre">'N',</span> <span class="pre">'S']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_',</span> <span class="pre">'_',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'H',</span> <span class="pre">'H']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue',</span> <span class="pre">'None',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue',</span> <span class="pre">'black',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowhead</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.25,</span> <span class="pre">0.25]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sct_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'alpha':</span> <span class="pre">1,</span> <span class="pre">'c':</span> <span class="pre">'lightgrey',</span> <span class="pre">'edgecolor':</span> <span class="pre">'black',</span> <span class="pre">'marker':</span> <span class="pre">'*',</span> <span class="pre">'s':</span> <span class="pre">180}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.attitude_3d_connect_to_target" title="Permalink to this definition"></a></dt>
 <dd><p>Plotting function in 3D to connect the spacecraft location with the target.
 The defaults for the keywords are based on RRI plots.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>title<span class="classifier">str</span></dt><dd><p>plot title.</p>
 </dd>
@@ -384,7 +337,7 @@ The defaults for the keywords are based on RRI plots.</p>
 </dd>
 <dt>target_name<span class="classifier">str</span></dt><dd><p>target name.</p>
 </dd>
-<dt><a href="#id11"><span class="problematic" id="id12">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
+<dt><a href="#id5"><span class="problematic" id="id6">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
 vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 </dd>
 <dt>step<span class="classifier">int</span></dt><dd><p>time between the vectors. The default is 60. (60 seconds)</p>
@@ -412,21 +365,14 @@ vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 <dt>loc<span class="classifier">str, optional</span></dt><dd><p>Location of the legend. The default is ‘upper center’.</p>
 </dd>
 </dl>
-</section>
-<section id="id13">
-<h2>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
-<section id="id14">
-<h2>Examples<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <p>vec_args= M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-connected_plot, ax = ap.attitude_3d_connect_to_target(title_vec,                                                      time_array_1sec,                                                     pLon, pLat, pH,                                                      Lon, Lat, Alt,                                                     target_name,                                                     <a href="#id15"><span class="problematic" id="id16">*</span></a>vec_args, step = 45)</p>
-</section>
+connected_plot, ax = ap.attitude_3d_connect_to_target(title_vec,                                                      time_array_1sec,                                                     pLon, pLat, pH,                                                      Lon, Lat, Alt,                                                     target_name,                                                     <a href="#id7"><span class="problematic" id="id8">*</span></a>vec_args, step = 45)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -434,8 +380,6 @@ connected_plot, ax = ap.attitude_3d_connect_to_target(title_vec,                
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">attitude_3d_ground_quiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.25,</span> <span class="pre">0.75,</span> <span class="pre">0.75]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['$Dipole_{1}$',</span> <span class="pre">'$Dipole_{2}$',</span> <span class="pre">'Boresight',</span> <span class="pre">'$Ray_{LOS}$']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_',</span> <span class="pre">'$--$',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'H',</span> <span class="pre">'H']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc',</span> <span class="pre">'None',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'#0165fc',</span> <span class="pre">'black',</span> <span class="pre">'black']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.attitude_3d_ground_quiver" title="Permalink to this definition"></a></dt>
 <dd><p>Plotting function to show projected look direction of RRI on the ground.
 The defaults for the keywords are based on RRI plots.</p>
-<section id="id17">
-<h2>Parameters<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>title<span class="classifier">str</span></dt><dd><p>plot title.</p>
 </dd>
@@ -457,7 +401,7 @@ The defaults for the keywords are based on RRI plots.</p>
 </dd>
 <dt>target_name<span class="classifier">str</span></dt><dd><p>target name.</p>
 </dd>
-<dt><a href="#id18"><span class="problematic" id="id19">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
+<dt><a href="#id9"><span class="problematic" id="id10">*</span></a>V<span class="classifier">numpy.ndarray</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
 vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 </dd>
 <dt>step<span class="classifier">float, optional</span></dt><dd><p>Step in seconds to plot vectors. The default is 60.</p>
@@ -487,24 +431,17 @@ The default is [‘red’, ‘#12e193’,’black’,’#0165fc’ ,’black’,
 The default is ‘upper center’.</p>
 </dd>
 </dl>
-</section>
-<section id="id20">
-<h2>Returns<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
-<section id="id21">
-<h2>Examples<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
 <p>V = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
 ground_quiver_3d = op.attitude_3d_ground_quiver(title, time_array,                                                  pLon, pLat, OH,                                                   Lon, Lat, Alt, RRI_enu,</p>
 <blockquote>
-<div><p>‘Ottawa’, <a href="#id22"><span class="problematic" id="id23">*</span></a>V, step = 60)</p>
+<div><p>‘Ottawa’, <a href="#id11"><span class="problematic" id="id12">*</span></a>V, step = 60)</p>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -512,8 +449,6 @@ ground_quiver_3d = op.attitude_3d_ground_quiver(title, time_array,              
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">display_observation_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid',</span> <span class="pre">'solid']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1.5,</span> <span class="pre">1.5,</span> <span class="pre">1.5,</span> <span class="pre">1.5,</span> <span class="pre">1.5,</span> <span class="pre">1.5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrlen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.75,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['$Dipole_{1}$',</span> <span class="pre">'$Dipole_{2}$',</span> <span class="pre">'Boresight',</span> <span class="pre">'$Ray_{LOS}$']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_',</span> <span class="pre">'_',</span> <span class="pre">'$\\longrightarrow$',</span> <span class="pre">'$\\longrightarrow$']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['red',</span> <span class="pre">'#12e193',</span> <span class="pre">'black',</span> <span class="pre">'blue']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowhead</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.01,</span> <span class="pre">0.45,</span> <span class="pre">0.45]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sct_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'alpha':</span> <span class="pre">1,</span> <span class="pre">'c':</span> <span class="pre">'lightgrey',</span> <span class="pre">'edgecolor':</span> <span class="pre">'black',</span> <span class="pre">'marker':</span> <span class="pre">'*',</span> <span class="pre">'s':</span> <span class="pre">180}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.display_observation_geometry" title="Permalink to this definition"></a></dt>
 <dd><p>Plotting function to display observation geometry.
 The defaults for the keywords are based on RRI plots.</p>
-<section id="id24">
-<h2>Parameters<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>title<span class="classifier">str</span></dt><dd><p>plot title.</p>
 </dd>
@@ -533,7 +468,7 @@ The defaults for the keywords are based on RRI plots.</p>
 </dd>
 <dt>target_name<span class="classifier">str</span></dt><dd><p>target name.</p>
 </dd>
-<dt><a href="#id25"><span class="problematic" id="id26">*</span></a>V<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
+<dt><a href="#id13"><span class="problematic" id="id14">*</span></a>V<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>vectors to be plotted (need to be in ENU coordinate system).
 vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 </dd>
 <dt>step<span class="classifier">int</span></dt><dd><p>time between the vectors. The default is 60. (60 seconds)</p>
@@ -561,21 +496,14 @@ vec_args = M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr</p>
 <dt>loc<span class="classifier">str</span></dt><dd><p>legend location. uses same keywords as matplotlib legend.             The default is ‘upper right’.</p>
 </dd>
 </dl>
-</section>
-<section id="id27">
-<h2>Returns<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
-<section id="id28">
-<h2>Examples<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
 <p>vec_args= M1_enu, M3_enu, M2_enu, M4_enu, RRI_enu, los_enu_arr
-connected_plot = op.display_observation_geometry(title_vec,                                                      time_array_1sec,                                                     pLon, pLat, OH,                                                      Lon, Lat, Alt,                                                     ‘Ottawa’, <a href="#id29"><span class="problematic" id="id30">*</span></a>vec_args, n=45)</p>
-</section>
+connected_plot = op.display_observation_geometry(title_vec,                                                      time_array_1sec,                                                     pLon, pLat, OH,                                                      Lon, Lat, Alt,                                                     ‘Ottawa’, <a href="#id15"><span class="problematic" id="id16">*</span></a>vec_args, n=45)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -583,68 +511,51 @@ connected_plot = op.display_observation_geometry(title_vec,                     
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">earth_radius_at_latitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.earth_radius_at_latitude" title="Permalink to this definition"></a></dt>
 <dd><p>Function to calculate Earth radius at latitude to correctly scale 
 the ellipse height for FOV plotter.</p>
-<section id="id31">
-<h2>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>latitude<span class="classifier">float</span></dt><dd><p>Geodetic latitude (degrees).</p>
 </dd>
 </dl>
-</section>
-<section id="id32">
-<h2>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>R<span class="classifier">float</span></dt><dd><p>Earth’s radius in meters.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="attitude_plotter.fov_plotter">
-<span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">fov_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_deg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_elev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_arrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.fov_plotter" title="Permalink to this definition"></a></dt>
-<dd><p>Plot the FOV of the instrument.</p>
-<section id="id33">
-<h2>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">fov_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_deg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FAI'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ICEBEAR'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.fov_plotter" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the FOV of the instrument for Nadir look directions.
+Caution: This code ONLY works for NADIR pointing instruments.</p>
 <dl class="simple">
 <dt>extent<span class="classifier">list</span></dt><dd><p>[Lonmin, Lonmax, Latmin, Latmax].</p>
 </dd>
 <dt>time_array<span class="classifier">numpy.ndarray[datetime]</span></dt><dd><p>Experiment time interval.</p>
 </dd>
-<dt>alt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft altitude (km).</p>
+<dt>x<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft longitude (degrees).</p>
 </dd>
-<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft latitude (degrees).</p>
+<dt>y<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft latitude (degrees).</p>
 </dd>
-<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft longitude (degrees).</p>
+<dt>z<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft altitude (km).</p>
 </dd>
 <dt>fov_deg<span class="classifier">float</span></dt><dd><p>Field-of-view angle (degrees).</p>
 </dd>
-<dt>Px<span class="classifier">float</span></dt><dd><p>Target longitude (degrees).</p>
+<dt>px<span class="classifier">float</span></dt><dd><p>Target longitude (degrees).</p>
 </dd>
-<dt>Py<span class="classifier">float</span></dt><dd><p>Target latitude (degrees).</p>
+<dt>py<span class="classifier">float</span></dt><dd><p>Target latitude (degrees).</p>
 </dd>
-<dt>vec<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Instrument pointing vector in East-North-Center(ENC) coordinates.</p>
+<dt>step: float, optional</dt><dd><p>Time interval in seconds to plot the inst. vector.The default is 90.</p>
 </dd>
-<dt>vec_elev<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Elevation angle (degrees).</p>
+<dt>inst_name<span class="classifier">string</span></dt><dd><p>Name of the instrument. The default is ‘FAI’.</p>
 </dd>
-<dt>inst_name<span class="classifier">string</span></dt><dd><p>Name of the instrument.</p>
-</dd>
-<dt>target_name<span class="classifier">string</span></dt><dd><p>Ground target to be captured.</p>
-</dd>
-<dt>step<span class="classifier">float, optional</span></dt><dd><p>Time interval in seconds to plot the inst. vector. The default is 90.</p>
-</dd>
-<dt>scale_arrow<span class="classifier">float, optional</span></dt><dd><p>Scaling of the inst. vector. The default is 20.</p>
-</dd>
-<dt>scale_factor_shift<span class="classifier">float, optional</span></dt><dd><p>Scale factor to shift the ellipse center location. The default is 2.5.</p>
+<dt>target_name<span class="classifier">string</span></dt><dd><p>Target name. The default is ‘ICEBEAR’.</p>
 </dd>
 </dl>
-</section>
-<section id="id34">
-<h2>Returns<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
 <dl class="simple">
+<dt>fig: figure.Figure</dt><dd><p>Figure object of matplotlib.figure module.</p>
+</dd>
 <dt>ax<span class="classifier">TYPE</span></dt><dd><p>DESCRIPTION.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -652,22 +563,16 @@ the ellipse height for FOV plotter.</p>
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">plot_attitude_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_RRI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.plot_attitude_accuracy" title="Permalink to this definition"></a></dt>
 <dd><p>Plots the attitude accuracy using the accuracy data in RRI data files.
 0=Dropout, 1=Rough, 2=Coarse, 3=Moderate, 4=Fine, 9=NaN.</p>
-<section id="id35">
-<h2>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>file_RRI<span class="classifier">str</span></dt><dd><p>Filename of the RRI data file including the path.</p>
 </dd>
 </dl>
-</section>
-<section id="id36">
-<h2>Returns<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -675,8 +580,6 @@ the ellipse height for FOV plotter.</p>
 <span class="sig-prename descclassname"><span class="pre">attitude_plotter.</span></span><span class="sig-name descname"><span class="pre">plot_slew_rri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slew</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slew_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cb_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_plotter.plot_slew_rri" title="Permalink to this definition"></a></dt>
 <dd><p>Function to plot the temporal change of slew accuracy for the criterion
 set by slew_angle.</p>
-<section id="id37">
-<h2>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
@@ -697,11 +600,7 @@ set by slew_angle.</p>
 <dt>time<span class="classifier">str, optional</span></dt><dd><p>x-axis time display (‘yes’/’no’). The default is ‘no’.</p>
 </dd>
 </dl>
-</section>
-<section id="id38">
-<h2>Returns<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
 <p>None.</p>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -710,8 +609,6 @@ set by slew_angle.</p>
 <dd><p>Plots the spacecraft trajectory on map.
 Prints the trajectory information on screen: altitude increasing/decreasing
 spacecraft going towards: NE, SW, NW, SE.</p>
-<section id="id39">
-<h2>Parameters<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>experiment time interval as datetime array.</p>
 </dd>
@@ -733,16 +630,12 @@ spacecraft going towards: NE, SW, NW, SE.</p>
 miscellaneous.find_index</p>
 </dd>
 </dl>
-</section>
-<section id="id40">
-<h2>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">figure.Figure</span></dt><dd><p>Figure object of matplotlib.figure module.</p>
 </dd>
 <dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>

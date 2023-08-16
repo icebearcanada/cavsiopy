@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ephemeris_importer: module to import RRI ephemeris and Celestrak TLE &mdash; cavsiopy 0.9.10 documentation</title>
+  <title>ephemeris_importer: module to import RRI ephemeris and Celestrak TLE &mdash; cavsiopy 0.9.14 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -47,15 +46,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.calculate_orbital_elements"><code class="docutils literal notranslate"><span class="pre">calculate_orbital_elements()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.cas_ephemeris"><code class="docutils literal notranslate"><span class="pre">cas_ephemeris()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.compare_orbital"><code class="docutils literal notranslate"><span class="pre">compare_orbital()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.import_tle"><code class="docutils literal notranslate"><span class="pre">import_tle()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.rri_ephemeris"><code class="docutils literal notranslate"><span class="pre">rri_ephemeris()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ephemeris_importer.sp3_ephemeris"><code class="docutils literal notranslate"><span class="pre">sp3_ephemeris()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="use_rotation_matrices.html">use_rotation_matrices: Module to rotate instrument and transform between reference frames</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attitude_analysis.html">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attitude_plotter.html">attitude_plotter: Module to visualize satellite instrument pointing direction</a></li>
@@ -102,40 +93,32 @@ and to compare computed values with data in TLE file (compare_orbital).</p>
 <dd><p>Calculates satellite orbital parameters using X, Y, Z, Vx, Vy, Vz in GEIJ2K</p>
 <p>Reference: Curtis, H. D. (2014). Orbits in Three Dimensions in 
 Orbital mechanics for engineering students. Butterworth-Heinemann.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km)</p>
+<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
 </dd>
-<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km)</p>
+<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
 </dd>
-<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km)</p>
+<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
 </dd>
-<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s)</p>
+<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
 </dd>
-<dt>Vy<span class="classifier">Tnumpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s)</p>
+<dt>Vy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
 </dd>
-<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s)</p>
+<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
 </dd>
 </dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>inc<span class="classifier">float</span></dt><dd><p>satellite inclination (radian)</p>
+<dt>inc<span class="classifier">float</span></dt><dd><p>satellite inclination (radian).</p>
 </dd>
-<dt>raan<span class="classifier">float</span></dt><dd><p>Right ascension of ascending node (radian)</p>
+<dt>raan<span class="classifier">float</span></dt><dd><p>Right ascension of ascending node (radian).</p>
 </dd>
-<dt>ap<span class="classifier">float</span></dt><dd><p>Argument of periapsis (radian)</p>
+<dt>ap<span class="classifier">float</span></dt><dd><p>Argument of periapsis (radian).</p>
 </dd>
-<dt>e<span class="classifier">float</span></dt><dd><p>eccentricity (radian)</p>
+<dt>e<span class="classifier">float</span></dt><dd><p>eccentricity (radian).</p>
 </dd>
-<dt>TA<span class="classifier">float</span></dt><dd><p>True anomaly (radian)</p>
+<dt>TA<span class="classifier">float</span></dt><dd><p>True anomaly (radian).</p>
 </dd>
 </dl>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>sat_inc, sat_ap, sat_raan, sat_ecc, sat_TA =         </dt><dd><dl class="simple">
 <dt>ei.calculate_orbital_elements(dict_rri[‘GEIx’], dict_rri[‘GEIy’],                                       </dt><dd><p>dict_rri[‘GEIz’], dict_rri[‘GEIVx’],                                       
@@ -144,7 +127,6 @@ dict_rri[‘GEIVy’], dict_rri[‘GEIVz’])</p>
 </dl>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -154,82 +136,73 @@ dict_rri[‘GEIVy’], dict_rri[‘GEIVz’])</p>
 Ref:(https://epop.phys.ucalgary.ca/data-handbook/cas-ephemeris-text-files/)</p>
 <p>Extracts satellite ephemeris info for the experiment time interval
 specified by time_start and time_end.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>file_cas<span class="classifier">str</span></dt><dd><p>file name including path</p>
+<dt>file_cas<span class="classifier">str</span></dt><dd><p>file name including path.</p>
 </dd>
-<dt>time_start<span class="classifier">datetime.datetime</span></dt><dd><p>start of the experiment</p>
+<dt>time_start<span class="classifier">datetime.datetime</span></dt><dd><p>start of the experiment.</p>
 </dd>
-<dt>time_end<span class="classifier">datetime.datetime</span></dt><dd><p>end of the experiment</p>
+<dt>time_end<span class="classifier">datetime.datetime</span></dt><dd><p>end of the experiment.</p>
 </dd>
 </dl>
-</section>
-<section id="id2">
-<h2>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>dict<span class="classifier">dict</span></dt><dd><p>keys and properties listed below
 srow : int</p>
 <blockquote>
-<div><p>row of the start time in the cas_ephemeris file</p>
+<div><p>row of the start time in the cas_ephemeris file.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>erow<span class="classifier">int</span></dt><dd><p>row of the end time in the cas_ephemeris file</p>
+<dt>erow<span class="classifier">int</span></dt><dd><p>row of the end time in the cas_ephemeris file.</p>
 </dd>
-<dt>start<span class="classifier">datetime.datetime</span></dt><dd><p>start time in CAS_ephemeris file</p>
+<dt>start<span class="classifier">datetime.datetime</span></dt><dd><p>start time in CAS_ephemeris file.</p>
 </dd>
-<dt>end<span class="classifier">datetime.datetime</span></dt><dd><p>end time in CAS_ephemeris file</p>
+<dt>end<span class="classifier">datetime.datetime</span></dt><dd><p>end time in CAS_ephemeris file.</p>
 </dd>
-<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time of the observations</p>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time of the observations.</p>
 </dd>
-<dt>Lat<span class="classifier">np.array[float]</span></dt><dd><p>Geodetic latitude</p>
+<dt>Lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude.</p>
 </dd>
-<dt>Lon<span class="classifier">np.array[float]</span></dt><dd><p>Geodetic longitude</p>
+<dt>Lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude.</p>
 </dd>
-<dt>Alt<span class="classifier">np.array[float]</span></dt><dd><p>geodetic altitude (km)</p>
+<dt>Alt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>geodetic altitude (km)  .</p>
 </dd>
-<dt>MLat: np.array[float]</dt><dd><p>Magnetic latitude (deg)</p>
+<dt>MLat: numpy.ndarray[float]</dt><dd><p>Magnetic latitude (deg).</p>
 </dd>
-<dt>MLon: np.array[float]</dt><dd><p>Magnetic longitude (deg)</p>
+<dt>MLon: numpy.ndarray[float]</dt><dd><p>Magnetic longitude (deg).</p>
 </dd>
-<dt>MLT: np.array[float]</dt><dd><p>Magnetic local time (h)</p>
+<dt>MLT: numpy.ndarray[float]</dt><dd><p>Magnetic local time (h).</p>
 </dd>
-<dt>GEIx<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km)</p>
+<dt>GEIx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km).</p>
 </dd>
-<dt>GEIy<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km)</p>
+<dt>GEIy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km).</p>
 </dd>
-<dt>GEIz<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km)</p>
+<dt>GEIz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km).</p>
 </dd>
-<dt>GEIVx<span class="classifier">np.array[float]</span></dt><dd><p>X component of the spacecraft velocity in GEI coordinates (Vx-km/s)</p>
+<dt>GEIVx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of the spacecraft velocity in GEI coordinates (Vx-km/s).</p>
 </dd>
-<dt>GEIVy<span class="classifier">np.array[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEI coordinates (Vy-km/s)</p>
+<dt>GEIVy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).</p>
 </dd>
-<dt>GEIVz<span class="classifier">np.array[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEI coordinates (Vz-km/s)</p>
+<dt>GEIVz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).</p>
 </dd>
-<dt>GSMx<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km)</p>
+<dt>GSMx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km).</p>
 </dd>
-<dt>GSMy<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km)</p>
+<dt>GSMy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km).</p>
 </dd>
-<dt>GSMz<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km)</p>
+<dt>GSMz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km).</p>
 </dd>
-<dt>roll<span class="classifier">np.array[float]</span></dt><dd><p>roll angle; rotation around x axis (degrees)</p>
+<dt>roll<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>roll angle; rotation around x axis (degrees).</p>
 </dd>
-<dt>pitch<span class="classifier">np.array[float]</span></dt><dd><p>pitch angle; rotation around y axis (degrees)</p>
+<dt>pitch<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>pitch angle; rotation around y axis (degrees).</p>
 </dd>
-<dt>yaw<span class="classifier">np.array[float]</span></dt><dd><p>yaw angle; rotation around z axis (degrees)</p>
+<dt>yaw<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>yaw angle; rotation around z axis (degrees).</p>
 </dd>
-<dt>acc<span class="classifier">int</span></dt><dd><p>accuracy of the attitude solution 
+<dt>acc<span class="classifier">int</span></dt><dd><p>accuracy of the attitude solution.
 (0 = Dropout, 1 = Rough, 2 = Coarse, 3 = Moderate,  4 = Fine)</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</section>
-<section id="id3">
-<h2>Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>dict_cas = ei.cas_ephemeris(file_CAS, time_start, time_end)</p>
 <p>GEIx = dict_cas[‘GEIx’]</p>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -240,8 +213,6 @@ Prints out the comparison results.</p>
 <p>inc: spacecraft inclination angle
 raan: right ascension of ascending node
 ap: argument of periapsis</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>file_TLE: str</dt><dd><p>filename for TLE file (including path).</p>
 </dd>
@@ -262,18 +233,12 @@ ap: argument of periapsis</p>
 <dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
 </dd>
 </dl>
-</section>
-<section id="id5">
-<h2>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>sap_comp<span class="classifier">Tuple[float, float, float]</span></dt><dd><p>Element1: the difference between the tle and computed inclination (deg) 
-Element2: the difference between the tle and computed raan (deg) 
-Element3: the difference between the tle and computed ap (deg)</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>sap_comp : list[float, float, float]</p>
+<blockquote>
+<div><p>Element1: the difference between the tle and computed inclination (deg)</p>
+<p>Element2: the difference between the tle and computed raan (deg)</p>
+<p>Element3: the difference between the tle and computed ap (deg)</p>
+</div></blockquote>
 <p>time_start = datetime.datetime(2016, 4, 18, 22, 27, 59)</p>
 <p>DOY = time_start.timetuple().tm_yday</p>
 <p>filedate = ‘20160418’</p>
@@ -283,7 +248,6 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <p>dict_rri[‘GEIVx’], dict_rri[‘GEIVy’],</p>
 <p>dict_rri[‘GEIVz’])</p>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -291,8 +255,6 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <span class="sig-prename descclassname"><span class="pre">ephemeris_importer.</span></span><span class="sig-name descname"><span class="pre">import_tle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DOY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ephemeris_importer.import_tle" title="Permalink to this definition"></a></dt>
 <dd><p>Reads Celestrak TLE file</p>
 <p>File obtained from: <a class="reference external" href="https://celestrak.com/">https://celestrak.com/</a></p>
-<section id="id7">
-<h2>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>filename: str</dt><dd><p>filename for TLE file.</p>
 </dd>
@@ -301,9 +263,6 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <dt>DOY: int </dt><dd><p>day of year of RRI passage.</p>
 </dd>
 </dl>
-</section>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>tle_epoch<span class="classifier">float</span></dt><dd><p>epoch of TLE file.</p>
 </dd>
@@ -318,9 +277,6 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <dt>tle_ma<span class="classifier">float</span></dt><dd><p>mean anomaly (degrees).</p>
 </dd>
 </dl>
-</section>
-<section id="id9">
-<h2>Examples<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <p>time_start = datetime.datetime(2016, 4, 18, 22, 27, 59)</p>
 <p>DOY = time_start.timetuple().tm_yday</p>
 <p>filedate = ‘20160418’</p>
@@ -328,7 +284,6 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <dt>tle_epoch, tle_inc, tle_ap, tle_raan, tle_ecc, tle_ma =         </dt><dd><p>ei.import_tle(file_TLE, filedate, DOY)</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -337,82 +292,73 @@ Element3: the difference between the tle and computed ap (deg)</p>
 <dd><p>Imports rri_ephemeris and returns the ephemeris information within a 
 dictionary.</p>
 <p>Dictionary keys are listed below:</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>file_rri<span class="classifier">TYPE</span></dt><dd><p>RRI file name including path</p>
 </dd>
 </dl>
-</section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>dict:</dt><dd><p>keys and properties of the keys are below:
-time_data : np.array[float]</p>
+time_data : numpy.ndarray[float]</p>
 <blockquote>
 <div><p>seconds since May 24, 1968.</p>
 </div></blockquote>
 <dl class="simple">
-<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time of the observations</p>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time of the observations.</p>
 </dd>
-<dt>start_time<span class="classifier">datetime.datetime</span></dt><dd><p>start_time of the experiment</p>
+<dt>start_time<span class="classifier">datetime.datetime</span></dt><dd><p>start_time of the experiment.</p>
 </dd>
-<dt>end_time<span class="classifier">datetime.datetime</span></dt><dd><p>end time of the experiment</p>
+<dt>end_time<span class="classifier">datetime.datetime</span></dt><dd><p>end time of the experiment.</p>
 </dd>
-<dt>Lat<span class="classifier">np.array[float]</span></dt><dd><p>Geodetic latitude</p>
+<dt>Lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude (degrees).</p>
 </dd>
-<dt>Lon<span class="classifier">np.array[float]</span></dt><dd><p>Geodetic longitude</p>
+<dt>Lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude (degrees).</p>
 </dd>
-<dt>Alt<span class="classifier">np.array[float]</span></dt><dd><p>geodetic altitude (km)</p>
+<dt>Alt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>geodetic altitude (km).</p>
 </dd>
-<dt>MLat: np.array[float]</dt><dd><p>Magnetic latitude (deg)</p>
+<dt>MLat: numpy.ndarray[float]</dt><dd><p>Magnetic latitude (deg).</p>
 </dd>
-<dt>MLon: np.array[float]</dt><dd><p>Magnetic longitude (deg)</p>
+<dt>MLon: numpy.ndarray[float]</dt><dd><p>Magnetic longitude (degrees).</p>
 </dd>
-<dt>MLT: np.array[float]</dt><dd><p>Magnetic local time (h)</p>
+<dt>MLT: numpy.ndarray[float]</dt><dd><p>Magnetic local time (h).</p>
 </dd>
-<dt>GEOx<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (X-km)</p>
+<dt>GEOx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (X-km).</p>
 </dd>
-<dt>GEOy<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (Y-km)</p>
+<dt>GEOy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (Y-km).</p>
 </dd>
-<dt>GEOz<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (Z-km)</p>
+<dt>GEOz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEO coordinates (Z-km).</p>
 </dd>
-<dt>GEOVx<span class="classifier">np.array[float]</span></dt><dd><p>X component of the spacecraft velocity in GEO coordinates (Vx-km/s)</p>
+<dt>GEOVx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of the spacecraft velocity in GEO coordinates (Vx-km/s).</p>
 </dd>
-<dt>GEOVy<span class="classifier">np.array[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEO coordinates (Vy-km/s)</p>
+<dt>GEOVy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEO coordinates (Vy-km/s).</p>
 </dd>
-<dt>GEOVz<span class="classifier">np.array[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEO coordinates (Vz-km/s)</p>
+<dt>GEOVz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEO coordinates (Vz-km/s).</p>
 </dd>
-<dt>GEIx<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km)</p>
+<dt>GEIx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (X-km).</p>
 </dd>
-<dt>GEIy<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km)</p>
+<dt>GEIy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Y-km).</p>
 </dd>
-<dt>GEIz<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km)</p>
+<dt>GEIz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in GEI coordinates (Z-km).</p>
 </dd>
-<dt>GEIVx<span class="classifier">np.array[float]</span></dt><dd><p>X component of the spacecraft velocity in GEI coordinates (Vx-km/s)</p>
+<dt>GEIVx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of the spacecraft velocity in GEI coordinates (Vx-km/s).</p>
 </dd>
-<dt>GEIVy<span class="classifier">np.array[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEI coordinates (Vy-km/s)</p>
+<dt>GEIVy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of the spacecraft velocity in GEI coordinates (Vy-km/s).</p>
 </dd>
-<dt>GEIVz<span class="classifier">np.array[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEI coordinates (Vz-km/s)</p>
+<dt>GEIVz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of the spacecraft velocity in GEI coordinates (Vz-km/s).</p>
 </dd>
-<dt>roll<span class="classifier">np.array[float]</span></dt><dd><p>roll angle; rotation around x axis (degrees)</p>
+<dt>roll<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>roll angle; rotation around x axis (degrees).</p>
 </dd>
-<dt>pitch<span class="classifier">np.array[float]</span></dt><dd><p>pitch angle; rotation around y axis (degrees)</p>
+<dt>pitch<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>pitch angle; rotation around y axis (degrees).</p>
 </dd>
-<dt>yaw<span class="classifier">np.array[float]</span></dt><dd><p>yaw angle; rotation around z axis (degrees)</p>
+<dt>yaw<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>yaw angle; rotation around z axis (degrees).</p>
 </dd>
-<dt>accuracy<span class="classifier">int</span></dt><dd><p>accuracy of the attitude solution 
+<dt>accuracy<span class="classifier">int</span></dt><dd><p>accuracy of the attitude solution.
 (0 = Dropout, 1 = Rough, 2 = Coarse, 3 = Moderate,  4 = Fine)</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</section>
-<section id="id12">
-<h2>Examples<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <p>dict_rri = ei.rri_ephemeris(file_RRI)</p>
 <p>Lat = dict_rri[‘Lat’]</p>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -423,8 +369,6 @@ Reference Frame (ITRF) from the sp3 data file:</p>
 <p>Ref: (<a class="reference external" href="https://epop.phys.ucalgary.ca/data-handbook/orbit-geo-sp3-file/">https://epop.phys.ucalgary.ca/data-handbook/orbit-geo-sp3-file/</a>)</p>
 <p>Extracts satellite ephemeris info for the experiment time interval
 specified by time_start and time_end.</p>
-<section id="id13">
-<h2>Parameters<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>file_SP3<span class="classifier">str</span></dt><dd><p>SP3 filename with file path</p>
 </dd>
@@ -433,35 +377,44 @@ specified by time_start and time_end.</p>
 <dt>end_date<span class="classifier">datetime.datetime</span></dt><dd><p>end of the data sampling interval</p>
 </dd>
 </dl>
-</section>
-<section id="id14">
-<h2>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <dl>
-<dt>dict<span class="classifier">dict </span></dt><dd><p>keys and properties listed below
-ITRFx : np.array[float]</p>
+<dt>dict<span class="classifier">dict </span></dt><dd><p>keys and properties listed below:
+srow : int</p>
 <blockquote>
-<div><p>Spacecraft position in ITRF coordinates (X-km)</p>
+<div><p>row of the experiment start time in sp3 file</p>
 </div></blockquote>
-<dl class="simple">
-<dt>ITRFy<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in ITRF coordinates (Y-km)</p>
+<dl>
+<dt>erow: int</dt><dd><p>row of the experiment end time in sp3 file</p>
 </dd>
-<dt>ITRFz<span class="classifier">np.array[float]</span></dt><dd><p>Spacecraft position in ITRF coordinates (Z-km)</p>
+<dt>time_array_gps<span class="classifier">datetime.datetime</span></dt><dd><p>time array for the whole day: note that sp3 files for Swarm-E may 
+have some offset as they use GPS time rather than the UT time.
+to check the beginning and end times of the data file simply do:</p>
+<blockquote>
+<div><p>dict_sp3[‘time_array’][0]
+dict_sp3[‘time_array’][-1]</p>
+</div></blockquote>
 </dd>
-<dt>ITRFVx<span class="classifier">np.array[float]</span></dt><dd><p>X component of the spacecraft velocity in ITRF coordinates(Vx-km/s)</p>
+<dt>time_array_ut: datetime.datetime</dt><dd><p>time array in ut. corrected from gps time.</p>
 </dd>
-<dt>ITRFVy<span class="classifier">np.array[float]</span></dt><dd><p>Y component of the spacecraft velocity in ITRF coordinates(Vy-km/s)</p>
+<dt>time_experiment: datetime.datetume</dt><dd><p>time array for the experiment interval in ut.</p>
 </dd>
-<dt>ITRFVz<span class="classifier">np.array[float]</span></dt><dd><p>Z component of the spacecraft velocity in ITRF coordinates(Vz-km/s)</p>
+<dt>ITRFx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in ITRF coordinates (X-km).</p>
+</dd>
+<dt>ITRFy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in ITRF coordinates (Y-km).</p>
+</dd>
+<dt>ITRFz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Spacecraft position in ITRF coordinates (Z-km).</p>
+</dd>
+<dt>ITRFVx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of the spacecraft velocity in ITRF coordinates(Vx-dm/s).</p>
+</dd>
+<dt>ITRFVy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of the spacecraft velocity in ITRF coordinates(Vy-dm/s).</p>
+</dd>
+<dt>ITRFVz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of the spacecraft velocity in ITRF coordinates(Vz-dm/s).</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</section>
-<section id="id15">
-<h2>Examples<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <p>dict_sp3 = ei.sp3_ephemeris(file_SP3, start_date, end_date)</p>
 <p>ITRFx = dict_sp3[‘ITRFx’]</p>
-</section>
 </dd></dl>
 
 </section>

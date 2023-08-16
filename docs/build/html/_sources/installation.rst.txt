@@ -77,7 +77,7 @@ Execute the following comments:
 
 1. ModuleNotFoundError: No module named 'pysofa_ctypes'
 
-  copy the contents of pysofa_ctypes to __init__.py
+  copy the contents of pysofa_ctypes.py to __init__.py, located in the installation directory for pysofa.
 
 2. if __sofa_version < (2010, 12, 01):
                                    ^
