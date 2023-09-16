@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; cavsiopy 1.0.0 documentation</title>
+  <title>Installation &mdash; cavsiopy 1.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -49,7 +49,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cartopy">cartopy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pysofa">pysofa</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#other-packages-and-requirements">Other packages and requirements</a></li>
 </ul>
 </li>
@@ -90,7 +89,7 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
-<p>numpy, matplotlib, astropy, cartopy, geopy, h5py, pysofa</p>
+<p>numpy, matplotlib, astropy, cartopy, geopy, h5py, pysofa2</p>
 </section>
 <section id="id1">
 <h2>Installation<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
@@ -112,69 +111,11 @@ $ pip install -r requirements.txt
 </pre></div>
 </div>
 </section>
-<section id="pysofa">
-<h3>pysofa<a class="headerlink" href="#pysofa" title="Permalink to this heading"></a></h3>
-<p>pysofa is the Python wrapper for the Standards of Fundamental Astronomy (SOFA) written by Brian Kloppenborg.
-cavsiopy depends on pysofa for determining the ICRF to ITRF rotation matrix.</p>
-<p>Here we follow &lt;<a class="reference external" href="https://kloppenborg.net/blog/building-sofa-for-pysofa/">https://kloppenborg.net/blog/building-sofa-for-pysofa/</a>&gt; for pysofa installation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python python-all-dev build-essential cmake
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Download and extract SOFA from the official download page (<a class="reference external" href="https://www.iausofa.org/2010_1201_C/sofa_c-20101201.tar.gz">https://www.iausofa.org/2010_1201_C/sofa_c-20101201.tar.gz</a>)</p></li>
-<li><p>After extracting SOFA, cd into the main directory and create a CMakeLists.txt file with the following content</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake_minimum_required(VERSION 2.6)
-project(sofa_c C)
-
-# Set a few variables
-set(LIBS ${LIBS} m)
-
-# Extract all of the source files
-file(GLOB_RECURSE C_SOURCE . src/&quot;\\*&quot;.c)
-
-# Build a shared library
-add_library(sofa_c SHARED ${C_SOURCE})
-
-# Now define the installation options
-install(TARGETS sofa_c LIBRARY DESTINATION lib)
-</pre></div>
-</div>
-<p>Save and close the file.</p>
-<p>Execute the following comments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cmake .
-
-$ make
-
-$ make install
-
-$ sudo ldconfig
-</pre></div>
-</div>
-<p>Now, we are ready to install pysofa:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pysofa</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>you may need some more tweaking for the installation of pysofa. Possible solutions are listed below:</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>ModuleNotFoundError: No module named ‘pysofa_ctypes’</p></li>
-</ol>
-<blockquote>
-<div><p>copy the contents of pysofa_ctypes.py to __init__.py, located in the installation directory for pysofa.</p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p>if __sofa_version &lt; (2010, 12, 01):</p></li>
-</ol>
-<blockquote>
-<div><p>SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers</p>
-<p>find and replace all 2010, 12, 01 with 2010, 12, 1 in __init__.py</p>
-</div></blockquote>
-</section>
 <section id="other-packages-and-requirements">
 <h3>Other packages and requirements<a class="headerlink" href="#other-packages-and-requirements" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">astropy</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pysofa2</span>
 
 <span class="n">pip</span> <span class="n">install</span> <span class="n">geopy</span>
 

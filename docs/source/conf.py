@@ -11,13 +11,13 @@ sys.path.insert(0, os.path.abspath('../../cavsiopy/'))
 project = 'cavsiopy'
 copyright = '2023, C'
 author = 'E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Glenn C. Hussey, Robert Gillies, Andrew W. Yau'
-release = '1.0.0'
+release = '1.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.autodoc']
-autodoc_mock_imports = ["cartopy", "pysofa", "astropy", "geopy", "cavsiopy"]
+autodoc_mock_imports = ["cartopy", "pysofa2", "astropy", "geopy", "cavsiopy"]
 
 templates_path = ['_templates']
 exclude_patterns = []
