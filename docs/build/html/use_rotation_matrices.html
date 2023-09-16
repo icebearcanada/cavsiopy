@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>use_rotation_matrices: Module to rotate instrument and transform between reference frames &mdash; cavsiopy 1.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="attitude_analysis: Module to obtain instrument pointing direction in various reference frames" href="attitude_analysis.html" />
+    <link rel="prev" title="ephemeris_importer: module to import RRI ephemeris and Celestrak TLE" href="ephemeris_importer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            cavsiopy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ephemeris_importer.html">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">use_rotation_matrices: Module to rotate instrument and transform between reference frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attitude_analysis.html">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attitude_plotter.html">attitude_plotter: Module to visualize satellite instrument pointing direction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellaneous.html">miscellaneous: Utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cavsiopy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">use_rotation_matrices: Module to rotate instrument and transform between reference frames</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/use_rotation_matrices.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-use_rotation_matrices">
+<span id="use-rotation-matrices-module-to-rotate-instrument-and-transform-between-reference-frames"></span><h1>use_rotation_matrices: Module to rotate instrument and transform between reference frames<a class="headerlink" href="#module-use_rotation_matrices" title="Permalink to this heading"></a></h1>
+<p>use_rotation_matrices contains functions to</p>
+<ol class="arabic simple">
+<li><p>calculate the GMST time from noon or midnight</p></li>
+</ol>
+<p>2. compute the rotation matrices for the transformations between 
+spacecraft orbital frame(ORF) and GEI J2000, J2K and ECEF, J2K and ITRF, 
+ECEF and NED, ITRF and NEC, ITRF and NED, and  NED and ENU.</p>
+<p>Two sets of rotation matrices are provided to build up direction cosine matrix.</p>
+<p>1. SET-1:
+According to Coordinate Transformations via Euler Angles, Riggs, 2019. Rev. E.
+expresses the inertial frame vectors in terms of rotated frame vectors
+used for transformation from a rotated frame to inertial frame
+gives i, j, k in terms of i’, j’, k’; abbreviated as r2i in the code
+definition of the reference: x (out), y (right), and z (up)</p>
+<p>ROLL: positive is from +Y towards +Z
+PITCH: positive is from +Z towards +X
+YAW: positive is from +X towards +Y</p>
+<p>2. SET-2:
+According to Curtis, H. D. (2013). Orbital mechanics for engineering students.
+expresses the rotated frame vectors in terms of inertial frame vectors
+for transformation from an inertial frame to rotated frame
+gives i’, j’, k’ in terms of i, j, k; abbreviated as i2r in the code
+RRI description: x (out), y (right), and z (down)</p>
+<p>ROLL: positive is from +Y towards +Z
+PITCH: positive is from +Z towards +X
+YAW: positive is from +X towards +Y</p>
+<p>&#64;author: ceren, warren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.GMST_midnight">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">GMST_midnight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utc_dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.GMST_midnight" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates GMST in radians.</p>
+<p>Includes day fraction corrected with respect to midnight.</p>
+<p>Follows: Curtis, H. D. (2013). Orbital mechanics for engineering students.
+Butterworth-Heinemann. This formula gives GMST in degrees.</p>
+<dl class="simple">
+<dt>utc_dt: datetime.datetime</dt><dd><p>time in UTC.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>GMST: float</dt><dd><p>GMST in radians.</p>
+</dd>
+</dl>
+<p>GMST = calculate_GMST_midnight(utc_dt_array)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.GMST_noon">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">GMST_noon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.GMST_noon" title="Permalink to this definition"></a></dt>
+<dd><p>Follows: Curtis, H. D. (2013). Orbital mechanics for engineering students.
+Butterworth-Heinemann. This formula gives GMST in degrees.</p>
+<p>Includes day fraction corrected with respect to noon.</p>
+<dl class="simple">
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time in UTC.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>GMST: float</dt><dd><p>GMST in radians.</p>
+</dd>
+</dl>
+<p>GMST = calculate_GMST_noon(time_array)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RX_i2r">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RX_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RX_i2r" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>x<span class="classifier">float</span></dt><dd><p>roll angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about x axis.</p>
+</dd>
+</dl>
+<p>Rx = RX_i2r(roll)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RX_r2i">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RX_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RX_r2i" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>x<span class="classifier">float</span></dt><dd><p>roll angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about x axis.</p>
+</dd>
+</dl>
+<p>Rx = RX_r2i(roll)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RY_i2r">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RY_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RY_i2r" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>y<span class="classifier">float</span></dt><dd><p>pitch angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about y axis.</p>
+</dd>
+</dl>
+<p>Ry = RY_i2r(pitch)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RY_r2i">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RY_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RY_r2i" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>y<span class="classifier">float</span></dt><dd><p>pitch angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about y axis.</p>
+</dd>
+</dl>
+<p>Ry = RY_r2i(pitch)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RZ_i2r">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RZ_i2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RZ_i2r" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>z<span class="classifier">float</span></dt><dd><p>yaw angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about z axis.</p>
+</dd>
+</dl>
+<p>Rz = RZ_i2r(yaw)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.RZ_r2i">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">RZ_r2i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.RZ_r2i" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>z<span class="classifier">float</span></dt><dd><p>yaw angle (radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>Rotation matrix about z axis.</p>
+</dd>
+</dl>
+<p>Rz = RZ_r2i(yaw)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.ecef_to_gei_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ecef_to_gei_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_rad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.ecef_to_gei_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate ECEF to GEI rotation matrix.</p>
+<p>Uses the transpose of GEIJ2K to ECEF rotation matrix.</p>
+<dl class="simple">
+<dt>theta_rad<span class="classifier">float</span></dt><dd><p>GMST_midnight.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>GEI2ECEF<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Rotation matrix for transformations from GEI to ECEF.</p>
+</dd>
+</dl>
+<p>R = ecef_to_gei_rm(theta_rad)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.gei2ecef">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">gei2ecef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_GEI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.gei2ecef" title="Permalink to this definition"></a></dt>
+<dd><p>function for GEIJ2K to ECEF transformations</p>
+<dl class="simple">
+<dt>inst_GEI<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K .</p>
+</dd>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>experiment time interval.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_ECEF<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K.</p>
+</dd>
+</dl>
+<p>inst_ECEF = gei2ecef(inst_GEI, time_array)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.gei_to_ecef_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">gei_to_ecef_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_rad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.gei_to_ecef_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the GEI to ECEF rotation matrix.</p>
+<p>One rotation is needed in xy frame (yaw rotation) to transform from 
+GEIJ2K to ECEF. Yaw angle is the azimuth angle between GEIJ2K and 
+ECEF in this case.</p>
+<p>Azimuth= Greenwich sidereal time + Earth’s rotation speed * UTC.</p>
+<p>Ref:
+1. J. Riggs, Coordinate transformations via Euler Angle Rotations,
+Rev. E - 10 April 2019</p>
+<ol class="arabic simple" start="2">
+<li><ol class="upperalpha simple">
+<li><p>Sofyali, Orbital Mechanics notes, 7 February 2019.</p></li>
+</ol>
+</li>
+</ol>
+<dl class="simple">
+<dt>theta_rad<span class="classifier">float</span></dt><dd><p>GMST_midnight.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_GEI2ECEF<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Rotation matrix for transformations from GEI to ECEF.</p>
+</dd>
+</dl>
+<p>R = gei_to_ecef_rm(theta_rad)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.gei_to_oe_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">gei_to_oe_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.gei_to_oe_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the GEI to orbital frame matrix.</p>
+<p>GEI2OE matrix is the transpose of OE2GEI matrix.</p>
+<dl class="simple">
+<dt>inc<span class="classifier">float</span></dt><dd><p>satellite inclination (in radians).</p>
+</dd>
+<dt>raan<span class="classifier">float</span></dt><dd><p>satellite right ascension of ascending node (in radians).</p>
+</dd>
+<dt>ap<span class="classifier">float</span></dt><dd><p>satellite argument of periapsis (in radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_GEI2OE<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>orbital frame to GEI matrix using satellite orbital 
+elements.</p>
+</dd>
+</dl>
+<p>R = gei_to_oe(sat_raan, sat_inc, sat_ap)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.icrf2itrf">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf2itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_GEI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf2itrf" title="Permalink to this definition"></a></dt>
+<dd><p>Function to transform the pointing vector in GEIJ2K to ITRF.</p>
+<p>Uses Python wrappers for the Standards of Fundamental Astronomy library
+<a class="reference external" href="https://www.iausofa.org/">https://www.iausofa.org/</a></p>
+<dl class="simple">
+<dt>inst_GEI<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K.</p>
+</dd>
+<dt>path_to_files<span class="classifier">str</span></dt><dd><p>IES and EOP file path.</p>
+</dd>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time array.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_ITRF<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in ITRF.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_ITRF = icrf2itrf(inst_GEI, path_to_files, time_array, </dt><dd><p>GEOx, GEOy, GEOz)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.icrf_to_itrf_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf_to_itrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf_to_itrf_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the ICRF to ITRF matrix using pysofa routines.</p>
+<dl class="simple">
+<dt>path_to_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
+</dd>
+<dt>input_time<span class="classifier">datetime.datetime</span></dt><dd><p>time.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_ICRF2ITRF<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>ICRF to ITRF rotation matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.itrf_to_icrf_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">itrf_to_icrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.itrf_to_icrf_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate ITRF to ICRF rotation matrix using pysofa routines.</p>
+<p>Uses the transpose of ITRF to ICRF rotation matrix.</p>
+<dl class="simple">
+<dt>path_to_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
+</dd>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time array.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_ICRF2ITRF<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>ICRF to ITRF rotation matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.j2k_to_orf_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">j2k_to_orf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.j2k_to_orf_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Given 6 floats of the J2K/ICRF position and velocity data,
+Returns a 3x3 rotation matrix describing the rotation of J2K-&gt; ORF.</p>
+<p>Uses the transpose of rNadir_to_J2K.</p>
+<p>Ref: 
+Canuto, E., Novara, C., Carlucci, D., Montenegro, C. P., &amp; Massotti, L. 
+(2018). Orbital Control and Prediction Problems. In Spacecraft Dynamics 
+and Control: The Embedded Model Control Approach. Butterworth-Heinemann.</p>
+<dl class="simple">
+<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
+</dd>
+<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
+</dd>
+<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
+</dd>
+<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vy<span class="classifier">Tnumpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rJ2K_to_Nadir<span class="classifier">np.ndarray[float]</span></dt><dd><p>rotation matrice for the transformation from GEIJ2K to ORF.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.nec2terrestrial">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">nec2terrestrial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_NEC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.nec2terrestrial" title="Permalink to this definition"></a></dt>
+<dd><p>Function to transform instrument look direction from NEC to terrestrial 
+frame. Uses the transpose of ITRF to NEC rotation matrix.</p>
+<dl class="simple">
+<dt>inst_NEC<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Instrument look direction in NEC.</p>
+</dd>
+<dt>gX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEO/ITRF (km).</p>
+</dd>
+<dt>gY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEO/ITRF (km).</p>
+</dd>
+<dt>gZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEO/ITRF (km).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_ter<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Instrument look direction in ITRF.</p>
+</dd>
+</dl>
+<p>inst_ITRF = nec2itrf(inst_NEC, GEOx, GEOy, GEOz)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.nec_to_terrestrial_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">nec_to_terrestrial_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.nec_to_terrestrial_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate NEC to ITRF rotation matrix.</p>
+<p>Uses the transpose of ITRF to NEC rotation matrix.</p>
+<dl class="simple">
+<dt>gX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEO/ITRF (km)</p>
+</dd>
+<dt>gY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEO/ITRF (km)</p>
+</dd>
+<dt>gZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEO/ITRF (km)</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_nec2ter<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>3d rotation matrix describing the rotation from NEC to ITRF.</p>
+</dd>
+</dl>
+<p>r_nec2ter = nec_to_terrestrial_rm(GEOx, GEOy, GEOz)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.ned2enu">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ned2enu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_NED</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.ned2enu" title="Permalink to this definition"></a></dt>
+<dd><p>Function for NED to ENU transformations</p>
+<p>The transformation matrice from NED to ENU and ENU to NED are the same.
+[0 1 0 ; 1 0 0 , 0 0 -1]
+in ENU, z increases in upward direction.</p>
+<p>Ref: Grewal, M. S., Weill, L. R., &amp; Andrews, A. P. (2008).
+Appendix C: Coordinate Transformations. In Global Positioning Systems,
+Inertial Navigation, and Integration (pp. 456–501). John Wiley &amp; Sons, Inc.
+<a class="reference external" href="https://doi.org/10.1002/9780470099728.app3">https://doi.org/10.1002/9780470099728.app3</a></p>
+<dl class="simple">
+<dt>inst_NED<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in NED.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_ENU<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in ENU.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.ned_to_terrestrial_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">ned_to_terrestrial_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.ned_to_terrestrial_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate NED to ECEF rotation matrix.</p>
+<p>Uses the transpose of ECEF to NED rotation matrix.</p>
+<dl class="simple">
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude in degrees.</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude in degrees.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_ned2ter<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Rotation matrix for transformations from NED to ECEF.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.oe_to_gei_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">oe_to_gei_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.oe_to_gei_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the perifocal frame (OE) to GEI rotation matrix</p>
+<p>To transform from OE to J2K using orbital elements:
+RZ_r2i(raan) &#64; RX_r2i(inc) &#64; RZ_r2i(ap)</p>
+<p>Ref: Frame rotations and quaternions, Pedro A. Capó-Lugo, Peter M. Bainum,
+in Orbital Mechanics and Formation Flying, 2011</p>
+<dl class="simple">
+<dt>inc<span class="classifier">float</span></dt><dd><p>satellite inclination (in radians).</p>
+</dd>
+<dt>raan<span class="classifier">float</span></dt><dd><p>satellite right ascension of ascending node (in radians).</p>
+</dd>
+<dt>ap<span class="classifier">float</span></dt><dd><p>satellite argument of periapsis (in radians).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_OE2GEI<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>ORF to GEI matrix using orbital elements.</p>
+</dd>
+</dl>
+<p>R = oe_to_gei(sat_raan, sat_inc, sat_ap)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.orf_to_j2k_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">orf_to_j2k_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.orf_to_j2k_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Given 6 floats of the J2K/ICRF position and velocity data,
+Returns a 3x3 rotation matrix describing the rotation of ORF -&gt; J2K.</p>
+<p>Ref: 
+Canuto, E., Novara, C., Carlucci, D., Montenegro, C. P., &amp; Massotti, L. 
+(2018). Orbital Control and Prediction Problems. In Spacecraft Dynamics 
+and Control: The Embedded Model Control Approach. Butterworth-Heinemann.</p>
+<dl class="simple">
+<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
+</dd>
+<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
+</dd>
+<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
+</dd>
+<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vy<span class="classifier">Tnumpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rNadir_to_J2K<span class="classifier">np.ndarray[float]</span></dt><dd><p>rotation matrice for the transformation from ORF to GEIJ2K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.orf_to_j2k_use_orbital_elements">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">orf_to_j2k_use_orbital_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0,</span> <span class="pre">0,</span> <span class="pre">-</span> <span class="pre">1],</span> <span class="pre">[1,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">-</span> <span class="pre">1,</span> <span class="pre">0]])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.orf_to_j2k_use_orbital_elements" title="Permalink to this definition"></a></dt>
+<dd><p>Employs orbital elements to transform from ORF to GEIJ2K:</p>
+<p>To align the perifocal frame with the orbital frame 
+RZ_r2i(TA) &#64; P &#64;  body_vec</p>
+<p>Ref:Canuto, E., Novara, C., Carlucci, D., Montenegro, C. P., &amp; Massotti, L. 
+(2018). Orbital Control and Prediction Problems. In Spacecraft Dynamics 
+and Control: The Embedded Model Control Approach. Butterworth-Heinemann</p>
+<dl class="simple">
+<dt>body_vec<span class="classifier">np.ndarray[float]</span></dt><dd><p>rotated body frame vector.</p>
+</dd>
+<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
+</dd>
+<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
+</dd>
+<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
+</dd>
+<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>P<span class="classifier">numpy.ndarray</span></dt><dd><p>optional reordering matrix to align the perifocal frame with the</p>
+</dd>
+</dl>
+<p>orbital frame.The default is P= np.array([[0, 0, -1],[1, 0, 0],[0,-1,0]])</p>
+<dl class="simple">
+<dt>inst_GEI<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_GEI =         </dt><dd><p>orf_to_j2k_use_orbital_elements(body_vec, pX, pY, pZ, Vx, Vy, Vz)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.orf_to_j2k_use_spacecraft_ephemeris">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">orf_to_j2k_use_spacecraft_ephemeris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.orf_to_j2k_use_spacecraft_ephemeris" title="Permalink to this definition"></a></dt>
+<dd><p>Employs spacecraft ephemeris to transform from ORF to GEIJ2K:</p>
+<dl class="simple">
+<dt>body_vec<span class="classifier">np.ndarray[float]</span></dt><dd><p>rotated body frame vector.</p>
+</dd>
+<dt>pX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
+</dd>
+<dt>pY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
+</dd>
+<dt>pZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
+</dd>
+<dt>Vx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>Vz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>P<span class="classifier">numpy.ndarray</span></dt><dd><p>optional reordering matrix to align the perifocal frame with the</p>
+</dd>
+</dl>
+<p>orbital frame. Default is P= np.array([[0, 0, -1],[1, 0, 0],[0,-1,0]])</p>
+<dl class="simple">
+<dt>inst_GEI<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_GEI =         </dt><dd><p>orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.terrestrial2nec">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">terrestrial2nec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_ter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.terrestrial2nec" title="Permalink to this definition"></a></dt>
+<dd><p>Function to transform instrument look direction from terrestrial frame
+to NEC. Uses (Nielsen, 2019) method.</p>
+<dl class="simple">
+<dt>inst_ter<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Instrument look direction in terrestrial frame.</p>
+</dd>
+<dt>gX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEO/ITRF (km).</p>
+</dd>
+<dt>gY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEO/ITRF (km).</p>
+</dd>
+<dt>gZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEO/ITRF (km).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_NEC<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in NEC.</p>
+</dd>
+</dl>
+<p>inst_NEC = itrf2nec(inst_ITRF, GEOx, GEOy, GEOz)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.terrestrial2ned">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">terrestrial2ned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_ter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.terrestrial2ned" title="Permalink to this definition"></a></dt>
+<dd><p>function for transformations from ECEF to NED (z is positive downwards)</p>
+<dl class="simple">
+<dt>inst_ter<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in terrestrial frame.</p>
+</dd>
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude in degrees.</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude in degrees.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_NED<span class="classifier">np.ndarray[float]</span></dt><dd><p>instrument look direction in NED.</p>
+</dd>
+</dl>
+<p>inst_NED = terrestrial2ned(inst_ter, lat, lon)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.terrestrial_to_nec_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">terrestrial_to_nec_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gZ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.terrestrial_to_nec_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Given the Geographic Cartesian Position ephemeris data return a 
+3d rotation matrix describing the rotation from ITRF to NEC</p>
+<p>Ref:
+<a class="reference external" href="https://earth.esa.int/documents/10174/1514862/Swarm_Level-1b_Processor_Algorithms">https://earth.esa.int/documents/10174/1514862/Swarm_Level-1b_Processor_Algorithms</a>
+Page 137, “C.3 North East Center (NEC)</p>
+<dl class="simple">
+<dt>gX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEO/ITRF (km).</p>
+</dd>
+<dt>gY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEO/ITRF (km).</p>
+</dd>
+<dt>gZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEO/ITRF (km).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>R_NEC<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>3d rotation matrix describing the rotation from ITRF to NEC.</p>
+</dd>
+</dl>
+<p>rter2nec  = terrestrial_to_nec_rm(GEOx, GEOy, GEOz)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="use_rotation_matrices.terrestrial_to_ned_rm">
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">terrestrial_to_ned_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.terrestrial_to_ned_rm" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the ECEF to NED rotation matrix.</p>
+<p>Y-Z (pitch-yaw) sequence with longitude and latitude are needed.</p>
+<ol class="arabic simple">
+<li><p>Aligning the x-y plane of ECEF and NED using longitude: yaw(longitude)</p></li>
+<li><p>Aligning the x-z plane using latitude: pitch(-(pi/2+latitude))</p></li>
+</ol>
+<p>Ref: 
+1. J. Riggs, Coordinate transformations via Euler Angle Rotations,
+Rev. E - 10 April 2019</p>
+<p>2. Cai, G., Chen, B.M., Lee, T.H. (2011). Coordinate Systems and
+Transformations. In: Unmanned Rotorcraft Systems. Advances in Industrial
+Control. Springer, London. <a class="reference external" href="https://doi.org/10.1007/978-0-85729-635-1_2">https://doi.org/10.1007/978-0-85729-635-1_2</a></p>
+<dl class="simple">
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude in degrees.</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude in degrees.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rm_ter2ned<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Rotation matrix for transformations from ECEF to NED.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ephemeris_importer.html" class="btn btn-neutral float-left" title="ephemeris_importer: module to import RRI ephemeris and Celestrak TLE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="attitude_analysis.html" class="btn btn-neutral float-right" title="attitude_analysis: Module to obtain instrument pointing direction in various reference frames" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, C.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

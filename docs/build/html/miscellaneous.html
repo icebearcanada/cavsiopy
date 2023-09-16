@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>miscellaneous: Utilities &mdash; cavsiopy 1.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="attitude_plotter: Module to visualize satellite instrument pointing direction" href="attitude_plotter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            cavsiopy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ephemeris_importer.html">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_rotation_matrices.html">use_rotation_matrices: Module to rotate instrument and transform between reference frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attitude_analysis.html">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attitude_plotter.html">attitude_plotter: Module to visualize satellite instrument pointing direction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">miscellaneous: Utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cavsiopy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">miscellaneous: Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/miscellaneous.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-miscellaneous">
+<span id="miscellaneous-utilities"></span><h1>miscellaneous: Utilities<a class="headerlink" href="#module-miscellaneous" title="Permalink to this heading"></a></h1>
+<p>This module contains functions for: 
+1- legend insertion to figures (put_legend, put_legend_fnt)
+2- combining images (combine_horizontal, combine_vertical)
+3- marking specific times on map(mark_on_map, mark_beginning_on_map)</p>
+<blockquote>
+<div><p>and altitude plots(mark_beginning, mark_altitude_plots)</p>
+</div></blockquote>
+<p>4- plotting the direction of the spacecraft
+5- finding index of desired values in parameters: find_index</p>
+<p>&#64;author: ceren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.combine_horizontal">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">combine_horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fnew</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.combine_horizontal" title="Permalink to this definition"></a></dt>
+<dd><p>Horizontally combines images with arbitrary image size as a new image and
+saves the new image with the given file name.</p>
+<p>f: Name of image files, list
+fnew: Output file name</p>
+<p>Saves horizontally combined image as fnew to the directory
+Reference: <a class="reference external" href="https://stackoverflow.com/a/30228789/15165141">https://stackoverflow.com/a/30228789/15165141</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.combine_vertical">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">combine_vertical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fnew</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.combine_vertical" title="Permalink to this definition"></a></dt>
+<dd><p>Vertically combines images with arbitrary image size as a new image and
+saves the new image with the given file name.</p>
+<p>f: Name of image files, list
+fnew: Output file name</p>
+<p>Saves vertically combined image as fnew to the directory
+Reference: <a class="reference external" href="https://stackoverflow.com/a/30228789/15165141">https://stackoverflow.com/a/30228789/15165141</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.coverage">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.coverage" title="Permalink to this definition"></a></dt>
+<dd><p>Generates the plot parameters</p>
+<dl class="simple">
+<dt>extent: list</dt><dd><p>[Lon_min, Lon_max, Lat_min, Lat_max]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>central_lon<span class="classifier">float</span></dt><dd><p>Central longitude (degrees)</p>
+</dd>
+<dt>central lat<span class="classifier">float</span></dt><dd><p>Central latitude (degrees)</p>
+</dd>
+<dt>pre-defined<span class="classifier">float</span></dt><dd><p>left (.01), width (.5), bottom (.01), height (.5)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.find_index">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">find_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closeto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'off'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.find_index" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the index of numbers that are close to the value we are searching for
+with a tolerance ‘tol’.</p>
+<dl class="simple">
+<dt>data: np.ndarray[float]</dt><dd><p>input data for inspection, array</p>
+</dd>
+<dt>closeto: float</dt><dd><p>The value we are searching for</p>
+</dd>
+<dt>tol: float</dt><dd><p>Amount of tolerance</p>
+</dd>
+<dt>verbose<span class="classifier">string, optional</span></dt><dd><p>Verbose. The default is ‘off’.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ind_close: list</dt><dd><p>Index of the close values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.indices_and_intervals">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">indices_and_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.indices_and_intervals" title="Permalink to this definition"></a></dt>
+<dd><p>Generates date for usage with plot titles and output filenames,
+determines the index of the last used data row and finds the number of
+intervals for cases we do not use the complete data set.</p>
+<dl class="simple">
+<dt>start_time: datetime.datetime</dt><dd><p>The beginning of the passage</p>
+</dd>
+<dt>time_data<span class="classifier">datetime.datetime </span></dt><dd><p>Time array for the whole passage</p>
+</dd>
+<dt>intval<span class="classifier">int</span></dt><dd><p>how many seconds do we want for intervals</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>date<span class="classifier">str</span></dt><dd><p>date as a string.</p>
+</dd>
+<dt>last_data_index: int</dt><dd><p>index of the last used data row</p>
+</dd>
+<dt>number_of_intervals: int</dt><dd><p>number of intervals for cases</p>
+</dd>
+<dt>seconds: int</dt><dd><p>tick locator for seconds</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.mark_altitude_plots">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">mark_altitude_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cyan'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.mark_altitude_plots" title="Permalink to this definition"></a></dt>
+<dd><p>Function to mark locations on altitude plots.</p>
+<dl class="simple">
+<dt>ax<span class="classifier">Axes</span></dt><dd><p>axes.</p>
+</dd>
+<dt>Px<span class="classifier">float</span></dt><dd><p>Longitude of the point to be marked (degrees).</p>
+</dd>
+<dt>Py<span class="classifier">float</span></dt><dd><p>Altitude of the point to be marked (km).</p>
+</dd>
+<dt>color<span class="classifier">str, optional</span></dt><dd><p>Color of the point to be marked. Default is ‘cyan’.</p>
+</dd>
+<dt>edgecolor<span class="classifier">str, optional</span></dt><dd><p>Edge color of the point to be marked. Default is ‘black’.</p>
+</dd>
+<dt>marker<span class="classifier">str, optional</span></dt><dd><p>Marker symbol. The default is start ‘*’.</p>
+</dd>
+<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs<span class="classifier">dict</span></dt><dd><p>Additional keyword arguments for scatter plot.</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.mark_beginning">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">mark_beginning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.mark_beginning" title="Permalink to this definition"></a></dt>
+<dd><p>Plot to mark the beginning of the pass and show the direction of the
+spacecraft with an arrow for altitude plots.</p>
+<dl class="simple">
+<dt>ax<span class="classifier">Axes</span></dt><dd><p>axes.</p>
+</dd>
+<dt>x<span class="classifier">float</span></dt><dd><p>Longitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>y<span class="classifier">float</span></dt><dd><p>Latitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>z<span class="classifier">float</span></dt><dd><p>Altitude of the beginning of the trajectory (km).</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.mark_beginning_on_map">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">mark_beginning_on_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cartopy.crs.PlateCarree</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.mark_beginning_on_map" title="Permalink to this definition"></a></dt>
+<dd><p>Function to mark the beginning of the pass and tp show the direction of the
+spacecraft with an arrow on map projections.</p>
+<dl class="simple">
+<dt>ax<span class="classifier">Axes</span></dt><dd><p>axes.</p>
+</dd>
+<dt>x<span class="classifier">float</span></dt><dd><p>Longitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>y<span class="classifier">float</span></dt><dd><p>Latitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>z<span class="classifier">float, optional</span></dt><dd><p>Latitude of the beginning of the trajectory (km).</p>
+</dd>
+<dt>transform<span class="classifier">object, optional</span></dt><dd><p>cartopy projection. The default is ccrs.PlateCarree().</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.mark_on_map">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">mark_on_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cyan'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cartopy.crs.PlateCarree</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.mark_on_map" title="Permalink to this definition"></a></dt>
+<dd><p>Function to mark locations on maps.</p>
+<dl class="simple">
+<dt>ax<span class="classifier">Axes</span></dt><dd><p>axes.</p>
+</dd>
+<dt>Px<span class="classifier">float</span></dt><dd><p>Longitude of the point to be marked (degrees).</p>
+</dd>
+<dt>Py<span class="classifier">float</span></dt><dd><p>Latitude of the point to be marked (degrees).</p>
+</dd>
+<dt>color<span class="classifier">str, optional</span></dt><dd><p>Color of the point to be marked. Default is ‘cyan’.</p>
+</dd>
+<dt>edgecolor<span class="classifier">str, optional</span></dt><dd><p>Edge color of the point to be marked. Default is ‘black’.</p>
+</dd>
+<dt>transform<span class="classifier">object, optional</span></dt><dd><p>cartopy projection. The default is ccrs.PlateCarree().</p>
+</dd>
+<dt><a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs<span class="classifier">dict</span></dt><dd><p>Additional keyword arguments for scatter plot.</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.put_legend_fnt">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">put_legend_fnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchorx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.put_legend_fnt" title="Permalink to this definition"></a></dt>
+<dd><p>Inserts legend to figure for cases, which need customized symbols.</p>
+<dl class="simple">
+<dt>ax: str</dt><dd><p>axis</p>
+</dd>
+<dt>n: float</dt><dd><p>how many columns should the legend have</p>
+</dd>
+<dt>location: str</dt><dd><p>location of the legend</p>
+</dd>
+<dt>labelspace: float</dt><dd><p>space between the labels (values can be between 0 and 1).</p>
+</dd>
+<dt>anchorx, anchory: float</dt><dd><p>coordinate of the lower left corner of legend box
+(values can be between 0 and 1)</p>
+</dd>
+</dl>
+<p>The following are for the customization of the symbols we want to display:</p>
+<dl class="simple">
+<dt>labels: str</dt><dd><p>labels to display in the legend</p>
+</dd>
+<dt>linestyles: str</dt><dd><p>linestyles used in plotting the parameters</p>
+</dd>
+<dt>markers: str</dt><dd><p>markers used in plotting the parameters</p>
+</dd>
+<dt>colors: str</dt><dd><p>colors used in plotting the parameters.
+can be also given in RGB</p>
+</dd>
+<dt>edgecolors: str</dt><dd><p>edgecolors used in plotting the parameters</p>
+</dd>
+</dl>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.sc_direction_plotter">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">sc_direction_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Alt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.sc_direction_plotter" title="Permalink to this definition"></a></dt>
+<dd><p>Plots an arrow to depict the direction of the spacecraft velocity.
+Prints out trajectory information: altitude increasing/decreasing, 
+going towards SE, NW, SW, NE.</p>
+<dl class="simple">
+<dt>ax<span class="classifier">axes</span></dt><dd><p>Axes object of matplotlib.</p>
+</dd>
+<dt>Lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Longitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>Lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Latitude of the beginning of the trajectory (degrees).</p>
+</dd>
+<dt>Alt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Altitude of the beginning of the trajectory (km).</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miscellaneous.set_3Dplot_limits">
+<span class="sig-prename descclassname"><span class="pre">miscellaneous.</span></span><span class="sig-name descname"><span class="pre">set_3Dplot_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how_far</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miscellaneous.set_3Dplot_limits" title="Permalink to this definition"></a></dt>
+<dd><p>Generates the limit of axes wrt the selected point on the ground for
+3D plots.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>P: float</dt><dd><p>coordinate of the ground point at x, y or z</p>
+</dd>
+<dt>coord: float</dt><dd><p>lat, lon or alt</p>
+</dd>
+<dt>how_far: float</dt><dd><p>how far is the axis limit from the point on the ground</p>
+</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div><p>coord_min: float
+coord_max: float</p>
+</div></blockquote>
+<p>xmin, xmax = set_3Dplot_limits(Px, x)</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="attitude_plotter.html" class="btn btn-neutral float-left" title="attitude_plotter: Module to visualize satellite instrument pointing direction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, C.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

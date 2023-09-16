@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>attitude_analysis: Module to obtain instrument pointing direction in various reference frames &mdash; cavsiopy 1.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="attitude_plotter: Module to visualize satellite instrument pointing direction" href="attitude_plotter.html" />
+    <link rel="prev" title="use_rotation_matrices: Module to rotate instrument and transform between reference frames" href="use_rotation_matrices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            cavsiopy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ephemeris_importer.html">ephemeris_importer: module to import RRI ephemeris and Celestrak TLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_rotation_matrices.html">use_rotation_matrices: Module to rotate instrument and transform between reference frames</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attitude_plotter.html">attitude_plotter: Module to visualize satellite instrument pointing direction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellaneous.html">miscellaneous: Utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cavsiopy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">attitude_analysis: Module to obtain instrument pointing direction in various reference frames</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/attitude_analysis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-attitude_analysis">
+<span id="attitude-analysis-module-to-obtain-instrument-pointing-direction-in-various-reference-frames"></span><h1>attitude_analysis: Module to obtain instrument pointing direction in various reference frames<a class="headerlink" href="#module-attitude_analysis" title="Permalink to this heading"></a></h1>
+<p>attitude_analysis module includes functions for finding the instrument
+pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF,</p>
+<blockquote>
+<div><p>NEC, NED and ENU.</p>
+</div></blockquote>
+<p>Additional functions are available to calculate the look angles of the
+spacecraft and the instrument with respect to a ground point, line-of-sight
+look direction vector from the ground point to the spacecraft and the distance
+between spacecraft and the ground point. Slew quality can be calculated given
+the threshold for the angle between the LOS direction and the
+instrument pointing.</p>
+<p>&#64;author: ceren</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.LA_inst">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">LA_inst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.LA_inst" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>vec<span class="classifier">Array of float</span></dt><dd><p>Boresight pointing vector.</p>
+</dd>
+<dt>e<span class="classifier">int</span></dt><dd><p>Column of the east vector in vec.</p>
+</dd>
+<dt>n<span class="classifier">int</span></dt><dd><p>Column of the north vector in vec.</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft longitude (degrees).</p>
+</dd>
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft latitude (degrees).</p>
+</dd>
+<dt>pLon<span class="classifier">float</span></dt><dd><p>Longitude of the target on the ground (degrees).</p>
+</dd>
+</dl>
+<dl>
+<dt>dict<span class="classifier">dict</span></dt><dd><p>Look angles of the instrument: azimuth and depression. 
+vec_azim: Array of float</p>
+<blockquote>
+<div><p>Look angle of the instrument in horizontal plane (degrees)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>vec_dep: Array of float</dt><dd><p>Depression angle of the instrument (degrees)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>inst_look_angles = LA_rri(RRI_enu, 0, 1, Lon, Lat)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.LA_sat">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">LA_sat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.LA_sat" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates the satellite look angle: elevation and azimuth angle that is 
+needed for the satellite to look towards a point in GEO frame.</p>
+<dl class="simple">
+<dt>Ref: ASD5: Earth Station Look Angles By Prof. Gregory D. Durgin,</dt><dd><p>Astrodynamics, Georgia Tech, 2009.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>plon<span class="classifier">float</span></dt><dd><p>Longitude of the target on the ground (degrees).</p>
+</dd>
+<dt>plat<span class="classifier">float</span></dt><dd><p>Latitude of the target on the ground (degrees).</p>
+</dd>
+<dt>palt<span class="classifier">float</span></dt><dd><p>altitude of the point in GEO frame (km).</p>
+</dd>
+<dt>slon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft longitude (degrees).</p>
+</dd>
+<dt>slat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft latitude (degrees).</p>
+</dd>
+<dt>salt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>altitude of satellite in GEO frame (km).</p>
+</dd>
+</dl>
+<dl>
+<dt>dict<span class="classifier">dict</span></dt><dd><p>Look angles of the spacecraft: azimuth and elevation.
+azimuth: numpy.ndarray[float]</p>
+<blockquote>
+<div><p>Satellite location in terms of azimuth (degrees).</p>
+</div></blockquote>
+<dl class="simple">
+<dt>elevation: numpy.ndarray[float]</dt><dd><p>Elevation angle of the spacecraft (degrees).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>sat_look_angles = LA_sat(plon, plat,  palt, slon, slat, salt)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.calculate_los_vec">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">calculate_los_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.calculate_los_vec" title="Permalink to this definition"></a></dt>
+<dd><p>calculates line-of-sight vector from a point to the spacecraft location
+using the geopy.dist.geodesic</p>
+<dl class="simple">
+<dt>plon<span class="classifier">float</span></dt><dd><p>Longitude of the target on the ground (degrees).</p>
+</dd>
+<dt>plat<span class="classifier">float</span></dt><dd><p>Latitude of the target on the ground (degrees).</p>
+</dd>
+<dt>palt<span class="classifier">float</span></dt><dd><p>altitude of the point in GEO frame (km).</p>
+</dd>
+<dt>slon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft longitude (degrees).</p>
+</dd>
+<dt>slat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft latitude (degrees).</p>
+</dd>
+<dt>salt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>altitude of satellite in GEO frame (km).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>los_enu_arr<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>line-of-sight vector from the point to the spacecraft in ENU system.</p>
+</dd>
+<dt>los_ned_arr<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>line-of-sight vector from the point to the spacecraft in NED system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.calculate_reception_angle">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">calculate_reception_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_ned</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'boresight'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.calculate_reception_angle" title="Permalink to this definition"></a></dt>
+<dd><p>function to calculate the reception angle of an instrument.
+reception angle: angle between the instrument look direction vector and 
+the line-of-sight vector from the target</p>
+<dl class="simple">
+<dt>inst_ned<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction vector in North-East-Down.</p>
+</dd>
+<dt>pLat<span class="classifier">float</span></dt><dd><p>geodetic latitude of the target (degrees).</p>
+</dd>
+<dt>pLon<span class="classifier">float</span></dt><dd><p>geodetic longitude of the target (degrees).</p>
+</dd>
+<dt>pAlt<span class="classifier">float</span></dt><dd><p>Altitude of the target (km).</p>
+</dd>
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft position in geodetic latitude (degrees).</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft position in geodetic latitude(degrees).</p>
+</dd>
+<dt>alt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft altitude (km).</p>
+</dd>
+<dt>inst<span class="classifier">str, optional</span></dt><dd><p>cra is calculated as (90-ra) for dipoles, (180-ra) for boresight. 
+input can be boresight or dipole. The default is ‘boresight’.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ra_los<span class="classifier">numpy.ndarray(float)</span></dt><dd><p>reception angle of the instrument (degrees).</p>
+</dd>
+<dt>cra_los<span class="classifier">numpy.ndarray(float)</span></dt><dd><p>complementary reception angle of the instrument (degrees).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.find_instrument_attitude">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">find_instrument_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotated_body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_sofa_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ephemeris'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'itrf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nec'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.find_instrument_attitude" title="Permalink to this definition"></a></dt>
+<dd><p>Takes in the rotated body vector in orbital frame and outputs instrument
+look direction in NEC or NED coordinate systems by utilizing the functions
+in use_rotation_matrices module.</p>
+<dl class="simple">
+<dt>rotated_body<span class="classifier">TYPE</span></dt><dd><p>DESCRIPTION.</p>
+</dd>
+<dt>geiX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEIJ2K (km).</p>
+</dd>
+<dt>geiY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEIJ2K (km).</p>
+</dd>
+<dt>geiZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEIJ2K (km).</p>
+</dd>
+<dt>geiVx<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>geiVy<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>geiVz<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z component of velocity in GEIJ2K (km/s).</p>
+</dd>
+<dt>geoX<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>X position in GEO (km).</p>
+</dd>
+<dt>geoY<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Y position in GEO (km).</p>
+</dd>
+<dt>geoZ<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Z position in GEO (km).</p>
+</dd>
+<dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time.</p>
+</dd>
+<dt>start_date<span class="classifier">datetime.datetime</span></dt><dd><p>start of the experiment.</p>
+</dd>
+<dt>lat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic latitude in degrees.</p>
+</dd>
+<dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude in degrees.</p>
+</dd>
+<dt>path_to_sofa_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
+</dd>
+<dt>method1<span class="classifier">str, optional</span></dt><dd><p>Transformation method to ICRF/GEI J2K.
+Can be ‘ephemeris’ or ‘orbital_elements’. The default is ‘ephemeris’.</p>
+</dd>
+<dt>frame2<span class="classifier">str, optional</span></dt><dd><p>Terrestrial frame: ‘ecef’ or ‘itrf’. The default is ‘itrf’.</p>
+</dd>
+<dt>frame3<span class="classifier">str, optional</span></dt><dd><p>Final coordinate system: ‘nec’ or ‘ned’. The default is ‘nec’.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>inst_geo<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in the requested coordinate system:NEC or NED</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.find_slew_inst">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">find_slew_inst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra_los</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.find_slew_inst" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>function to classify slew according to the given criteria</dt><dd><p>1 : Front face slew
+0: no dipoles slewed
+-1: Back face slew</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ra_los<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Boresight reception angle (degrees).</p>
+</dd>
+<dt>criteria<span class="classifier">float</span></dt><dd><p>criteria/threshold for slew (degrees).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>slew<span class="classifier">int</span></dt><dd><p>Classification of slew according to the given criteria</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.find_slew_rri">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">find_slew_rri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra_los</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_D1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_D2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.find_slew_rri" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>function to classify slew according to the given criteria</dt><dd><p>2: Front face slew 
+1: 1 dipole back, 1 dipole front, boresight front slew
+0.5 : 1 dipole front slew
+0: no dipoles slewed
+-0.5: 1 dipole back slew
+-1: 1 dipole back, 1 dipole front, boresight back slew
+-2: Back face slew</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ra_los<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Boresight reception angle (degrees).</p>
+</dd>
+<dt>ra_D1<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Dipole1 reception angle (degrees).</p>
+</dd>
+<dt>ra_D2<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Dipole2 reception angle (degrees).</p>
+</dd>
+<dt>criteria<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>criteria/threshold for slew (degrees).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>slew<span class="classifier">int</span></dt><dd><p>Classification of slew according to the given criteria</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.rotate_inst">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">rotate_inst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Yaw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.rotate_inst" title="Permalink to this definition"></a></dt>
+<dd><p>Rotation of body vectors in orbital frame (ORF) of Swarm-E
+using roll, pitch, and yaw angles.</p>
+<p>The rotation sequence is X-&gt;Y-&gt;Z; roll-&gt;pitch-&gt;yaw according to the RRI
+data description.</p>
+<p>Ref: University of Calgary, e-POP Radio Receiver Instrument (RRI)
+User’s Manual, Doc. no. ePOP-5024, Rev. D (2018)</p>
+<p><a class="reference external" href="https://epop.phys.ucalgary.ca/data-handbook/coordinate-systems/">https://epop.phys.ucalgary.ca/data-handbook/coordinate-systems/</a></p>
+<dl class="simple">
+<dt>body_vec<span class="classifier">tuple</span></dt><dd><p>x, y, z : initial position vectors for antenna in ORF</p>
+</dd>
+<dt>Roll<span class="classifier">float</span></dt><dd><p>roll angle in degrees</p>
+</dd>
+<dt>Pitch<span class="classifier">float</span></dt><dd><p>pitch angle in degrees</p>
+</dd>
+<dt>Yaw<span class="classifier">float</span></dt><dd><p>yaw angle in degrees</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rotated_body<span class="classifier">numpy.ndarray</span></dt><dd><p>rotated body vectors of instruments onboard Swarm-E in ORF</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="attitude_analysis.spacecraft_distance_from_a_point">
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">spacecraft_distance_from_a_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pLon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pLat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pAlt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.spacecraft_distance_from_a_point" title="Permalink to this definition"></a></dt>
+<dd><p>calculates spacecraft distance from a point using the 
+geopy.dist.geodesic</p>
+<dl class="simple">
+<dt>plon<span class="classifier">float</span></dt><dd><p>Longitude of the target on the ground (degrees).</p>
+</dd>
+<dt>plat<span class="classifier">float</span></dt><dd><p>Latitude of the target on the ground (degrees).</p>
+</dd>
+<dt>palt<span class="classifier">float</span></dt><dd><p>altitude of the point in GEO frame (km).</p>
+</dd>
+<dt>slon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft longitude (degrees).</p>
+</dd>
+<dt>slat<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>spacecraft latitude (degrees).</p>
+</dd>
+<dt>salt<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>altitude of satellite in GEO frame (km).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>distance<span class="classifier">np.ndarray[float]</span></dt><dd><p>slant range between the ground point and spacecraft (km).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use_rotation_matrices.html" class="btn btn-neutral float-left" title="use_rotation_matrices: Module to rotate instrument and transform between reference frames" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="attitude_plotter.html" class="btn btn-neutral float-right" title="attitude_plotter: Module to visualize satellite instrument pointing direction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, C.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
