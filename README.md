@@ -1,6 +1,6 @@
 # cavsiopy: Calculation and Visualization of Spacecraft Instrument Orientation
 
-![Logo](https://github.com/icebearcanada/cavsiopy/logos/cavsiopy.png)
+![cavsiopy](logos/cavsiopy.png)
 
 Welcome to cavsiopy!
 ====================================
