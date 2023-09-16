@@ -31,8 +31,6 @@ Other packages and requirements
 .. code-block::
 
 	pip install --no-deps astropy
-	
-	pip install geopy
 
 	pip install -r requirements.txt
 
