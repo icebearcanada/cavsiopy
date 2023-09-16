@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "1.0.0"
+version = "1.1.0"
 authors = [
   { name="ceren", email="ceren.eyiguler@usask.ca" },
   { name = "Warren Holley"}, 
@@ -28,7 +28,7 @@ install_requires = [
     "astropy",
     "h5py",
     "geopy",
-    "pysofa == 0.1.1" ]
+    "pysofa2" ]
     
 classifiers = [
    "Development Status :: 4 - Beta",
@@ -53,7 +53,3 @@ classifiers = [
 "Repository" = "https://github.com/icebearcanada/cavsiopy"
 "Bug Tracker" = "https://github.com/icebearcanada/cavsiopy/issues"
 "Documentation" = "https://readthedocs.org/projects/cavsiopy/"
-
-
-
-

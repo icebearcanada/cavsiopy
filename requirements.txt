@@ -4,4 +4,4 @@ matplotlib
 # geopy
 h5py
 # cartopy
-# pysofa
+pysofa2

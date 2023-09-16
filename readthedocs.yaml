@@ -2,9 +2,6 @@
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 # Required
-# readthedocs.yaml
-
-# List of versions that should be built and displayed on Read the Docs
 versions:
   - master
 
