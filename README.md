@@ -58,8 +58,6 @@ pip install --no-deps astropy
 
 pip install geopy
 
-pip install pysofa2
-
 pip install -r requirements.txt
 ```
 ** Now, we are good to go! **
