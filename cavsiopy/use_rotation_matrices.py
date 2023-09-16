@@ -68,9 +68,10 @@ YAW: positive is from +X towards +Y
 """
 import numpy as np
 from astropy.time import Time
-import pysofa
+import pysofa2 as pysofa
 import cavsiopy.ephemeris_importer as ei
 import cavsiopy.miscellaneous as misc
+import cavsiopy.complement_missing_sofa as cms
 
 
 def GMST_midnight(utc_dt):
@@ -667,17 +668,17 @@ def icrf_to_itrf_rm(path_to_files, input_time):
 
     # find the terrestrial time from coordinated universal time--------
     #  dut = ut1-utc
-    uta, utb = pysofa.utcut1(utc1, utc2, dut)
+    uta, utb = pysofa.Utcut1(utc1, utc2, dut)
 
 #----------------------------------------------------------------------
     #  dt = ut-tt
-    tta, ttb = pysofa.ut1tt(uta, utb, dt)
+    tta, ttb = pysofa.Ut1tt(uta, utb, dt)
 
     #  find the x_p, y_p, s: celestial pole coordinates----------------
-    x_p, y_p, s = pysofa.xys00b(tta, ttb)
+    x_p, y_p, s = pysofa.Xys00b(tta, ttb)
 
     #  find the celestial to terrestrial matrix------------------------
-    rm_ICRF2ITRF = pysofa.c2t00b(tta, ttb, uta, utb, x_p, y_p)
+    rm_ICRF2ITRF = cms.c2t00b(tta, ttb, uta, utb, x_p, y_p)
     
     return rm_ICRF2ITRF
 

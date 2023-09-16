@@ -203,7 +203,7 @@ def display_observation_geometry(title, time_array, Px, Py, Pz,
     fig = plt.figure(figsize=(12, 12))
     ax=plt.axes(projection='3d')
     for vec in V:
-        if np.size(x)>1:
+        if len(x)>1:
             a+=1
             i=a-1
             ax.quiver(x[::step], y[::step], z[::step],
@@ -412,7 +412,7 @@ def attitude_3d_ground_quiver(title, time_array, Px, Py, Pz, x, y, z, dir_vec,
     fig.suptitle(title)
     ax=plt.axes(projection='3d')
     for vec in V:
-        if np.size(V)>1:
+        if len(V)>1:
             lim1 = len(x)
             lim2 = len(vec)
             start_time=time_array[0]
@@ -445,13 +445,17 @@ def attitude_3d_ground_quiver(title, time_array, Px, Py, Pz, x, y, z, dir_vec,
                     ha='left', rotation_mode='anchor', transform=ax.transAxes)
 
     # 2D quiver on the ground
-    for i in range(len(x)):    
-        ax.quiver(x[::step], y[::step], 0,
-                  dir_vec[:,0][::step], dir_vec[:,1][::step], 0, 
-                  length=2, color='black', 
-                  linewidths=0.7, arrow_length_ratio=0.2, zorder= 50)
+    for i in range(0, len(x), step):    
+        ax.quiver(x[i], y[i], 0, dir_vec[:,0][i], dir_vec[:,1][i], 0, 
+                  length=2, color='black', linewidths=0.7, 
+                  arrow_length_ratio=0.2, zorder= 50)
+        # connect to the target
+        lon = [Px, x[i]]
+        lat = [Py, y[i]]
+        alt = [0, 0]
+        ax.plot(lon, lat, alt, linestyle = 'dashed', color = '#95d0fc', lw=1.5)
 
-    # determine plot limits          # 
+    # determine plot limits
     xmin, xmax = misc.set_3Dplot_limits(Px, x, 1)
     ymin, ymax = misc.set_3Dplot_limits(Py, y, 1)
     zmin, zmax = misc.set_3Dplot_limits(Pz, z, 1)
@@ -651,7 +655,7 @@ def attitude_3d_connect_to_target(title, time_array,
     fig = plt.figure(figsize=(12, 12))
     ax=plt.axes(projection='3d')
     for vec in V:
-        if np.size(x)>1:
+        if len(x)>1:
             a+=1
             i=a-1
             ax.quiver(x[::step], y[::step], z[::step],
@@ -881,7 +885,7 @@ def attitude_3d_connect_to_subpoint(title, time_array, Px, Py, Pz, x, y, z,
     fig.suptitle(title)
     ax=plt.axes(projection='3d')
     for vec in V:
-        if np.size(V)>1:
+        if len(V)>1:
             lim1 = len(x)
             lim2 = len(vec)
             start_time=time_array[0]

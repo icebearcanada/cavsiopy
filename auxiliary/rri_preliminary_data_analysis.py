@@ -9,7 +9,7 @@ Functions for the preliminary analysis of RRI data.
     import_quaternions
     find_instrument_attitude_using_quaternions
     nan_counter
-    plot_invalid_points
+    plot_data_validity
     quick_spectrogram
     voltage_reader
     
@@ -236,7 +236,7 @@ def nan_counter(data, bin_size = 62500):
 
     return percentage_zero, percentage_nan, percent_valid, percent_invalid
 
-def plot_invalid_points(ax, time_data, percent_invalid, bin_size_low = 62500):
+def plot_data_validity(ax, time_data, percent_invalid, bin_size_low = 62500):
     """
     Function to insert a bar at the bottom of a figure to show 
     the number of invalid points.
@@ -436,7 +436,7 @@ def calculate_aspect(time_array, pLat, pLon, pAlt, lat, lon, alt, RRI_ned):
 
     return aspect_los
 
-def import_QUA_file(file_QUA, start_date, end_date):
+def import_quaternions(file_QUA, start_date, end_date):
     """
     imports quaternions and accuracy data from the quaternion file:
     (https://epop.phys.ucalgary.ca/data-handbook/attitude-quaternion-file-cas_attquat/)

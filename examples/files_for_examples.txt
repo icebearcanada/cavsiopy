@@ -1,7 +1,8 @@
+for FAI example:
 https://epop-data.phys.ucalgary.ca/2020/10/20/
 CAS_ephemeris_20201020T000000_20201020T235959_1.2.0.txt
 CAS_Orbit_GEO_20201020T000000_20201020T235959_1.1.0.sp3
 
-
+for RRI example:
 https://epop-data.phys.ucalgary.ca/2016/04/18/RRI/
 RRI_20160418_222759_223156_lv1_12.0.0.h5

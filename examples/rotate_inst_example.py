@@ -9,13 +9,13 @@ Users can change the ordering to their liking.
 """
 import numpy as np
 import cavsiopy.use_rotation_matrices as rm
-import cavsiopy.ephemeris_importer as cei
+import cavsiopy.ephemeris_importer as ei
 
 file_RRI = "RRI_20160418_222759_223156_lv1_12.0.0.h5" 
 
 body_vec = [1, 0, 0]
 
-dict_rri  = cei.rri_ephemeris(file_RRI)
+dict_rri  = ei.rri_ephemeris(file_RRI)
 
 # converting degrees to radians
 rr = np.deg2rad(dict_rri['roll'])
