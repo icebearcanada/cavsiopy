@@ -17,7 +17,7 @@ release = '1.1.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.autodoc']
-autodoc_mock_imports = ["cartopy", "pysofa2", "astropy", "geopy", "cavsiopy"]
+autodoc_mock_imports = ["cartopy", "astropy", "geopy", "cavsiopy"]
 
 templates_path = ['_templates']
 exclude_patterns = []
