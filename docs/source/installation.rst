@@ -32,8 +32,6 @@ Other packages and requirements
 
 	pip install --no-deps astropy
 	
-	pip install pysofa2
-
 	pip install geopy
 
 	pip install -r requirements.txt
