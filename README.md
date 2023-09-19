@@ -40,9 +40,10 @@ Before installing cavsiopy some of the dependencies may need special installatio
 
 ```
 $ sudo apt -y install libgeos-dev
+$ pip install -r requirements.txt
 ```
 
-- Please follow the installation guide for other systems: https://scitools.org.uk/cartopy/docs/latest/installing.html
+- Follow the installation guide for other systems: https://scitools.org.uk/cartopy/docs/latest/installing.html
 
 - for installation of cartopy with conda:
 
@@ -53,6 +54,12 @@ $ conda install -c conda-forge cartopy
 Other packages and requirements
 -------------------------------
 ```
+pip install --no-deps astropy
+
+pip install geopy
+
+pip install pysofa2
+
 pip install -r requirements.txt
 ```
 ** Now, we are good to go! **
@@ -61,31 +68,20 @@ pip install -r requirements.txt
 pip install cavsiopy
 ```
 
-Version 1.1.2 Release Highlights
---------------------------------
-1. Eclipse parameter can now be imported using ephemeris\_importer.cas\_ephemeris function from the CAS_ephemeris data files.
+Version 1.1.0 Release Highlights: 'pysofa2' Integration and Updates
+-------------------------------------------------------------------
 
-2. Citation information has been added to __init__.py.
-
-3. Package dependencies have been corrected for the conda installable.
-
-4. Requirements.txt file has been updated.
-
-Version 1.1.1
--------------
-1. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
-2. In 'rri\_example.py' 'rotate\_rri' function is renamed as 'rotate\_inst.'
-3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
-
-Version 1.1.0: 'pysofa2' Integration
-------------------------------------
 In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier in 2010.
 
 Starting from version 1.1.0, we have transitioned to using 'pysofa2.'
 
-To address missing functions in 'pysofa2,' we introduced 'complement\_missing\_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
+To address missing functions in 'pysofa2,' we introduced 'complement_missing_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
 
+In addition, we made the following updates:
 
+1. In the 'rri\_example,' the 'rotate\_rri' function, which rotated the instrument's body vector, has been replaced with 'rotate\_inst.'
+2. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
+3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
 
 Credits: E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
