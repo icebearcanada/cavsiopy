@@ -97,6 +97,8 @@ def cas_ephemeris(file_cas, time_start, time_end):
         acc : int
             accuracy of the attitude solution.
             (0 = Dropout, 1 = Rough, 2 = Coarse, 3 = Moderate,  4 = Fine)
+        eclipse: str
+            spacecraft eclipse (umbra, penumbra, sunlit)
             
     Examples
     --------
@@ -105,7 +107,7 @@ def cas_ephemeris(file_cas, time_start, time_end):
     GEIx = dict_cas['GEIx']  
     '''
     
-    cas = np.loadtxt(fname=file_cas, skiprows = 2, usecols= range(0,21)) 
+    cas = np.loadtxt(fname=file_cas, comments = '#', usecols= range(0,21)) 
     t0 = time_start.time().strftime('%H%M%S')
     t1 = time_end.time().strftime('%H%M%S')
     start_time = int(t0)
@@ -141,6 +143,13 @@ def cas_ephemeris(file_cas, time_start, time_end):
     roll = cas[srow:erow,19]
     acc = cas[srow:erow,20] # attitude accuracy
     
+    eclipse = []
+    with open(file_cas, 'r') as file:
+        for line in file:
+            if not line.startswith('#'):
+                columns = line.strip().split()  # Split on whitespace
+                eclipse.append(columns[21])
+    
     time_array = np.array([time_start + datetime.timedelta(seconds = i*1) \
                            for i in range(0,len(Alt))])
     
@@ -150,7 +159,8 @@ def cas_ephemeris(file_cas, time_start, time_end):
             'GEIx': GEIx, 'GEIy': GEIy, 'GEIz': GEIz, 
             'GEIVx': GEIVx, 'GEIVy': GEIVy, 'GEIVz': GEIVz, 
             'GSMx': GSMx, 'GSMy': GSMy, 'GSMz': GSMz, 
-            'roll': roll, 'pitch': pitch, 'yaw': yaw, 'accuracy': acc
+            'roll': roll, 'pitch': pitch, 'yaw': yaw, 'accuracy': acc,
+            'eclipse': eclipse,
         } 
 
 # =============================================================================
