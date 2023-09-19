@@ -1043,10 +1043,8 @@ def earth_radius_at_latitude(latitude):
     latitude_rad = np.deg2rad(latitude)
 
     # Earth's radius at the given latitude
-    R = np.sqrt((((a**2 * np.cos(latitude_rad))**2 + \
-                  (b**2 * np.sin(latitude_rad))**2) /
-                 ((a * np.cos(latitude_rad))**2 + \
-                  (b * np.sin(latitude_rad))**2)))
+    R = np.sqrt((((a**2 * np.cos(latitude_rad))**2 + (b**2 * np.sin(latitude_rad))**2) /
+                 ((a * np.cos(latitude_rad))**2 + (b * np.sin(latitude_rad))**2)))
     return R
 
 
@@ -1431,8 +1429,7 @@ def attitude_2d_altitude(time_array, extent, x, y, z, Px, V, \
                            transform=trans)]
     
     ax.legend(list(zip(list_edgecolor, list_color, list_mak)), list_lab, 
-              handler_map={tuple:MarkerHandler()}, fontsize=10, 
-              loc='upper right') 
+              handler_map={tuple:MarkerHandler()}, fontsize=10, loc='upper right') 
     ax.set_aspect('auto', adjustable=None)  
 
     ax.grid(True, linestyle='--')
