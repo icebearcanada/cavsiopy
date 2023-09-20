@@ -71,12 +71,6 @@ $ pip install -r requirements.txt
 $ pip install cavsiopy
 ```
 
-Installation using conda
--------------------------
-```
-$ conda install -c eceren cavsiopy
-```
-
 Version 1.2.1 Release Highlights
 --------------------------------
 1. East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns of find\_attitude function.
@@ -89,9 +83,7 @@ Version 1.2.1 Release Highlights
 
 5. Citation information has been added to __init__.py.
 
-6. Package dependencies have been corrected for the conda installable.
-
-7. Requirements.txt file has been updated.
+6. Requirements.txt file has been updated.
 
 Version 1.1.1
 -------------
