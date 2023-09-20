@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 attitude_analysis module includes functions for finding the instrument
-pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF,
- NEC, NED and ENU.
-Additional functions are available to calculate the look angles of the
-spacecraft and the instrument with respect to a ground point, line-of-sight
-look direction vector from the ground point to the spacecraft and the distance
-between spacecraft and the ground point. Slew quality can be calculated given
-the threshold for the angle between the LOS direction and the
-instrument pointing.
+pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF, 
+NEC, NED and ENU. Additional functions are available to calculate the look 
+angles of the spacecraft, and the instrument look angles with respect to a 
+ground point, the separation vector between the target and the instrument look 
+direction, and the distance between spacecraft and the ground point. 
+Slew quality can be calculated given the threshold for the angle between 
+the LOS direction and the instrument pointing.
 
 .. toctree::
   :maxdepth: 2   
@@ -378,8 +377,9 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
                              geiVx, geiVy, geiVz, 
                              geoX, geoY, geoZ,
                              time_array, start_date, end_date, 
-                             lat, lon, path_to_sofa_files, method1='ephemeris', 
+                             lat, lon, method1='ephemeris', 
                              frame2 = 'itrf', frame3 = 'nec' ):
+   
     """
     Takes in the rotated body vector in orbital frame and outputs instrument
     look direction in NEC or NED coordinate systems by utilizing the functions
@@ -415,15 +415,14 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         Geodetic latitude in degrees.
     lon : numpy.ndarray[float]
         Geodetic longitude in degrees.
-    path_to_sofa_files : str
-        path_to_initialization files (IERS and EOP).
     method1 : str, optional
         Transformation method to ICRF/GEI J2K.
         Can be 'ephemeris' or 'orbital_elements'. The default is 'ephemeris'.
     frame2 : str, optional
         Terrestrial frame: 'ecef' or 'itrf'. The default is 'itrf'.
     frame3 : str, optional
-        Final coordinate system: 'nec' or 'ned'. The default is 'nec'.
+        Final coordinate system. The default is 'nec'. 
+        Options are: 'nec', 'ned', 'enc_u', 'enu'
 
     Returns
     -------
@@ -442,14 +441,23 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         # if itrf is chosen as the second frame
         if frame2 == 'itrf':
             inst_ITRF = \
-                urm.icrf2itrf(inst_GEI, path_to_sofa_files, time_array)
+                urm.icrf2itrf(inst_GEI, time_array)
+           
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
                 
             # if ned is chosen as the third frame
-            else:
+            elif frame3 == 'ned':
                 inst_geo = urm.terrestrial2ned(inst_ITRF, lat, lon)
+            
+            elif frame3 == 'enc_u':
+                geo_up = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
+                inst_geo = urm.ned2enu(geo_up).T
+                
+            elif frame3 == 'enu':
+                geo_up = urm.terrestrial2ned(inst_ITRF, lat, lon)
+                inst_geo = urm.ned2enu(geo_up).T
                 
         # if ecef is chosen as the second frame
         else:
@@ -457,9 +465,20 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ECEF, geoX, geoY, geoZ)
+                
             # if ned is chosen as the third frame
-            else:
-                inst_geo = urm.terrestrial2ned(inst_ECEF, lat, lon)           
+            elif frame3 == 'ned':
+                inst_geo = urm.terrestrial2ned(inst_ECEF, lat, lon)
+            
+            elif frame3 == 'enc_u':
+                geo_up = urm.terrestrial2nec(inst_ECEF, geoX, geoY, geoZ)
+                inst_geo = urm.ned2enu(geo_up).T
+                
+            elif frame3 == 'enu':
+                geo_up = urm.terrestrial2ned(inst_ECEF, lat, lon)
+                inst_geo = urm.ned2enu(geo_up).T  
+                
+                
     # if spacecraft ephemeris is chosen to transform to icrf/gei j2k    
     elif method1 == 'orbital_elements':
         inst_GEI = \
@@ -469,14 +488,23 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
         # if itrf is chosen as the second frame
         if frame2 == 'itrf':
             inst_ITRF = \
-                urm.icrf2itrf(inst_GEI, path_to_sofa_files, time_array)
+                urm.icrf2itrf(inst_GEI, time_array)
+            
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
                 
             # if ned is chosen as the third frame
-            else:
+            elif frame3 == 'ned':
                 inst_geo = urm.terrestrial2ned(inst_ITRF, lat, lon)
+            
+            elif frame3 == 'enc_u':
+                geo_up = urm.terrestrial2nec(inst_ITRF, geoX, geoY, geoZ)
+                inst_geo = urm.ned2enu(geo_up).T
+                
+            elif frame3 == 'enu':
+                geo_up = urm.terrestrial2ned(inst_ITRF, lat, lon)
+                inst_geo = urm.ned2enu(geo_up).T
                 
         # if ecef is chosen as the second frame
         else:
@@ -484,9 +512,18 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
             # if nec is chosen as the third frame
             if frame3 == 'nec':
                 inst_geo = urm.terrestrial2nec(inst_ECEF, geoX, geoY, geoZ)
+                
             # if ned is chosen as the third frame
-            else:
-                inst_geo = urm.terrestrial2ned(inst_ECEF, lat, lon)                
+            elif frame3 == 'ned':
+                inst_geo = urm.terrestrial2ned(inst_ECEF, lat, lon)
+            
+            elif frame3 == 'enc_u':
+                geo_up = urm.terrestrial2nec(inst_ECEF, geoX, geoY, geoZ)
+                inst_geo = urm.ned2enu(geo_up).T
+                
+            elif frame3 == 'enu':
+                geo_up = urm.terrestrial2ned(inst_ECEF, lat, lon)
+                inst_geo = urm.ned2enu(geo_up).T               
     
     return inst_geo
     

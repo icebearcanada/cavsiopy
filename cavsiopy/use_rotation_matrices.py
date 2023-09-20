@@ -72,6 +72,7 @@ import pysofa2 as pysofa
 import cavsiopy.ephemeris_importer as ei
 import cavsiopy.miscellaneous as misc
 import cavsiopy.complement_missing_sofa as cms
+import cavsiopy.utils as cu
 
 
 def GMST_midnight(utc_dt):
@@ -582,14 +583,12 @@ def ned_to_terrestrial_rm(lat, lon):
     
     return rm_ned2ter
 
-def icrf_to_itrf_rm(path_to_files, input_time):
+def icrf_to_itrf_rm(input_time):
     """
     Function to calculate the ICRF to ITRF matrix using pysofa routines.
 
     Parameters
     ----------
-    path_to_files : str
-        path_to_initialization files (IERS and EOP).
     input_time : datetime.datetime
         time.
 
@@ -620,8 +619,9 @@ def icrf_to_itrf_rm(path_to_files, input_time):
 
     # obtain UT1-TAI from
     # https://datacenter.iers.org/data/latestVersion/38_EOP_C01.1900-NOW_V2013_0138.txt
+      
     filename_UT1_TAI = '38_EOP_C01.1900-NOW_V2013_0138.txt'
-    file_UT1_TAI = path_to_files + filename_UT1_TAI
+    file_UT1_TAI = cu.get_txt_file_path(filename_UT1_TAI)
     data_UT1_TAI = np.loadtxt(fname=file_UT1_TAI, skiprows=1, comments='#')
     year_UT1_TAI = data_UT1_TAI[:,0]
     UT1_TAI = data_UT1_TAI[:,5]
@@ -658,7 +658,7 @@ def icrf_to_itrf_rm(path_to_files, input_time):
     # link = 
     # "https://datacenter.iers.org/data/latestVersion/224_EOP_C04_14.62-NOW.IAU2000A224.txt"
     filename_IERS = 'IERS_daily_deltaT.txt'
-    file_IERS = path_to_files + filename_IERS
+    file_IERS = cu.get_txt_file_path(filename_IERS)
     IER=np.loadtxt(fname=file_IERS, skiprows=14, comments='#')
 
     # find where MJD equals the MJD in the text file
@@ -682,7 +682,7 @@ def icrf_to_itrf_rm(path_to_files, input_time):
     
     return rm_ICRF2ITRF
 
-def itrf_to_icrf_rm(path_to_files, time_array):
+def itrf_to_icrf_rm(time_array):
     """
     Function to calculate ITRF to ICRF rotation matrix using pysofa routines.
     
@@ -690,8 +690,6 @@ def itrf_to_icrf_rm(path_to_files, time_array):
 
     Parameters
     ----------
-    path_to_files : str
-        path_to_initialization files (IERS and EOP).
     time_array : datetime.datetime
         time array.
 
@@ -702,7 +700,7 @@ def itrf_to_icrf_rm(path_to_files, time_array):
 
     """
     
-    rm_ICRF2ITRF = icrf_to_itrf_rm(path_to_files, time_array)
+    rm_ICRF2ITRF = icrf_to_itrf_rm(time_array)
     
     rm_ITRF2ICRF = rm_ICRF2ITRF.T
     
@@ -1043,7 +1041,7 @@ def orf_to_j2k_use_spacecraft_ephemeris(body_vec, pX, pY, pZ, Vx, Vy, Vz):
 
     return inst_GEI
 
-def icrf2itrf(inst_GEI, path_to_files, time_array):
+def icrf2itrf(inst_GEI, time_array):
     """
     Function to transform the pointing vector in GEIJ2K to ITRF.
     
@@ -1056,8 +1054,6 @@ def icrf2itrf(inst_GEI, path_to_files, time_array):
     ----------
     inst_GEI : numpy.ndarray[float]
         instrument look direction in GEIJ2K.
-    path_to_files : str
-        IES and EOP file path.
     time_array : datetime.datetime
         time array.
 
@@ -1076,7 +1072,7 @@ def icrf2itrf(inst_GEI, path_to_files, time_array):
     inst_ITRF_Vector=np.empty((col,3)); inst_ITRF_Vector.fill(np.nan)
 
     for i in range(0, col):
-        c2t = icrf_to_itrf_rm(path_to_files, time_array[i])
+        c2t = icrf_to_itrf_rm(time_array[i])
         inst_ITRF_Vector[i, :] = c2t @ inst_GEI[:,i]
 
     inst_ITRF = inst_ITRF_Vector.T
