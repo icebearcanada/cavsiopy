@@ -16,7 +16,7 @@ import cavsiopy.attitude_analysis as aa
 import datetime
 import numpy as np
 
-path_to_files = 'path of data files.'
+path_to_files = 'path/to/data/files.'
 
 filedate='20201020'
 time_start= '043354'
@@ -59,8 +59,6 @@ dict_cas = ei.cas_ephemeris(file_CAS, start_date, end_date)
 # import GEO/ITRF position from the sp3 file
 dict_sp3 = ei.sp3_ephemeris(file_SP3, start_date, end_date)
 
-
-path_to_sofa_files = 'path of the directory of EOP and IERS files'
 # %% coordinates of the center of ICEBEAR radar field-of-view 
 pLat = 58
 pLon = -106
@@ -79,23 +77,17 @@ rbody = aa.rotate_inst(body_fai, dict_cas['roll'], dict_cas['pitch'],
                       dict_cas['yaw'])
 
 # RRI body vector in North-East-Center
-fai_nec = aa.find_instrument_attitude(rbody, dict_cas['GEIx'], dict_cas['GEIy'], 
+fai_enc= aa.find_instrument_attitude(rbody, dict_cas['GEIx'], dict_cas['GEIy'], 
                                     dict_cas['GEIz'], dict_cas['GEIVx'], 
                                     dict_cas['GEIVy'], dict_cas['GEIVz'], 
                                     dict_sp3['ITRFx'], dict_sp3['ITRFy'], 
-                                    dict_sp3['ITRFz'], dict_sp3['time_experiment'], 
+                                    dict_sp3['ITRFz'], 
+                                    dict_sp3['time_experiment'], 
                                     dict_sp3['time_experiment'][0], 
                                     dict_sp3['time_experiment'][-1], 
                                     dict_cas['Lat'], dict_cas['Lon'], 
-                                    path_to_sofa_files, method1 ='ephemeris', 
-                                    frame2 = 'itrf', frame3 = 'nec')
-
-# Z-component in matplotlib points upward when z is positive
-# However center component is positive downward in NEC. 
-# Make z-component negative for correct visualization.
-# Switch the columns of the east and north components as fov_plotter uses ENC.
-fai_enc = np.column_stack((fai_nec[:,1], fai_nec[:,0], -fai_nec[:,2]))
-                                    
+                                    method1 ='ephemeris', 
+                                    frame2 = 'itrf', frame3 = 'enc_u')                                  
 # =============================================================================
 # %% plotting
 # =============================================================================
