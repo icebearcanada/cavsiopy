@@ -1,0 +1,57 @@
+{
+  "title": "cavsiopy",
+  "upload_type": "software",
+  "description": "A Python package to calculate and visualize the orientation of instruments onboard spacecraft",
+  "creators": [
+    {
+      "name": "RRI Working Group",
+    },
+    {
+      "name": "E. Ceren Kalafatoglu Eyiguler",
+      "affiliation": "University of Saskatchewan",
+      "orcid": "0000-0002-3920-3134"
+    },
+    {
+      "name": "Warren Holley",
+      "affiliation": "University of Calgary",
+    },
+    {
+      "name": "Andrew D. Howarth",
+      "affiliation": "University of Calgary",
+      "orcid": "0000-0003-0960-2617"
+    },
+    {
+      "name": "Donald W. Danskin",
+      "affiliation": "University of Saskatchewan",
+      "orcid": "0000-0002-4968-9094"
+    },
+    {
+      "name": "Kuldeep Pandey",
+      "affiliation": "University of Saskatchewan",
+      "orcid": "0000-0002-7842-2612"
+    },
+    {
+      "name": "Carley J. Martin",
+      "affiliation": "University of Saskatchewan",
+      "orcid": "0000-0002-8278-9783"
+    },
+    {
+      "name": "Robert Gillies",
+      "affiliation": "University of Calgary",
+      "orcid": "0000-0002-9116-9279"
+    },
+    {
+      "name": "Andrew W. Yau",
+      "affiliation": "University of Calgary",
+      "orcid": "0000-0002-8210-0392"
+    },
+    {
+      "name": "Glenn C. Hussey",
+      "affiliation": "University of Saskatchewan",
+      "orcid": ""
+    },
+    
+  ],
+  "keywords": ["software", "spacecraft", "attitude", "ionosphere", "Swarm-E", "e-POP", "CASSIOPE", "RRI", "HF", "signal propagation", "rotation matrix", "quaternion"],
+}
+
