@@ -1,0 +1,73 @@
+{
+    "description": "<p>minor release</p>", 
+    "license": "other-open", 
+    "title": "icebearcanada/cavsiopy: v1.2.1", 
+    "version": "v1.2.1", 
+    "upload_type": "software", 
+    "publication_date": "2023-09-20", 
+    "creators": [
+		{
+			"name": "RRI Working Group",
+		},
+		{
+			"name": "E. Ceren Kalafatoglu Eyiguler",
+      		"affiliation": "University of Saskatchewan",
+      		"orcid": "0000-0002-3920-3134"
+		},
+	    {
+			"name": "Warren Holley",
+			"affiliation": "University of Calgary",
+		},
+		{
+      		"name": "Andrew D. Howarth",
+      		"affiliation": "University of Calgary",
+      		"orcid": "0000-0003-0960-2617"
+    	},
+    	{
+      		"name": "Donald W. Danskin",
+      		"affiliation": "University of Saskatchewan",
+      		"orcid": "0000-0002-4968-9094"
+    	},
+    	{
+      		"name": "Kuldeep Pandey",
+      		"affiliation": "University of Saskatchewan",
+      		"orcid": "0000-0002-7842-2612"
+    	},
+    	{
+      		"name": "Carley J. Martin",
+      		"affiliation": "University of Saskatchewan",
+      		"orcid": "0000-0002-8278-9783"
+    	},
+    	{
+      		"name": "Robert G. Gillies",
+      		"affiliation": "University of Calgary",
+      		"orcid": "0000-0002-9116-9279"
+    	},
+    	{
+      		"name": "Andrew W. Yau",
+      		"affiliation": "University of Calgary",
+      		"orcid": "0000-0002-8210-0392"
+    	},
+    	{
+      		"name": "Glenn C. Hussey",
+      		"affiliation": "University of Saskatchewan",
+      		"orcid": "0000-0003-0422-8099"
+    	} 
+	],
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/icebearcanada/cavsiopy/tree/v1.2.1", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.8361256", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
+
+
