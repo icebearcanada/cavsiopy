@@ -1,7 +1,4 @@
 {
-  "title": "cavsiopy",
-  "upload_type": "software",
-  "description": "A Python package to calculate and visualize the orientation of instruments onboard spacecraft",
   "creators": [
     {
       "name": "RRI Working Group",
