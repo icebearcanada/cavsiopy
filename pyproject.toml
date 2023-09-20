@@ -4,16 +4,17 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "1.1.0"
+version = "1.2.1"
 authors = [
-  { name="ceren", email="ceren.eyiguler@usask.ca" },
+  { name= "RRI Working Group"},
+  { name= "E. Ceren Kalafatoglu Eyiguler"},
   { name = "Warren Holley"}, 
   { name = "Andrew D. Howarth"}, 
   { name = "Donald W. Danskin"}, 
   { name = "Kuldeep Pandey"}, 
   { name = "Carley J. Martin"}, 
   { name = "Glenn C. Hussey"}, 
-  { name = "Robert Gillies"}, 
+  { name = "Robert G. Gillies"}, 
   { name = "Andrew W. Yau"},
 ]
 description = "A Python package to Calculate and Visualize Spacecraft Instrument Orientation"

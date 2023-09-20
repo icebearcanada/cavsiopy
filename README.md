@@ -1,5 +1,8 @@
 # cavsiopy: Calculation and Visualization of Spacecraft Instrument Orientation
 
+
+[![DOI](https://zenodo.org/badge/615434503.svg)](https://zenodo.org/badge/latestdoi/615434503)
+
 ![cavsiopy](logos/cavsiopy.png)
 
 Welcome to cavsiopy!
@@ -26,12 +29,17 @@ cavsiopy contains routines for
 
 Instrument pointing direction vectors can be obtained in GEI J2K, ECEF, NED, NEC, ICRF, ITRF.
 
+Citation
+--------
+
+If you use any of the cavsiopy functions/modules/plots please cite the software using DOI: https://doi.org/10.5281/zenodo.8361256
+
 Dependencies
 ------------
 numpy, matplotlib, astropy, cartopy, geopy, h5py, pysofa2
 
-Installation
-------------
+Installation using pip:
+-----------------------
 Before installing cavsiopy some of the dependencies may need special installation instructions:
 
 # cartopy
@@ -40,12 +48,11 @@ Before installing cavsiopy some of the dependencies may need special installatio
 
 ```
 $ sudo apt -y install libgeos-dev
-$ pip install -r requirements.txt
 ```
 
-- Follow the installation guide for other systems: https://scitools.org.uk/cartopy/docs/latest/installing.html
+- Please follow the installation guide of cartopy for other systems from here: https://scitools.org.uk/cartopy/docs/latest/installing.html
 
-- for installation of cartopy with conda:
+- installation of cartopy using conda:
 
 ```
 $ conda install -c conda-forge cartopy
@@ -53,37 +60,55 @@ $ conda install -c conda-forge cartopy
 
 Other packages and requirements
 -------------------------------
+Download the requirements.txt from https://github.com/icebearcanada/cavsiopy
+
 ```
-pip install --no-deps astropy
-
-pip install geopy
-
-pip install pysofa2
-
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 ** Now, we are good to go! **
 
 ```
-pip install cavsiopy
+$ pip install cavsiopy
 ```
 
-Version 1.1.0 Release Highlights: 'pysofa2' Integration and Updates
--------------------------------------------------------------------
+Installation using conda
+-------------------------
+```
+$ conda install -c eceren cavsiopy
+```
 
+Version 1.2.1 Release Highlights
+--------------------------------
+1. East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns of find\_attitude function.
+
+2. utils.py added to find the location of coefficient files for pysofa, and removed the declaration of coefficient files for pysofa for the find\_attitude function.
+
+3. Eclipse parameter can now be imported using ephemeris\_importer.cas\_ephemeris function from the CAS_ephemeris data files.
+
+4. Example python codes have been updated accordingly.
+
+5. Citation information has been added to __init__.py.
+
+6. Package dependencies have been corrected for the conda installable.
+
+7. Requirements.txt file has been updated.
+
+Version 1.1.1
+-------------
+1. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
+2. In 'rri\_example.py' 'rotate\_rri' function is renamed as 'rotate\_inst.'
+3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
+
+Version 1.1.0: 'pysofa2' Integration
+------------------------------------
 In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier in 2010.
 
 Starting from version 1.1.0, we have transitioned to using 'pysofa2.'
 
-To address missing functions in 'pysofa2,' we introduced 'complement_missing_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
+To address missing functions in 'pysofa2,' we introduced 'complement\_missing\_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
 
-In addition, we made the following updates:
 
-1. In the 'rri\_example,' the 'rotate\_rri' function, which rotated the instrument's body vector, has been replaced with 'rotate\_inst.'
-2. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
-3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
-
-Credits: E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
+Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
 Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
 
