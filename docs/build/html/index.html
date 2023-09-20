@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to cavsiopy’s documentation! &mdash; cavsiopy 1.1.1 documentation</title>
+  <title>Welcome to cavsiopy’s documentation! &mdash; cavsiopy 1.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -78,6 +78,7 @@
              
   <section id="welcome-to-cavsiopy-s-documentation">
 <h1>Welcome to cavsiopy’s documentation!<a class="headerlink" href="#welcome-to-cavsiopy-s-documentation" title="Permalink to this heading"></a></h1>
+<a class="reference external image-reference" href="https://zenodo.org/badge/latestdoi/615434503"><img alt="https://zenodo.org/badge/615434503.svg" src="https://zenodo.org/badge/615434503.svg" /></a>
 <p>‘cavsiopy’ is an open source Python package, which was specifically developed to determine the look direction of the The Radio Receiver Instrument (RRI) on e-POP/ CASSIOPE/ Swarm-E for HF radio wave propagation studies, but can be applied to any satellite mission requiring accurate pointing information. Given the spacecraft position, the roll, yaw, and pitch angles, the body vector of the instrument, and a target location, the pointing direction and orientation of the instrument onboard the spacecraft with respect to the target can be determined in various reference frames. ‘cavsiopy’ supports the reference frames: Geocentric Equatorial Inertial J2000 (GEI J2K), Earth Centred Earth Fixed (ECEF), International Terrestrial Reference Frame (ITRF), geodetic North-East-Down, and geocentric North-East-Center.</p>
 <p>cavsiopy contains routines for</p>
 <ol class="arabic simple">
@@ -90,17 +91,34 @@
 <li><p>Visualization of spacecraft and instrument direction in 2D and 3D (simple or overlaid on geographical regions of the Earth below the satellite trajectory)</p></li>
 <li><p>Rotation matrices for rotations by x, y, z axes</p></li>
 </ol>
-<section id="version-1-1-1-release-highlights-pysofa2-integration-and-updates">
-<h2>Version 1.1.1 Release Highlights: ‘pysofa2’ Integration and Updates<a class="headerlink" href="#version-1-1-1-release-highlights-pysofa2-integration-and-updates" title="Permalink to this heading"></a></h2>
-<p>In previous versions, cavsiopy used the ‘pysofa’ package developed by Frederic Grollier in 2010.</p>
-<p>Starting from version 1.1.1, we have transitioned to using ‘pysofa2.’</p>
-<p>To address missing functions in ‘pysofa2,’ we introduced ‘complement_missing_sofa.py,’ which utilizes the SOFA C Library compiled by ‘pysofa2.’</p>
-<p>In addition, the following were updated:</p>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h2>
+<p>If you use any of the cavsiopy functions/modules/plots please cite the software using DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.8361256">https://doi.org/10.5281/zenodo.8361256</a></p>
+</section>
+<section id="version-1-2-1-release-highlights">
+<h2>Version 1.2.1 Release Highlights<a class="headerlink" href="#version-1-2-1-release-highlights" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>In the ‘rri_example,’ the ‘rotate_rri’ function, which rotated the instrument’s body vector, has been replaced with ‘rotate_inst.’</p></li>
-<li><p>‘attitude_3d_ground_quiver’ has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.</p></li>
-<li><p>name changes for several functions in auxiliary/preliminary_data_analysis.py module : plot_data_validity, import_quaternions.</p></li>
+<li><p>East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns of find_attitude function.</p></li>
+<li><p>utils.py added to find the location of coefficient files for pysofa, and removed the declaration of coefficient files for pysofa for the find_attitude function.</p></li>
+<li><p>Eclipse parameter can now be imported using ephemeris_importer.cas_ephemeris function from the CAS_ephemeris data files.</p></li>
+<li><p>Example python codes have been updated accordingly.</p></li>
+<li><p>Citation information has been added to __init__.py.</p></li>
+<li><p>Requirements.txt file has been updated.</p></li>
 </ol>
+</section>
+<section id="version-1-1-1">
+<h2>Version 1.1.1<a class="headerlink" href="#version-1-1-1" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>‘attitude_3d_ground_quiver’ has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.</p></li>
+<li><p>In ‘rri_example.py’ ‘rotate_rri’ function is renamed as ‘rotate_inst.’</p></li>
+<li><p>name changes for several functions in auxiliarypreliminary_data_analysis.py module : plot_data_validity, import_quaternions.</p></li>
+</ol>
+</section>
+<section id="version-1-1-0-pysofa2-integration">
+<h2>Version 1.1.0: ‘pysofa2’ Integration<a class="headerlink" href="#version-1-1-0-pysofa2-integration" title="Permalink to this heading"></a></h2>
+<p>In previous versions, cavsiopy used the ‘pysofa’ package developed by Frederic Grollier in 2010.</p>
+<p>Starting from version 1.1.0, we have transitioned to using ‘pysofa2.’</p>
+<p>To address missing functions in ‘pysofa2,’ we introduced ‘complement_missing_sofa.py,’ which utilizes the SOFA C Library compiled by ‘pysofa2.’</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -110,7 +128,10 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Welcome to cavsiopy’s documentation!</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#version-1-1-1-release-highlights-pysofa2-integration-and-updates">Version 1.1.1 Release Highlights: ‘pysofa2’ Integration and Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#citation">Citation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#version-1-2-1-release-highlights">Version 1.2.1 Release Highlights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#version-1-1-1">Version 1.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#version-1-1-0-pysofa2-integration">Version 1.1.0: ‘pysofa2’ Integration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
@@ -138,7 +159,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, C.</p>
+    <p>&#169; Copyright 2023, RRI Working Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

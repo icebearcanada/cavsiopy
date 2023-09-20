@@ -5,6 +5,7 @@ Dependencies
 ------------
 numpy, matplotlib, astropy, cartopy, geopy, h5py, pysofa2
 
+
 Installation
 ------------
 Before installing cavsiopy some of the dependencies need special installation instructions:
@@ -16,33 +17,34 @@ cartopy
 .. code-block::
 
        $ sudo apt -y install libgeos-dev
-       $ pip install -r requirements.txt
 
-- Follow the installation guide for other systems: https://scitools.org.uk/cartopy/docs/latest/installing.html
+- Please follow the installation guide of cartopy for other systems from here: https://scitools.org.uk/cartopy/docs/latest/installing.html
 
-- for installation of cartopy with conda:
+- installation of cartopy using conda:
 
 .. code-block::
 
        $ conda install -c conda-forge cartopy
 
-Other packages and requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Proceed to installation
+^^^^^^^^^^^^^^^^^^^^^^^
+Download the requirements.txt from https://github.com/icebearcanada/cavsiopy
+
+Using pip:
+
 .. code-block::
 
-	pip install --no-deps astropy
-
-	pip install -r requirements.txt
+       $ pip install -r requirements.txt
 
 ** Now, we are good to go! **
 
 .. code-block::
 
-	pip install cavsiopy
+       $ pip install cavsiopy
 
 
-Credits: C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley Martin
+Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
-Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
+Contributing: Glenn C. Hussey, Robert G. Gillies, Andrew W. Yau
 
 License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007

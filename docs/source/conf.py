@@ -9,15 +9,15 @@ sys.path.insert(0, os.path.abspath('../../cavsiopy/'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'cavsiopy'
-copyright = '2023, C'
-author = 'E. Ceren K. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Glenn C. Hussey, Robert Gillies, Andrew W. Yau'
-release = '1.1.1'
+copyright = '2023, RRI Working Group'
+author = 'E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Glenn C. Hussey, Robert G. Gillies, Andrew W. Yau'
+release = '1.2.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.autodoc']
-autodoc_mock_imports = ["cartopy", "astropy", "cavsiopy"]
+autodoc_mock_imports = ["cartopy", "cavsiopy"]
 
 templates_path = ['_templates']
 exclude_patterns = []

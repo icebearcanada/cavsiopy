@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>use_rotation_matrices: Module to rotate instrument and transform between reference frames &mdash; cavsiopy 1.1.1 documentation</title>
+  <title>use_rotation_matrices: Module to rotate instrument and transform between reference frames &mdash; cavsiopy 1.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -309,14 +309,12 @@ elements.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="use_rotation_matrices.icrf2itrf">
-<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf2itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_GEI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf2itrf" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf2itrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_GEI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf2itrf" title="Permalink to this definition"></a></dt>
 <dd><p>Function to transform the pointing vector in GEIJ2K to ITRF.</p>
 <p>Uses Python wrappers for the Standards of Fundamental Astronomy library
 <a class="reference external" href="https://www.iausofa.org/">https://www.iausofa.org/</a></p>
 <dl class="simple">
 <dt>inst_GEI<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>instrument look direction in GEIJ2K.</p>
-</dd>
-<dt>path_to_files<span class="classifier">str</span></dt><dd><p>IES and EOP file path.</p>
 </dd>
 <dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time array.</p>
 </dd>
@@ -333,11 +331,9 @@ elements.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="use_rotation_matrices.icrf_to_itrf_rm">
-<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf_to_itrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf_to_itrf_rm" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">icrf_to_itrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.icrf_to_itrf_rm" title="Permalink to this definition"></a></dt>
 <dd><p>Function to calculate the ICRF to ITRF matrix using pysofa routines.</p>
 <dl class="simple">
-<dt>path_to_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
-</dd>
 <dt>input_time<span class="classifier">datetime.datetime</span></dt><dd><p>time.</p>
 </dd>
 </dl>
@@ -349,12 +345,10 @@ elements.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="use_rotation_matrices.itrf_to_icrf_rm">
-<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">itrf_to_icrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.itrf_to_icrf_rm" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">use_rotation_matrices.</span></span><span class="sig-name descname"><span class="pre">itrf_to_icrf_rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#use_rotation_matrices.itrf_to_icrf_rm" title="Permalink to this definition"></a></dt>
 <dd><p>Function to calculate ITRF to ICRF rotation matrix using pysofa routines.</p>
 <p>Uses the transpose of ITRF to ICRF rotation matrix.</p>
 <dl class="simple">
-<dt>path_to_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
-</dd>
 <dt>time_array<span class="classifier">datetime.datetime</span></dt><dd><p>time array.</p>
 </dd>
 </dl>
@@ -701,7 +695,7 @@ Control. Springer, London. <a class="reference external" href="https://doi.org/1
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, C.</p>
+    <p>&#169; Copyright 2023, RRI Working Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

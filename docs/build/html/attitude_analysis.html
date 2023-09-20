@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>attitude_analysis: Module to obtain instrument pointing direction in various reference frames &mdash; cavsiopy 1.1.1 documentation</title>
+  <title>attitude_analysis: Module to obtain instrument pointing direction in various reference frames &mdash; cavsiopy 1.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -80,16 +80,13 @@
   <section id="module-attitude_analysis">
 <span id="attitude-analysis-module-to-obtain-instrument-pointing-direction-in-various-reference-frames"></span><h1>attitude_analysis: Module to obtain instrument pointing direction in various reference frames<a class="headerlink" href="#module-attitude_analysis" title="Permalink to this heading"></a></h1>
 <p>attitude_analysis module includes functions for finding the instrument
-pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF,</p>
-<blockquote>
-<div><p>NEC, NED and ENU.</p>
-</div></blockquote>
-<p>Additional functions are available to calculate the look angles of the
-spacecraft and the instrument with respect to a ground point, line-of-sight
-look direction vector from the ground point to the spacecraft and the distance
-between spacecraft and the ground point. Slew quality can be calculated given
-the threshold for the angle between the LOS direction and the
-instrument pointing.</p>
+pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF, 
+NEC, NED and ENU. Additional functions are available to calculate the look 
+angles of the spacecraft, and the instrument look angles with respect to a 
+ground point, the separation vector between the target and the instrument look 
+direction, and the distance between spacecraft and the ground point. 
+Slew quality can be calculated given the threshold for the angle between 
+the LOS direction and the instrument pointing.</p>
 <p>&#64;author: ceren</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="attitude_analysis.LA_inst">
@@ -223,7 +220,7 @@ input can be boresight or dipole. The default is ‘boresight’.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="attitude_analysis.find_instrument_attitude">
-<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">find_instrument_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotated_body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_sofa_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ephemeris'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'itrf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nec'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.find_instrument_attitude" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">attitude_analysis.</span></span><span class="sig-name descname"><span class="pre">find_instrument_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotated_body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geiVz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ephemeris'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'itrf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nec'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attitude_analysis.find_instrument_attitude" title="Permalink to this definition"></a></dt>
 <dd><p>Takes in the rotated body vector in orbital frame and outputs instrument
 look direction in NEC or NED coordinate systems by utilizing the functions
 in use_rotation_matrices module.</p>
@@ -256,14 +253,13 @@ in use_rotation_matrices module.</p>
 </dd>
 <dt>lon<span class="classifier">numpy.ndarray[float]</span></dt><dd><p>Geodetic longitude in degrees.</p>
 </dd>
-<dt>path_to_sofa_files<span class="classifier">str</span></dt><dd><p>path_to_initialization files (IERS and EOP).</p>
-</dd>
 <dt>method1<span class="classifier">str, optional</span></dt><dd><p>Transformation method to ICRF/GEI J2K.
 Can be ‘ephemeris’ or ‘orbital_elements’. The default is ‘ephemeris’.</p>
 </dd>
 <dt>frame2<span class="classifier">str, optional</span></dt><dd><p>Terrestrial frame: ‘ecef’ or ‘itrf’. The default is ‘itrf’.</p>
 </dd>
-<dt>frame3<span class="classifier">str, optional</span></dt><dd><p>Final coordinate system: ‘nec’ or ‘ned’. The default is ‘nec’.</p>
+<dt>frame3<span class="classifier">str, optional</span></dt><dd><p>Final coordinate system. The default is ‘nec’. 
+Options are: ‘nec’, ‘ned’, ‘enc_u’, ‘enu’</p>
 </dd>
 </dl>
 <dl class="simple">
@@ -386,7 +382,7 @@ geopy.dist.geodesic</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, C.</p>
+    <p>&#169; Copyright 2023, RRI Working Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

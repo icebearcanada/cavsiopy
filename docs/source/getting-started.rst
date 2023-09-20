@@ -1,6 +1,9 @@
 Welcome to cavsiopy's documentation!
 ====================================
 
+.. image:: https://zenodo.org/badge/615434503.svg
+   :target: https://zenodo.org/badge/latestdoi/615434503
+
 'cavsiopy' is an open source Python package, which was specifically developed to determine the look direction of the The Radio Receiver Instrument (RRI) on e-POP/ CASSIOPE/ Swarm-E for HF radio wave propagation studies, but can be applied to any satellite mission requiring accurate pointing information. Given the spacecraft position, the roll, yaw, and pitch angles, the body vector of the instrument, and a target location, the pointing direction and orientation of the instrument onboard the spacecraft with respect to the target can be determined in various reference frames. 'cavsiopy' supports the reference frames: Geocentric Equatorial Inertial J2000 (GEI J2K), Earth Centred Earth Fixed (ECEF), International Terrestrial Reference Frame (ITRF), geodetic North-East-Down, and geocentric North-East-Center. 
 
 cavsiopy contains routines for 
@@ -21,17 +24,37 @@ cavsiopy contains routines for
 
 8. Rotation matrices for rotations by x, y, z axes
 
-Version 1.1.1 Release Highlights: 'pysofa2' Integration and Updates
--------------------------------------------------------------------
+Citation
+--------
 
+If you use any of the cavsiopy functions/modules/plots please cite the software using DOI: https://doi.org/10.5281/zenodo.8361256
+
+Version 1.2.1 Release Highlights
+--------------------------------
+1. East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns of find\_attitude function.
+
+2. utils.py added to find the location of coefficient files for pysofa, and removed the declaration of coefficient files for pysofa for the find\_attitude function.
+
+3. Eclipse parameter can now be imported using ephemeris\_importer.cas\_ephemeris function from the CAS_ephemeris data files.
+
+4. Example python codes have been updated accordingly.
+
+5. Citation information has been added to __init__.py.
+
+6. Package dependencies have been corrected for the conda installable.
+
+7. Requirements.txt file has been updated.
+
+Version 1.1.1
+-------------
+1. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
+2. In 'rri\_example.py' 'rotate\_rri' function is renamed as 'rotate\_inst.'
+3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
+
+Version 1.1.0: 'pysofa2' Integration
+------------------------------------
 In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier in 2010.
 
-Starting from version 1.1.1, we have transitioned to using 'pysofa2.'
+Starting from version 1.1.0, we have transitioned to using 'pysofa2.'
 
-To address missing functions in 'pysofa2,' we introduced 'complement_missing_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
-
-In addition, the following were updated:
-
-1. In the 'rri\_example,' the 'rotate\_rri' function, which rotated the instrument's body vector, has been replaced with 'rotate\_inst.'
-2. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
-3. name changes for several functions in auxiliary/preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
+To address missing functions in 'pysofa2,' we introduced 'complement\_missing\_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'

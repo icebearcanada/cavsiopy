@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; cavsiopy 1.1.1 documentation</title>
+  <title>Installation &mdash; cavsiopy 1.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -49,7 +49,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cartopy">cartopy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#other-packages-and-requirements">Other packages and requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proceed-to-installation">Proceed to installation</a></li>
 </ul>
 </li>
 </ul>
@@ -100,30 +100,29 @@
 <li><p>If you are installing cartopy via pip (on Ubuntu/Debian) first libgeos-dev has to be on your system:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt -y install libgeos-dev
-$ pip install -r requirements.txt
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Follow the installation guide for other systems: <a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/installing.html">https://scitools.org.uk/cartopy/docs/latest/installing.html</a></p></li>
-<li><p>for installation of cartopy with conda:</p></li>
+<li><p>Please follow the installation guide of cartopy for other systems from here: <a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/installing.html">https://scitools.org.uk/cartopy/docs/latest/installing.html</a></p></li>
+<li><p>installation of cartopy using conda:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c conda-forge cartopy
 </pre></div>
 </div>
 </section>
-<section id="other-packages-and-requirements">
-<h3>Other packages and requirements<a class="headerlink" href="#other-packages-and-requirements" title="Permalink to this heading"></a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">astropy</span>
-
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<section id="proceed-to-installation">
+<h3>Proceed to installation<a class="headerlink" href="#proceed-to-installation" title="Permalink to this heading"></a></h3>
+<p>Download the requirements.txt from <a class="reference external" href="https://github.com/icebearcanada/cavsiopy">https://github.com/icebearcanada/cavsiopy</a></p>
+<p>Using pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -r requirements.txt
 </pre></div>
 </div>
 <p>** Now, we are good to go! **</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cavsiopy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install cavsiopy
 </pre></div>
 </div>
-<p>Credits: C. Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley Martin</p>
-<p>Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau</p>
+<p>Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin</p>
+<p>Contributing: Glenn C. Hussey, Robert G. Gillies, Andrew W. Yau</p>
 <p>License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007</p>
 </section>
 </section>
@@ -140,7 +139,7 @@ $ pip install -r requirements.txt
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, C.</p>
+    <p>&#169; Copyright 2023, RRI Working Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
