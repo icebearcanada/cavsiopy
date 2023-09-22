@@ -44,6 +44,10 @@ from matplotlib.legend_handler import HandlerBase
 import cavsiopy.miscellaneous as misc
 import cavsiopy.ephemeris_importer as ei
 
+import warnings
+
+warnings.filterwarnings("ignore")
+
 class MyAxes3D(axes3d.Axes3D):
     """ Class to draw 3D grids for the counter-clockwise angles of 3D plots."""
     def __init__(self, baseObject, sides_to_draw):
