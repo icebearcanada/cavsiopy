@@ -91,7 +91,7 @@ Version 1.1.1
 2. In 'rri\_example.py' 'rotate\_rri' function is renamed as 'rotate\_inst.'
 3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
 
-Version 1.1.0: 'pysofa2' Integration
+Version 1.1.0: 'pysofa2' integration
 ------------------------------------
 In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier in 2010.
 
@@ -99,6 +99,13 @@ Starting from version 1.1.0, we have transitioned to using 'pysofa2.'
 
 To address missing functions in 'pysofa2,' we introduced 'complement\_missing\_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
 
+Version 1.0.0: Initial major release
+------------------------------------
+Uses pysofa (https://pypi.org/project/pysofa/) to compute the ICRF to ITRF rotation matrix
+
+Before v1.0.0:
+--------------
+Test releases
 
 Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
