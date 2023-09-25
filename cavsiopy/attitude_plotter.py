@@ -41,8 +41,8 @@ from matplotlib.cm import ScalarMappable
 from matplotlib.ticker import FixedLocator, FixedFormatter
 from matplotlib.legend_handler import HandlerBase
 
-import miscellaneous as misc
-import ephemeris_importer as ei
+import cavsiopy.miscellaneous as misc
+import cavsiopy.ephemeris_importer as ei
 
 import warnings
 

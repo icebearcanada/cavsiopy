@@ -28,8 +28,8 @@ import datetime
 import numpy as np
 import math as m
 from geopy.distance import geodesic
-import ephemeris_importer as ei
-import use_rotation_matrices as urm
+import cavsiopy.ephemeris_importer as ei
+import cavsiopy.use_rotation_matrices as urm
 
 def LA_sat(plon, plat, palt, slon, slat, salt):
     """
