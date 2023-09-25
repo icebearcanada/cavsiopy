@@ -621,8 +621,7 @@ def icrf_to_itrf_rm(input_time):
                                 ndpointer(shape=(3,3), dtype=float)]
 
     def c2t00b(tta, ttb, uta, utb, xp, yp):
-        """ 
-        
+        """    
         This function complements the undeclared c2t00b in the 'pysofa2' module.
         It locates the SOFA C library used by 'pysofa2' and uses it to construct
         a celestial-to-terrestrial rotation matrix using SOFA routines.
@@ -649,8 +648,6 @@ def icrf_to_itrf_rm(input_time):
         rc2t = asmatrix(zeros(shape=(3,3), dtype=float))
         _sofa.iauC2t00b(tta, ttb, uta, utb, float(xp), float(yp), rc2t)
         return rc2t
-    
-    
     
     def determine_installation_directory(package_name):
         try:

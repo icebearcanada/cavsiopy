@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-attitude_analysis module includes functions for finding the instrument
+attitude_analysis module includes functions for finding the instrument 
 pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF, 
 NEC, NED and ENU. Additional functions are available to calculate the look 
 angles of the spacecraft, and the instrument look angles with respect to a 
@@ -28,8 +28,8 @@ import datetime
 import numpy as np
 import math as m
 from geopy.distance import geodesic
-import ephemeris_importer as ei
-import use_rotation_matrices as urm
+import cavsiopy.ephemeris_importer as ei
+import cavsiopy.use_rotation_matrices as urm
 
 def LA_sat(plon, plat, palt, slon, slat, salt):
     """
