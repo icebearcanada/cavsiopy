@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-attitude_analysis module includes functions for finding the instrument
+attitude_analysis module includes functions for finding the instrument 
 pointing direction in spacecraft orbital frame(ORF), GEI J2000, ECEF, ITRF, 
 NEC, NED and ENU. Additional functions are available to calculate the look 
 angles of the spacecraft, and the instrument look angles with respect to a 
