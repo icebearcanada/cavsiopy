@@ -23,7 +23,7 @@ target_name = 'Ottawa'
 
 # ----------------------------------------------------------------------------
 # locate RRI data file
-path_to_data = '/home/ceren/Documents/USASK/Data/2015-2018/'
+path_to_data = 'path/to/data/files/'
 name_of_RRI_file= "RRI_20160418_222759_223156_lv1_12.0.0.h5"
 
 file_RRI = path_to_data + name_of_RRI_file
