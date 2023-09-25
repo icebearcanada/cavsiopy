@@ -46,5 +46,3 @@ Using pip:
 Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
 Contributing: Glenn C. Hussey, Robert G. Gillies, Andrew W. Yau
-
-License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007

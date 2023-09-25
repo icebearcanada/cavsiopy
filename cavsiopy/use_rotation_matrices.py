@@ -66,8 +66,18 @@ YAW: positive is from +X towards +Y
     
 @author: ceren, warren
 """
+import os
+import pkg_resources
+
 import numpy as np
+
+from ctypes import  c_double
+from numpy.ctypeslib import ndpointer
+from numpy import zeros, asmatrix
+from pysofa2 import sofa_wrapper
+
 from astropy.time import Time
+
 import pysofa2 as pysofa
 import cavsiopy.ephemeris_importer as ei
 import cavsiopy.miscellaneous as misc
@@ -584,6 +594,7 @@ def ned_to_terrestrial_rm(lat, lon):
     return rm_ned2ter
 
 def icrf_to_itrf_rm(input_time):
+    
     """
     Function to calculate the ICRF to ITRF matrix using pysofa routines.
 
@@ -598,6 +609,70 @@ def icrf_to_itrf_rm(input_time):
         ICRF to ITRF rotation matrix.
 
     """
+    _sofa = sofa_wrapper._sofa
+
+    # iauC2t00b
+    _sofa.iauC2t00b.argtypes = [c_double, #tta
+                                c_double, #ttb
+                                c_double, #uta
+                                c_double, #utb
+                                c_double, #xp
+                                c_double, #yp
+                                ndpointer(shape=(3,3), dtype=float)]
+
+    def c2t00b(tta, ttb, uta, utb, xp, yp):
+        """ 
+        
+        This function complements the undeclared c2t00b in the 'pysofa2' module.
+        It locates the SOFA C library used by 'pysofa2' and uses it to construct
+        a celestial-to-terrestrial rotation matrix using SOFA routines.
+
+        The 'c2t00b' function is adapted from 'pysofa' by Frédéric Grollier (2010).
+        
+        Form the celestial-to-terrestrial matrix given the date, the UT1 and
+        the polar motion, using IAU 2000B nutation model.
+
+        :param tta, ttb: TT as a two-part Julian date.
+        :type tta, ttb: float
+
+        :param uta, utb: UT1 as a two-part Julian date.
+        :type uta, utb: float
+
+        :param xp, yp: coordinates of the pole in radians.
+        :type xp, yp: float
+
+        :returns: the celestial-to-terrestrial matrix, as a numpy.matrix of shape
+            3x3.
+
+        .. seealso:: |MANUAL| page 42
+        """
+        rc2t = asmatrix(zeros(shape=(3,3), dtype=float))
+        _sofa.iauC2t00b(tta, ttb, uta, utb, float(xp), float(yp), rc2t)
+        return rc2t
+    
+    
+    
+    def determine_installation_directory(package_name):
+        try:
+            distribution = pkg_resources.get_distribution(package_name)
+            installation_dir = distribution.location
+            return installation_dir
+        except pkg_resources.DistributionNotFound:
+            # Handle the case where the package is not found
+            print(package_name, 'not found!')
+            return None
+    
+    def get_txt_file_path(filename):
+        # get the installation directory
+        installation_dir = determine_installation_directory('cavsiopy')  
+        if installation_dir:
+            txt_file_path = os.path.join(installation_dir, 
+                                         "cavsiopy/coefficient_files/",
+                                         filename)  # Adjust the path as needed
+            return txt_file_path
+        else:
+            return None
+        
     # calculate day-of-year = DOY
     start_date = input_time
     DOY = start_date.timetuple().tm_yday
@@ -621,7 +696,7 @@ def icrf_to_itrf_rm(input_time):
     # https://datacenter.iers.org/data/latestVersion/38_EOP_C01.1900-NOW_V2013_0138.txt
       
     filename_UT1_TAI = '38_EOP_C01.1900-NOW_V2013_0138.txt'
-    file_UT1_TAI = cu.get_txt_file_path(filename_UT1_TAI)
+    file_UT1_TAI = get_txt_file_path(filename_UT1_TAI)
     data_UT1_TAI = np.loadtxt(fname=file_UT1_TAI, skiprows=1, comments='#')
     year_UT1_TAI = data_UT1_TAI[:,0]
     UT1_TAI = data_UT1_TAI[:,5]
@@ -658,7 +733,7 @@ def icrf_to_itrf_rm(input_time):
     # link = 
     # "https://datacenter.iers.org/data/latestVersion/224_EOP_C04_14.62-NOW.IAU2000A224.txt"
     filename_IERS = 'IERS_daily_deltaT.txt'
-    file_IERS = cu.get_txt_file_path(filename_IERS)
+    file_IERS = get_txt_file_path(filename_IERS)
     IER=np.loadtxt(fname=file_IERS, skiprows=14, comments='#')
 
     # find where MJD equals the MJD in the text file
@@ -678,7 +753,7 @@ def icrf_to_itrf_rm(input_time):
     x_p, y_p, s = pysofa.Xys00b(tta, ttb)
 
     #  find the celestial to terrestrial matrix------------------------
-    rm_ICRF2ITRF = cms.c2t00b(tta, ttb, uta, utb, x_p, y_p)
+    rm_ICRF2ITRF = c2t00b(tta, ttb, uta, utb, x_p, y_p)
     
     return rm_ICRF2ITRF
 

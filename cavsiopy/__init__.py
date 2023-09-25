@@ -5,6 +5,6 @@ def citing_warning():
     """
     print() # create a newline
     print("IMPORTANT: Please make sure to cite cavsiopy in publications that"
-          " use cavsiopy functions/modules/plots using DOI: https://doi.org/10.5281/zenodo.8361256")
+          " use cavsiopy functions/modules/plots. Citing instructions are available at: https://cavsiopy.readthedocs.io/en/latest/")
           
 citing_warning()

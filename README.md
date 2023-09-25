@@ -1,8 +1,5 @@
 # cavsiopy: Calculation and Visualization of Spacecraft Instrument Orientation
 
-
-[![DOI](https://zenodo.org/badge/615434503.svg)](https://zenodo.org/badge/latestdoi/615434503)
-
 ![cavsiopy](logos/cavsiopy.png)
 
 Welcome to cavsiopy!
@@ -29,10 +26,26 @@ cavsiopy contains routines for
 
 Instrument pointing direction vectors can be obtained in GEI J2K, ECEF, NED, NEC, ICRF, ITRF.
 
-Citation
---------
+# Citation
+----------
 
-If you use any of the cavsiopy functions/modules/plots please cite the software using DOI: https://doi.org/10.5281/zenodo.8361256
+If you use any of the cavsiopy functions/modules/plots please cite the software using DOI: https://doi.org/10.5281/zenodo.8361256 as in:
+
+Kalafatoglu Eyiguler, E. C., Holley, W., Howarth, A. D., Danskin, D. W., Pandey, K., Martin, C. J., et al. (2023b). icebearcanada/cavsiopy: v1.1.1. doi:10.5281/zenodo.8361256 
+
+cavsiopy in-action:
+
+under review: 
+
+E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin, Robert G. Gillies, Andrew W. Yau, Glenn C. Hussey (2023). cavsiopy: A Python package to calculate and visualize spacecraft instrument orientation. Manuscript submitted for publication.
+
+published:
+1. Kalafatoglu Eyiguler, E. C., Danskin, D., Hussey, G., Pandey, K., Gillies, R., and Yau, A. (2022). Satellite attitude effects on the reception of transionospheric hf signals: Examples from the radio receiver instrument onboard e-pop/swarm-e. In 2022 3rd URSI Atlantic and Asia Pacific Radio Science Meeting(AT-AP-RASC) (IEEE), 1–4
+
+2. Kalafatoglu Eyiguler, E. C., Danskin, D. W., Howarth, A. D., Holley, W., Pandey, K., Gillies, R. G., et al. (2023). Attitude effects on the observed orientation angle of hf waves from the radio receiver instrument on e-pop/swarm-e. In Ionospheric Effects Symposium 2023 (IES2023), ed. K. Groves (Alexandria, VA, USA: IES 2023), 1–6
+
+3. Pandey, K., Eyiguler, E. K., Gillies, R. G., Hussey, G. C., Danskin, D. W., and Yau, A. W. (2022). Polarization characteristics of a single mode radio wave traversing through the ionosphere: A unique observation from the rri on epop/swarm-e. Journal of Geophysical Research: Space Physics 127. doi:10.1029/2022JA030684
+
 
 Dependencies
 ------------
@@ -42,7 +55,8 @@ Installation using pip:
 -----------------------
 Before installing cavsiopy some of the dependencies may need special installation instructions:
 
-# cartopy
+cartopy
+-------
 
 - If you are installing cartopy via pip (on Ubuntu/Debian) first libgeos-dev has to be on your system:
 
@@ -71,37 +85,61 @@ $ pip install -r requirements.txt
 $ pip install cavsiopy
 ```
 
-Version 1.2.1 Release Highlights
---------------------------------
-1. East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns of find\_attitude function.
+Version 1.2.2
+-------------
 
-2. utils.py added to find the location of coefficient files for pysofa, and removed the declaration of coefficient files for pysofa for the find\_attitude function.
+Patch release:
 
-3. Eclipse parameter can now be imported using ephemeris\_importer.cas\_ephemeris function from the CAS_ephemeris data files.
+1. slew_example.py: added to examples
 
-4. Example python codes have been updated accordingly.
+2. in attitude\_analysis.py: functions in utils.py and complement\_missing\_sofa.py are now embedded in attitude\_analysis.py
 
-5. Citation information has been added to __init__.py.
+This structural change does not affect any end-user experience / call to functions etc.
 
-6. Requirements.txt file has been updated.
+3. attitude\_analysis.spacecraft\_distance\_from\_a\_point: fixed a minor bug, which caused the distance array to return empty.
+
+Version 1.2.1
+-------------
+Minor release: change in the return parameters of find\_attitude and cas\_ephemeris. 
+
+1. attitude\_analysis.find\_attitude: East-North-Up: enu and Easth-North-Center(up): enc_u have been added to the returns.
+
+2. utils.py: added to find the location of coefficient files for pysofa, and removed the declaration of coefficient files for pysofa for the find\_attitude function.
+
+3. ephemeris\_importer.cas\_ephemeris: Eclipse parameter can now be imported using ephemeris\_importer.cas\_ephemeris function from the CAS_ephemeris data files.
+
+4. \_\_init\_\_.py: Citation information has been added.
+
+5. requirements.txt: file has been updated.
 
 Version 1.1.1
 -------------
-1. 'attitude\_3d\_ground\_quiver' has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
-2. In 'rri\_example.py' 'rotate\_rri' function is renamed as 'rotate\_inst.'
-3. name changes for several functions in auxiliary\preliminary\_data\_analysis.py module : plot\_data\_validity, import\_quaternions.
+patch release: 
 
-Version 1.1.0: 'pysofa2' Integration
-------------------------------------
-In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier in 2010.
+1. 'attitude\_plotter.attitude\_3d\_ground\_quiver': has been enhanced to display a line connecting the subsatellite point with the ground target on the ground map.
+
+2. rri\_example.py: rotate\_rri is renamed as 'rotate\_inst.'
+
+3. auxiliary\preliminary\_data\_analysis.py: name changes for plot\_data\_validity, import\_quaternions.
+
+Version 1.1.0
+-------------
+'pysofa2' integration.
+
+In previous versions, cavsiopy used the 'pysofa' package developed by Frederic Grollier from 2010.
 
 Starting from version 1.1.0, we have transitioned to using 'pysofa2.'
 
 To address missing functions in 'pysofa2,' we introduced 'complement\_missing\_sofa.py,' which utilizes the SOFA C Library compiled by 'pysofa2.'
 
+Version 1.0.0
+-------------
+Initial major release: Uses pysofa (https://pypi.org/project/pysofa/) to compute the ICRF to ITRF rotation matrix
+
+Before v1.0.0
+--------------
+Test releases
 
 Credits: E. Ceren Kalafatoglu Eyiguler, Warren Holley, Andrew D. Howarth, Donald W. Danskin, Kuldeep Pandey, Carley J. Martin
 
-Contributing: Glenn C. Hussey, Robert Gillies, Andrew W. Yau
-
-License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+Contributing: Glenn C. Hussey, Robert G. Gillies, Andrew W. Yau

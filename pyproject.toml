@@ -4,9 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cavsiopy"
-version = "1.2.1"
+version = "1.2.2"
 authors = [
-  { name= "RRI Working Group"},
   { name= "E. Ceren Kalafatoglu Eyiguler"},
   { name = "Warren Holley"}, 
   { name = "Andrew D. Howarth"}, 
