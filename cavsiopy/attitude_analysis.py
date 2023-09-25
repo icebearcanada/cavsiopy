@@ -28,8 +28,8 @@ import datetime
 import numpy as np
 import math as m
 from geopy.distance import geodesic
-import cavsiopy.ephemeris_importer as ei
-import cavsiopy.use_rotation_matrices as urm
+import ephemeris_importer as ei
+import use_rotation_matrices as urm
 
 def LA_sat(plon, plat, palt, slon, slat, salt):
     """
@@ -216,9 +216,9 @@ def spacecraft_distance_from_a_point(pLon, pLat, pAlt, slon, slat, salt):
 
     SizeArr = len(salt)
 
+    distance = np.empty(len(salt))
     for i in range(0, SizeArr):
         # Line-of-sight distance between the point and satellite
-        distance = np.empty(salt.shape);
         # positive down vector (D in NED)
         dz_down= pAlt-salt[i]
 
@@ -236,7 +236,7 @@ def spacecraft_distance_from_a_point(pLon, pLat, pAlt, slon, slat, salt):
         dx = geodesic(point2, sat2).kilometers
         distance[i] = np.sqrt(dx**2 + dy**2 + dz_down**2)
 
-        return distance
+    return distance
     
 def calculate_los_vec(pLon, pLat, pAlt, slon, slat, salt):
     """
@@ -530,7 +530,8 @@ def find_instrument_attitude(rotated_body, geiX, geiY, geiZ,
 def calculate_reception_angle(inst_ned, pLat, pLon, pAlt, lat, lon, alt, 
                               inst = 'boresight'):
     """
-    function to calculate the reception angle of an instrument.
+    function to calculate the reception and complementary reception angles 
+    of an instrument.
     reception angle: angle between the instrument look direction vector and 
     the line-of-sight vector from the target
     
