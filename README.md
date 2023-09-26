@@ -46,6 +46,9 @@ published:
 
 3. Pandey, K., Eyiguler, E. K., Gillies, R. G., Hussey, G. C., Danskin, D. W., and Yau, A. W. (2022). Polarization characteristics of a single mode radio wave traversing through the ionosphere: A unique observation from the rri on epop/swarm-e. Journal of Geophysical Research: Space Physics 127. doi:10.1029/2022JA030684
 
+Documentation
+-------------
+Detailed documentation on [readthedocs.org](http://cavsiopy.readthedocs.io/)
 
 Dependencies
 ------------
@@ -74,7 +77,7 @@ $ conda install -c conda-forge cartopy
 
 Other packages and requirements
 -------------------------------
-Download the requirements.txt from https://github.com/icebearcanada/cavsiopy
+Download the requirements.txt from our [GitHub repository] (https://github.com/icebearcanada/cavsiopy)
 
 ```
 $ pip install -r requirements.txt
@@ -97,6 +100,8 @@ Patch release:
 This structural change does not affect any end-user experience / call to functions etc.
 
 3. attitude\_analysis.spacecraft\_distance\_from\_a\_point: fixed a minor bug, which caused the distance array to return empty.
+
+4. use\_rotation\_matrices.py: utils.py and missing\_complement\_sofa.py imports removed
 
 Version 1.2.1
 -------------
