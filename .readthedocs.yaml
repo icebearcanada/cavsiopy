@@ -29,4 +29,3 @@ formats:
 python:
     install:
     - requirements: requirements.txt
-    - method: pip
