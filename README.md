@@ -110,6 +110,7 @@ Patch release:
 6. .readthedocs.yaml: version number and installation instructions corrected.
 
 The structural changes in items 2 and 3  do not affect any end-user experience / call to functions etc.
+
 Version 1.2.1
 -------------
 Minor release: change in the return parameters of find\_attitude and cas\_ephemeris. 
