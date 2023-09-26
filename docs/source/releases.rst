@@ -16,6 +16,8 @@ Patch release:
 
 4. attitude\_analysis.spacecraft\_distance\_from\_a\_point: fixed a minor bug, which caused the distance array to return empty.
 
+5. requirements.txt: version numbers were added for dependencies.
+
 The structural changes in items 2 and 3  do not affect any end-user experience / call to functions etc.
 
 Version 1.2.1
