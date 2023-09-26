@@ -1,7 +1,7 @@
-numpy
-matplotlib
-geopy
-h5py
-pysofa2
-astropy
-# cartopy
+numpy==1.25.2
+matplotlib==3.7.2
+geopy==2.4.0
+h5py==3.9.0
+pysofa2==18.1.30.8
+astropy==5.1
+# cartopy==0.21.1
