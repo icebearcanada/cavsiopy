@@ -70,10 +70,10 @@ import os
 import pkg_resources
 
 import numpy as np
-
-from ctypes import  c_double
 from numpy.ctypeslib import ndpointer
 from numpy import zeros, asmatrix
+
+from ctypes import  c_double
 from pysofa2 import sofa_wrapper
 
 from astropy.time import Time
@@ -81,8 +81,6 @@ from astropy.time import Time
 import pysofa2 as pysofa
 import cavsiopy.ephemeris_importer as ei
 import cavsiopy.miscellaneous as misc
-import cavsiopy.complement_missing_sofa as cms
-import cavsiopy.utils as cu
 
 
 def GMST_midnight(utc_dt):
