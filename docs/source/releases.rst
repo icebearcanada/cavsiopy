@@ -18,6 +18,8 @@ Patch release:
 
 5. requirements.txt: version numbers were added for dependencies.
 
+6. .readthedocs.yaml: version number and installation instructions corrected.
+
 The structural changes in items 2 and 3  do not affect any end-user experience / call to functions etc.
 
 Version 1.2.1
