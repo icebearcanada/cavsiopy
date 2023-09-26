@@ -12,11 +12,11 @@ Patch release:
 
 2. in attitude\_analysis.py: functions in utils.py and complement\_missing\_sofa.py are now embedded in attitude\_analysis.py
 
-This structural change does not affect any end-user experience / call to functions etc.
+3. use\_rotation\_matrices.py: utils.py and missing\_complement\_sofa.py imports removed
 
-3. attitude\_analysis.spacecraft\_distance\_from\_a\_point: fixed a minor bug, which caused the distance array to return empty.
+4. attitude\_analysis.spacecraft\_distance\_from\_a\_point: fixed a minor bug, which caused the distance array to return empty.
 
-4. use\_rotation\_matrices.py: utils.py and missing\_complement\_sofa.py imports removed
+The structural changes in items 2 and 3  do not affect any end-user experience / call to functions etc.
 
 Version 1.2.1
 -------------
