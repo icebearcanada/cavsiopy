@@ -3,6 +3,9 @@
 """
 Created on Mon Jul 17 01:17:42 2023
 
+Example file for plotting the complementary/reception angles and closeness to 
+slew using RRI data files.
+
 @author: ceren
 """
 
