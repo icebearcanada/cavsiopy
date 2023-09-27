@@ -1,5 +1,7 @@
 # cavsiopy: Calculation and Visualization of Spacecraft Instrument Orientation
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8361256.svg)](https://doi.org/10.5281/zenodo.8361256)
+
 ![cavsiopy](logos/cavsiopy.png)
 
 Welcome to cavsiopy!
